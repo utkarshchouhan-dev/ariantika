@@ -8,48 +8,19 @@
   // ---- banner surface ----
   &__surface {
     margin-inline: auto;
-    width: 90svw;
-    position: relative;
-    z-index: $z-base;
+    width: 95svw;
     background-color: var(--background);
-    overflow: hidden;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 20%,
+      black 80%,
+      transparent
+    );
 
-    @media (width <= $breakpoint-md) {
+    @include down(md) {
       width: calc(100svw - $space-4 * 2);
       margin-top: 50px;
-    }
-
-    &::before,
-    &::after {
-      content: "";
-      position: absolute;
-      width: 70px;
-      height: 100%;
-      z-index: $z-base;
-
-      @media (width <= $breakpoint-md) {
-        width: 30px;
-      }
-    }
-
-    &::before {
-      top: 0;
-      left: 0;
-      background: linear-gradient(
-        to right,
-        var(--background) 50%,
-        transparent 100%
-      );
-    }
-
-    &::after {
-      top: 0;
-      right: 0;
-      background: linear-gradient(
-        to left,
-        var(--background) 50%,
-        transparent 100%
-      );
     }
   }
 
@@ -58,11 +29,14 @@
     display: flex;
     width: max-content;
     min-width: 100%;
-    will-change: transform;
+
+    &--active {
+      animation: banner-marquee var(--marquee-duration) linear infinite;
+    }
   }
 
   // ---- banner group ----
-  &__group {
+  &__items {
     @include flex-center;
     justify-content: flex-start;
     flex-shrink: 0;
@@ -73,7 +47,7 @@
   // ---- banner item ----
   &__item {
     @include flex-center;
-    gap: clamp($space-12, 2vw, $space-20);
+    gap: $space-20;
     white-space: nowrap;
   }
 
@@ -81,7 +55,6 @@
   &__label {
     font-size: clamp($font-size-14, 2vw, $font-size-18);
     font-weight: $fw-semibold;
-    letter-spacing: 0.01em;
     text-transform: uppercase;
     color: var(--text-muted);
     padding: $space-4;
@@ -92,5 +65,17 @@
     @include flex-center;
     font-size: clamp($font-size-16, 2vw, $font-size-18);
     color: var(--accent);
+  }
+}
+
+@keyframes banner-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banner__track--active {
+    animation: none;
   }
 }

@@ -4,7 +4,7 @@
 .about {
   @include section;
 
-  // ---- about container ----
+  // ---- container ----
   &__container {
     @include container;
     display: grid;
@@ -13,78 +13,49 @@
     grid-template-columns: auto 1fr;
     gap: clamp($space-12, 1.3vw, $space-24);
 
-    @media (width <= $breakpoint-md) {
+    @include down(md) {
       grid-template-columns: auto;
-    }
-  }
-
-  // ---- media container ----
-  &__media {
-    width: fit-content;
-    height: fit-content;
-    margin-inline: auto;
-    position: relative;
-
-    &::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      left: -1px;
-      width: 50%;
-      height: 100%;
-      z-index: $z-base;
-      pointer-events: none;
-      border-radius: $radius-xl 0 0 $radius-xl;
-      background: linear-gradient(
-        to right,
-        var(--background),
-        transparent 30%,
-        transparent 100%
-      );
-
-      -webkit-box-reflect: right 1%;
     }
   }
 
   // ---- paragraphs ----
   &__paragraphs {
-    font-size: clamp($font-size-14 - 1px, 1.5vw, $font-size-16);
+    font-size: clamp(rem(13.5), 1.5vw, rem(17));
     color: var(--text-muted);
-    line-height: 1.6;
+    line-height: 1.7;
     text-wrap: pretty;
     word-break: keep-all;
-    max-width: 54ch;
+    max-width: 56ch;
     margin-inline: auto;
+    @include flex-column;
+    gap: clamp($space-8, 1.5vw, $space-16);
 
-    @media (width <= $breakpoint-md) {
-      margin-top: $space-8;
-      margin-inline: $space-4;
-    }
-
-    &-space {
-      display: block;
-      height: clamp($space-8, 1.5vw, $space-16);
+    @include down(md) {
+      margin: $space-4;
     }
 
     &-link {
       font-size: inherit;
-      display: inline;
       color: inherit;
-      text-decoration: underline solid var(--text-muted);
-      text-underline-offset: 3px;
-      border-radius: $radius-sm;
-      transition: all 0.3s ease-in-out;
+      font-family: $font-primary;
+      font-weight: $fw-regular;
+      text-decoration: underline solid;
+      text-underline-offset: 4px !important;
+      border-radius: $radius-sm !important;
+      transition: color $duration-base $ease-default;
+
+      &:focus-visible {
+        border-radius: $radius-sm !important;
+      }
 
       @media (hover: hover) {
         &:hover {
-          color: var(--accent);
-          text-decoration-color: var(--accent);
+          color: var(--secondary) !important;
         }
       }
 
       &:active {
-        color: var(--accent);
-        text-decoration-color: var(--accent);
+        color: var(--secondary);
       }
 
       svg {

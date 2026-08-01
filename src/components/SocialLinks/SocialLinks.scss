@@ -1,26 +1,19 @@
 @use "../../assets/styles" as *;
 
-.social-links {
-  &__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  &--vertical &__list {
+.social__links {
+  &--vertical {
     @include flex-column;
-    gap: clamp($space-4 - 2px, 2vw, $space-8);
+    gap: clamp(rem(2), 2vw, $space-8);
   }
 
-  &--horizontal &__list {
+  &--horizontal {
     @include flex-center;
     gap: clamp($space-4, 2vw, $space-12);
   }
 
-  &__link {
-    --color-link: var(--primary);
-    padding: clamp($space-4 + 1px, 0.5vw, $space-8);
-    font-size: clamp($font-size-16, 2vw, $font-size-18);
+  &-link {
+    font-size: $font-size-24 !important;
+    padding: rem(6);
 
     @include button-hover {
       background-color: var(--color-link);

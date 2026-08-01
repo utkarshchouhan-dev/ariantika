@@ -1,0 +1,56 @@
+$src-primary: #1563a7; // navy
+$src-secondary: #1ba79b; // teal
+$src-accent: #f59e0b; // amber
+$src-tertiary: #a5f9b3; // lime
+$src-tertiary-light: #e7fbce; // lime-light
+$src-quaternary: #66deef; // sky
+$src-info: #0284c7; // cyan-blue
+$src-success: #16a34a; // emerald
+$src-warning: #d97706; // burnt amber
+$src-danger: #dc2626; // red
+$src-neutral: #334155; // slate
+
+@mixin color-scale($name, $source, $on: #ffffff) {
+  --#{$name}: #{$source};
+  --#{$name}-hover: color-mix(in oklab, #{$source} 92%, black);
+  --#{$name}-active: color-mix(in oklab, #{$source} 86%, black);
+  --#{$name}-pressed: color-mix(in oklab, #{$source} 82%, black);
+  --#{$name}-disabled: color-mix(in oklab, #{$source} 35%, white);
+  --#{$name}-border: color-mix(in oklab, #{$source} 55%, white);
+  --#{$name}-border-strong: color-mix(in oklab, #{$source} 75%, white);
+  --#{$name}-soft: color-mix(in oklab, #{$source} 10%, white);
+  --#{$name}-softer: color-mix(in oklab, #{$source} 8%, white);
+  --#{$name}-focus-ring: color-mix(in srgb, #{$source} 45%, transparent);
+  --#{$name}-on: #{$on};
+}
+
+@mixin root-color-tokens {
+  @include color-scale("primary", $src-primary);
+  @include color-scale("secondary", $src-secondary);
+  @include color-scale("tertiary", $src-tertiary);
+  @include color-scale("tertiary-light", $src-tertiary-light);
+  @include color-scale("quaternary", $src-quaternary);
+  @include color-scale("accent", $src-accent);
+  @include color-scale("info", $src-info);
+  @include color-scale("success", $src-success);
+  @include color-scale("warning", $src-warning);
+  @include color-scale("danger", $src-danger);
+  @include color-scale("neutral", $src-neutral);
+
+  // Surfaces
+  --background: #f8fafc;
+  --surface: #fff;
+  --surface-muted: #f1f5f9;
+  --surface-dark: #1e293b;
+  --surface-dark-muted: #334155;
+  --surface-dark-softer: #475569;
+  --image-bg: var(--primary-softer);
+
+  // Text
+  --text: #0f172a;
+  --text-light: #334155;
+  --text-muted: #64748b;
+  --text-inverse: #ffffff;
+  --border: #e2e8f0;
+  --ring: var(--primary-focus-ring);
+}

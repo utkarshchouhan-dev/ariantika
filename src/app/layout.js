@@ -1,5 +1,5 @@
 import { Inter, Sour_Gummy, Caveat_Brush, Amiri } from "next/font/google";
-import { Header, Footer, ToastRegion } from "@/components";
+import { Header, Footer, ToastRegion, SkipLink, BackToTop } from "@/components";
 import { generateMetadata } from "./metadata";
 
 import "@/assets/styles/main.scss";
@@ -21,7 +21,7 @@ const personJsonLd = {
       "Epidemiology & Biostatistics researcher focused on cancer, infectious, and non-communicable diseases. Research design, SPSS analysis, and public health insights from North Sumatra, Indonesia.",
     url: SITE_URL,
     mainEntityOfPage: SITE_URL,
-    image: `${SITE_URL}/og-image.png`,
+    image: `${SITE_URL}/opengraph-image.png`,
     email: "mailto:ariantikaeffendi@gmail.com",
     sameAs: ["https://www.linkedin.com/in/ariantikaa"],
     address: {
@@ -84,8 +84,10 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
+        <SkipLink href="#main">Skip to main content</SkipLink>
         <Header />
         {children}
+        <BackToTop />
         <Footer />
         <ToastRegion />
       </body>

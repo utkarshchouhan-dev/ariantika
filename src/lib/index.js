@@ -10,6 +10,7 @@ export {
   hoverPop,
   fadeIn,
   scaleIn,
+  slideInUp,
   springPopUp,
   rotateSettle,
   springPopDelayed,

@@ -3,60 +3,92 @@
 import * as motion from "motion/react-client";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components";
-import { fadeUpLight, staggerContainer } from "@/lib";
+import { fadeUp } from "@/lib";
+
 import "./Navigation.scss";
 
 const links = [
   { label: "Home", href: "/" },
   { label: "About", href: "/aboutme" },
   { label: "Services", href: "/services" },
+  { label: "Research", href: "/research" },
   { label: "Contact", href: "/contact" },
 ];
+
+const listStagger = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.1, delayChildren: 0.05 },
+  },
+};
 
 export default function Navigation({
   className = "",
   direction = "horizontal",
+  animated = false,
   onNavigate,
 }) {
   const pathname = usePathname();
-  const isActive = (href) => pathname === href;
+
+  const isActive = (href) =>
+    href === "/"
+      ? pathname === "/"
+      : pathname === href || pathname.startsWith(`${href}/`);
+
   const isVertical = direction === "vertical";
+
+  const listClassName = `navigation__list ${
+    isVertical ? "navigation__list--vertical" : ""
+  }`.trim();
+
+  const items = links.map((link) => {
+    const active = isActive(link.href);
+    const button = (
+      <Button
+        href={link.href}
+        variant="ghost"
+        size="default"
+        className="navigation__list--link"
+        aria-current={active ? "page" : undefined}
+        onPress={onNavigate}
+      >
+        {link.label}
+      </Button>
+    );
+
+    if (!animated) {
+      return (
+        <li className="navigation__list--item" key={link.href}>
+          {button}
+        </li>
+      );
+    }
+
+    return (
+      <motion.li
+        className="navigation__list--item"
+        key={link.href}
+        variants={fadeUp}
+      >
+        {button}
+      </motion.li>
+    );
+  });
 
   return (
     <nav className={`navigation navigation--${direction} ${className}`.trim()}>
-      <motion.ul
-        className={`navigation__list ${
-          isVertical ? "navigation__list--vertical" : ""
-        }`}
-        variants={staggerContainer}
-        initial="hidden"
-        animate="visible"
-      >
-        {links.map((link) => {
-          const active = isActive(link.href);
-
-          return (
-            <motion.li
-              className="navigation__list--item"
-              key={link.href}
-              variants={fadeUpLight}
-            >
-              <Button
-                href={link.href}
-                variant="ghost"
-                size="default"
-                className={`navigation__list--link ${
-                  active ? "navigation__list--link--active" : ""
-                }`}
-                aria-current={active ? "page" : undefined}
-                onPress={onNavigate}
-              >
-                {link.label}
-              </Button>
-            </motion.li>
-          );
-        })}
-      </motion.ul>
+      {animated ? (
+        <motion.ul
+          className={listClassName}
+          variants={listStagger}
+          initial="hidden"
+          animate="visible"
+        >
+          {items}
+        </motion.ul>
+      ) : (
+        <ul className={listClassName}>{items}</ul>
+      )}
     </nav>
   );
 }

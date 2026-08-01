@@ -8,7 +8,7 @@
 
   &__list {
     @include flex-center;
-    gap: clamp($space-4, 0.5vw, $space-8);
+    gap: clamp($space-4, 0.8vw, $space-8);
 
     &--vertical {
       flex-direction: column;
@@ -21,8 +21,9 @@
       width: 100%;
       color: var(--primary);
 
-      &--active {
+      &[aria-current="page"] {
         background-color: var(--primary);
+        border-color: var(--primary);
         color: var(--primary-on);
       }
     }

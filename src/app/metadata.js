@@ -1,5 +1,13 @@
 const SITE_URL = "https://ariantika.me";
 
+const openGraphImage = {
+  url: "/opengraph-image.png",
+  width: 1200,
+  height: 630,
+  alt: "Ariantika • Epidemiology & Biostatistics Researcher",
+  type: "image/png",
+};
+
 const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -52,6 +60,7 @@ const metadata = {
     title: "Ariantika",
     description:
       "Portfolio of Ariantika, an Epidemiology & Biostatistics researcher focused on public health and disease research.",
+    images: [openGraphImage],
   },
   twitter: {
     card: "summary_large_image",
@@ -60,6 +69,7 @@ const metadata = {
       "Explore Ariantika's research, publications, and work in public health and data analysis.",
     site: SITE_URL,
     creator: "Ariantika",
+    images: [openGraphImage.url],
   },
   alternates: {
     canonical: SITE_URL,

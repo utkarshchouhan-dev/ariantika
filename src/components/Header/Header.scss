@@ -4,20 +4,20 @@
   width: 100%;
   position: fixed;
   z-index: $z-header;
+  overflow: hidden;
 
   &__container {
     @include container;
     @include flex-between;
-    margin-top: clamp($space-8, 2vw, $space-14);
+    margin-top: clamp($space-10, 2vw, $space-14);
     margin-inline: auto;
-    padding: clamp($space-4 + 3px, 0.5vw, $space-10)
-      clamp($space-12, 0.8vw, $space-16);
-    background-color: rgb(from var(--surface) r g b / 0.8);
+    padding: clamp($space-4, 1.5vw, $space-8) clamp($space-14, 1.5vw, $space-18);
+    background-color: alpha(var(--surface), 80);
     backdrop-filter: blur(20px);
     border-radius: $radius-2xl;
     border: solid 1px var(--primary-soft);
 
-    @media (width <= $breakpoint-2md) {
+    @include down(lg) {
       max-width: calc(100% - $space-12 * 2);
     }
 
@@ -78,7 +78,7 @@
     height: 1.8px;
     background-color: var(--primary);
     transform-origin: center;
-    transition: all 0.3s ease-in-out;
+    transition: all $duration-base $ease-default;
 
     &:nth-child(2) {
       width: 50%;
@@ -87,7 +87,7 @@
   }
 
   .header__navigation {
-    @media (width <= $breakpoint-md) {
+    @include down(md) {
       display: none;
     }
   }

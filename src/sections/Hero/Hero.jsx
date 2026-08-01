@@ -1,13 +1,12 @@
 import Image from "next/image";
 import * as motion from "motion/react-client";
-import { AbbrTooltip, Button, SocialLinks } from "@/components";
+import { Button, TooltipText } from "@/components";
 import { hero } from "@/data";
 import {
   fadeUp,
   mediaReveal,
   rotateSettle,
   springPopDelayed,
-  springPopUp,
   staggerContainer,
   viewportOnce,
 } from "@/lib";
@@ -16,12 +15,21 @@ import "./Hero.scss";
 
 export default function Hero() {
   // ---- hero data ----
-  const { greeting, title, location, description, actions, image, badge } =
-    hero;
+  const {
+    greeting: { text: greetingText, icon: greetingIcon },
+    title: { name, highlightSrOnly, highlight },
+    location: { icon: locationIcon, text: locationText },
+    description: { beforeAbbr, abbr, afterAbbr },
+    actions,
+    image: { src, alt, width, height, sizes },
+    badge: { ringText, years, yearsLabel },
+  } = hero;
+
+  const LocationIcon = locationIcon;
 
   return (
     // ---- hero section ----
-    <section className="hero" aria-label="Introduction">
+    <section className="hero " aria-label="Introduction">
       <div className="hero__container">
         {/* ---- hero content ---- */}
         <motion.div
@@ -33,9 +41,9 @@ export default function Hero() {
         >
           {/* ---- greeting ---- */}
           <motion.p className="hero__greeting" variants={fadeUp}>
-            {greeting.text}
+            {greetingText}
             <span className="hero__greeting-icon" aria-hidden="true">
-              {greeting.icon}
+              {greetingIcon}
             </span>
           </motion.p>
 
@@ -43,15 +51,13 @@ export default function Hero() {
           <motion.h1
             className="hero__title"
             variants={fadeUp}
-            aria-label={`${title.name}${title.highlightSrOnly} ${title.highlight}`}
+            aria-label={`${name}${highlightSrOnly} ${highlight}`}
           >
             <span className="hero__title-name" aria-hidden="true">
-              {title.name}
+              {name}
             </span>
 
-            <span className="hero__title-line" aria-hidden="true">
-              <mark className="hero__title-highlight">{title.highlight}</mark>
-            </span>
+            <mark className="hero__title-highlight">{highlight}</mark>
           </motion.h1>
 
           {/* ---- location ---- */}
@@ -61,41 +67,45 @@ export default function Hero() {
               variants={rotateSettle}
               aria-hidden="true"
             >
-              <location.icon />
+              <LocationIcon />
             </motion.span>
-            <span className="hero__location-text">{location.text}</span>
+            {locationText}
           </motion.address>
 
           {/* ---- description ---- */}
           <motion.p className="hero__description" variants={fadeUp}>
-            {description.beforeAbbr}
-            <AbbrTooltip
+            {beforeAbbr}
+            <TooltipText
+              as="abbr"
               className="hero__description-abbr"
-              content={description.abbr.title}
+              content={abbr.title}
             >
-              {description.abbr.label}
-            </AbbrTooltip>
-            {description.afterAbbr}
+              {abbr.label}
+            </TooltipText>
+            {afterAbbr}
           </motion.p>
 
           {/* ---- actions ---- */}
-          <motion.div className="hero__actions" variants={springPopUp}>
+          <div className="hero__actions">
             {/* ---- contact button ---- */}
-            {actions.map((action) => (
-              <Button
-                key={action.id}
-                className="hero__actions-button"
-                variant={action.variant}
-                size={action.size}
-                href={action.href}
-                icon={action.icon}
-                aria-label={action.ariaLabel}
-                download={action.download}
-              >
-                {action.label}
-              </Button>
-            ))}
-          </motion.div>
+            {actions.map((action) => {
+              return (
+                <motion.div key={action.id} variants={fadeUp}>
+                  <Button
+                    className="hero__actions-button"
+                    variant={action.variant}
+                    size="default"
+                    href={action.href}
+                    icon={<action.icon />}
+                    aria-label={action.ariaLabel}
+                    download={action.download}
+                  >
+                    {action.label}
+                  </Button>
+                </motion.div>
+              );
+            })}
+          </div>
         </motion.div>
 
         {/* ---- media ---- */}
@@ -109,11 +119,11 @@ export default function Hero() {
           >
             {/* ---- images ---- */}
             <Image
-              src={image.src}
-              alt={image.alt}
-              width={image.width}
-              height={image.height}
-              sizes={image.sizes}
+              src={src}
+              alt={alt}
+              width={width}
+              height={height}
+              sizes={sizes}
               priority
               fetchPriority="high"
             />
@@ -133,21 +143,18 @@ export default function Hero() {
                 </defs>
                 <text className="hero__badge-text">
                   <textPath href="#hero-badge-curve" startOffset="0">
-                    {badge.ringText}
+                    {ringText}
                   </textPath>
                 </text>
               </svg>
 
               {/* ---- badge center ---- */}
               <div className="hero__badge-center">
-                <span className="hero__badge-number">{badge.years}+</span>
-                <span className="hero__badge-label">{badge.yearsLabel}</span>
+                <span className="hero__badge-number">{years}+</span>
+                <span className="hero__badge-label">{yearsLabel}</span>
               </div>
             </motion.span>
           </motion.div>
-
-          {/* ---- social links ---- */}
-          <SocialLinks direction="vertical" className="hero__social" />
         </div>
       </div>
     </section>

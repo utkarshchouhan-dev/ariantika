@@ -16,6 +16,7 @@
     @include section;
     gap: clamp($space-8, 2vw, $space-10);
     padding-inline: clamp($space-14, 1.5vw, $space-16);
+    scroll-margin-top: clamp(10px, 5vw, 150px);
 
     &:first-child {
       padding-top: 0;
@@ -23,6 +24,7 @@
 
     &--primary {
       --service-color: var(--primary);
+      scroll-margin-top: clamp(20px, 10vw, 180px);
     }
 
     &--secondary {
@@ -37,7 +39,7 @@
       flex-direction: row-reverse;
     }
 
-    @media (width <= $breakpoint-2md) {
+    @include down(lg) {
       flex-direction: column;
 
       &:nth-child(even) {
@@ -53,53 +55,53 @@
 
   &-image {
     object-fit: cover;
-    filter: drop-shadow(0 0 50px rgb(from var(--service-color) r g b / 0.1));
+    filter: drop-shadow(0 0 50px alpha(var(--service-color), 10));
   }
 
   &--content {
     width: fit-content;
     @include flex-column;
-    gap: clamp($space-10, 2vw, $space-12);
+    gap: clamp($space-14, 2vw, $space-16);
   }
 
   &-title {
     font-family: $font-display;
-    font-size: clamp($font-size-20, 3.5vw, $font-size-32);
+    font-size: clamp($font-size-24, 3.5vw, $font-size-32);
     font-weight: $fw-bold;
     color: var(--service-color);
   }
 
   &-description {
-    font-size: clamp($font-size-12 + 1px, 1.5vw, $font-size-16);
+    font-size: clamp(rem(14), 2vw, $font-size-16);
     color: var(--text-light);
     line-height: 1.6;
     text-wrap: pretty;
     word-break: keep-all;
-    max-width: 60ch;
+    max-width: 55ch;
   }
 
   &--items {
     @include flex-column;
-    gap: clamp($space-4, 1vw, $space-8);
+    gap: clamp($space-12, 2vw, $space-20);
     width: fit-content;
+    margin-top: clamp($space-10, 2vw, $space-14);
   }
 
   &-item {
-    display: flex;
+    @include flex-center;
     justify-content: flex-start;
-    gap: clamp($space-4, 1vw, $space-8);
+    gap: $space-4;
+    font-size: clamp($font-size-14, 2vw, $font-size-16);
+    color: var(--text-muted);
+    font-weight: $fw-regular;
 
     &-icon {
+      align-self: baseline;
+
       svg {
-        font-size: clamp($font-size-10, 2vw, $font-size-14 - 1px);
+        font-size: clamp($font-size-12, 1vw, rem(14));
         color: var(--service-color);
       }
-    }
-
-    &-text {
-      font-size: clamp($font-size-12, 1.3vw, $font-size-16);
-      color: var(--text-muted);
-      line-height: 1.75;
     }
   }
 
@@ -113,7 +115,7 @@
       grid-template-columns: repeat(3, minmax(150px, 1fr));
       gap: clamp($space-10, 2vw, $space-16);
 
-      @media (width <= $breakpoint-md) {
+      @include down(md) {
         grid-template-columns: repeat(2, minmax(150px, 1fr));
       }
     }
@@ -128,11 +130,11 @@
       gap: clamp($space-10, 2vw, $space-16);
       box-shadow: 0 0 2px var(--primary-soft);
 
-      transition: background-color 0.3s ease-in-out;
+      transition: background-color $duration-base $ease-default;
 
       @media (hover: hover) {
         &:hover {
-          background-color: rgb(from var(--primary-soft) r g b / 0.6);
+          background-color: alpha(var(--primary-soft), 60);
 
           .services__page--why-choose-iconItem {
             transform: scale(1.2) rotate(-5deg);
@@ -143,15 +145,15 @@
 
     &-iconItem {
       @include flex-center;
-      background-color: rgb(from var(--accent) r g b / 0.8);
+      background-color: alpha(var(--accent), 80);
       border-radius: 50%;
       padding: clamp($space-10, 2vw, $space-16);
-      transition: transform 0.3s ease-in-out;
+      transition: transform $duration-base $ease-default;
 
       svg {
         color: var(--text-inverse);
         font-size: clamp($font-size-20, 8vw, $font-size-32);
-        filter: drop-shadow(0 0 1px rgb(from var(--text-inverse) r g b));
+        filter: drop-shadow(0 0 1px var(--text-inverse));
       }
     }
 
@@ -176,13 +178,15 @@
 
     &-list {
       padding-inline: clamp($space-8, 0.5vw, $space-10);
+      max-width: 1000px;
+      margin-inline: auto;
     }
 
     &-item {
       padding-inline: clamp($space-8, 0.5vw, $space-10);
       background-color: var(--background);
       border-bottom: 1px solid var(--border);
-      transition: background-color 0.3s ease-in-out;
+      transition: background-color $duration-base $ease-default;
 
       &:not([data-expanded]):hover {
         background-color: var(--primary-softer);
@@ -209,14 +213,18 @@
 
     &-question {
       font-size: clamp($font-size-14, 1.5vw, $font-size-18);
-      font-weight: $fw-medium;
+      font-weight: $fw-bold;
       line-height: 1.5;
+
+      .services__page--faq-item[data-expanded] & {
+        color: var(--accent);
+      }
     }
 
     &-icon {
       @include flex-center;
       flex-shrink: 0;
-      color: var(--accent);
+      color: var(--text);
       font-size: clamp($font-size-18, 2vw, $font-size-24);
 
       &-minus {
@@ -225,6 +233,8 @@
     }
 
     &-item[data-expanded] &-icon {
+      color: var(--accent);
+
       &-plus {
         display: none;
       }
@@ -237,7 +247,7 @@
     &-panel {
       overflow: clip;
       height: var(--disclosure-panel-height);
-      transition: height 300ms linear;
+      transition: height $duration-base linear;
 
       @media (prefers-reduced-motion: reduce) {
         transition: none;

@@ -1,8 +1,8 @@
 @use "../../assets/styles" as *;
 
 .footer {
-  margin-top: auto;
   @include section;
+  margin-top: auto;
   padding: 0;
 
   &__container {
@@ -10,7 +10,7 @@
     @include flex-between;
     padding-block: clamp($space-24, 4vw, $space-32);
 
-    @media (max-width: $breakpoint-md) {
+    @include down(md) {
       flex-direction: column;
       gap: clamp($space-12, 2vw, $space-16);
     }
@@ -18,8 +18,9 @@
 
   &__copyright,
   &__role {
-    font-size: $font-size-14;
-    color: rgb(from var(--text) r g b / 0.7);
+    font-size: clamp($font-size-12, 1.5vw, $font-size-16);
+    font-weight: $fw-regular;
+    color: var(--text-muted);
     line-height: 1.4;
   }
 }

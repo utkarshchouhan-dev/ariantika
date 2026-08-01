@@ -1,0 +1,30 @@
+@use "../../../assets/styles" as *;
+
+.research-publication {
+  @include page;
+
+  &__container {
+    @include container;
+    @include flex-center;
+    gap: clamp($space-16, 2vw, $space-24);
+    text-align: center;
+    padding-block: clamp($space-48, 8vw, $space-96);
+    height: calc(100svh - clamp($space-40, 8vw, $space-96));
+  }
+
+  &__title {
+    max-width: 28ch;
+    font-size: clamp($font-size-28, 4vw, $font-size-48);
+    font-weight: $fw-bold;
+    line-height: $line-height-tight;
+    color: var(--text);
+    text-wrap: balance;
+  }
+
+  &__status {
+    margin: 0;
+    font-size: clamp($font-size-24, 3vw, $font-size-32);
+    font-family: $font-primary;
+    color: var(--text-muted);
+  }
+}

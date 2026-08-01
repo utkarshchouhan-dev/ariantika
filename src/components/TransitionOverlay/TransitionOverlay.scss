@@ -1,0 +1,59 @@
+@use "../../assets/styles" as *;
+
+.transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: $z-route-transition;
+  pointer-events: none;
+  isolation: isolate;
+
+  &__sheet {
+    @include flex-column;
+    position: fixed;
+    inset: 0;
+    width: 100svw;
+    height: 100svh;
+    pointer-events: none;
+  }
+
+  &__fill {
+    position: relative;
+    flex: 1;
+    background-color: currentColor;
+  }
+
+  // ---- sheets, back to front ----
+  &__sheet--accent {
+    z-index: 1;
+    color: var(--accent);
+  }
+
+  &__sheet--secondary {
+    z-index: 2;
+    color: var(--secondary);
+  }
+
+  &__sheet--primary {
+    z-index: 3;
+    color: var(--primary);
+  }
+
+  &__sheet--primary &__fill::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(
+        to right,
+        alpha(var(--text-inverse), 10) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        alpha(var(--text-inverse), 10) 1px,
+        transparent 1px
+      );
+    background-size: rem(48) rem(48);
+    mask-image: radial-gradient(ellipse at center, black 0%, transparent 75%);
+  }
+}

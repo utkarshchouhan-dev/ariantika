@@ -11,17 +11,16 @@ import {
 } from "react-aria-components";
 import { SectionHeader } from "@/components";
 import { experienceSection } from "@/data";
-import { fadeUp, staggerContainerFast, viewportOnce } from "@/lib";
+import { fadeUp, viewportOnce } from "@/lib";
 
 import "./Experience.scss";
 
-const MotionDisclosureGroup = motion.create(DisclosureGroup);
 const MotionDisclosure = motion.create(Disclosure);
 
 export default function Experience() {
   const {
     experienceHeadingId,
-    header,
+    header: { prefix, accent, subtitle },
     icon: ChevronIcon,
     items,
   } = experienceSection;
@@ -36,22 +35,18 @@ export default function Experience() {
         <SectionHeader
           headingId={experienceHeadingId}
           className="experience__header"
-          prefix={header.prefix}
-          accent={header.accent}
-          subtitle={header.subtitle}
+          prefix={prefix}
+          accent={accent}
+          subtitle={subtitle}
         />
 
         {/* ---- container ---- */}
-        <MotionDisclosureGroup
+        <DisclosureGroup
           className="experience__container"
           aria-label="Experience list"
           defaultExpandedKeys={
             defaultExpandedKey ? [defaultExpandedKey] : undefined
           }
-          variants={staggerContainerFast}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
         >
           {items.map((item) => (
             // ---- item ----
@@ -62,6 +57,9 @@ export default function Experience() {
                 `experience__item${isExpanded ? " experience__item--open" : ""}`
               }
               variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
             >
               {({ isExpanded }) => (
                 <>
@@ -169,7 +167,7 @@ export default function Experience() {
               )}
             </MotionDisclosure>
           ))}
-        </MotionDisclosureGroup>
+        </DisclosureGroup>
       </div>
     </section>
   );

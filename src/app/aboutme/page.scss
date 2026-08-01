@@ -12,13 +12,9 @@
   &-steps {
     @include flex-column;
     align-items: center;
-    gap: clamp($space-24, 4vw, $space-48);
+    gap: clamp($space-16, 5vw, $space-40);
     width: fit-content;
     margin-inline: auto;
-
-    @media (width <= $breakpoint-md) {
-      padding-inline: clamp($space-4, 1vw, $space-12);
-    }
   }
 
   // ---- each step row ----
@@ -32,7 +28,7 @@
       flex-direction: row-reverse;
     }
 
-    @media (width <= $breakpoint-md) {
+    @include down(md) {
       flex-direction: column !important;
     }
 
@@ -41,37 +37,29 @@
     }
   }
 
-  // ---- image wrapper ----
-  &--wrapper {
-    width: fit-content;
-
-    @media (width <= $breakpoint-md) {
-      width: 100%;
-      padding-block: $space-20;
-    }
-  }
-
+  // ---- image ----
   &--photo {
-    position: relative;
-    width: clamp(290px, 35vw, 350px);
+    width: clamp(280px, 25vw, 400px);
     aspect-ratio: 1;
     background-color: var(--image-bg);
-    padding: clamp($space-4, 6vw, $space-8) clamp($space-4, 6vw, $space-8)
-      clamp($space-32, 6vw, $space-40);
-    transform: rotate(2.2deg);
-    border: 1.5px dashed rgb(from var(--primary) r g b / 0.2);
+    border-radius: $radius-xl;
+    overflow: hidden;
 
     &-odd {
-      transform: rotate(-2.2deg);
-      margin-left: auto;
+      rotate: -3deg;
     }
-  }
-  // image inside polaroid
-  &-img {
-    object-fit: cover;
-    object-position: top;
-    user-select: none;
-    -webkit-user-drag: none;
+
+    &:not(&-odd) {
+      rotate: 3deg;
+    }
+
+    // image inside polaroid
+    &-img {
+      object-fit: cover;
+      object-position: top;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
   }
 
   // ---- content side ----
@@ -83,11 +71,11 @@
       @include flex-center;
       gap: $space-4;
       justify-content: flex-start;
-      font-family: $font-brush;
-      font-size: clamp($font-size-28, 3.5vw, $font-size-32);
+      font-family: $font-display;
+      font-size: clamp($font-size-32, 3.5vw, rem(45));
       font-weight: $fw-bold;
       color: var(--accent);
-      letter-spacing: -1px;
+      text-wrap: nowrap;
 
       &-odd {
         color: var(--secondary);
@@ -97,20 +85,22 @@
     &-icon {
       @include flex-center;
       font-size: inherit;
-      color: rgb(from var(--secondary) r g b / 0.5);
+      color: alpha(var(--secondary), 50);
       margin-right: $space-4;
 
       &-odd {
-        color: rgb(from var(--accent) r g b / 0.5);
+        color: alpha(var(--accent), 50);
       }
     }
 
-    &-body {
+    &-text {
       max-width: 60ch;
-      font-size: clamp($font-size-12 + 1px, 1vw, $font-size-16);
+      font-size: clamp(rem(14), 1vw, $font-size-18);
       color: var(--text-muted);
       line-height: 1.7;
+      letter-spacing: -0.02rem;
       text-indent: clamp($space-10, 1.5vw, $space-12);
+      text-wrap: pretty;
     }
   }
 }

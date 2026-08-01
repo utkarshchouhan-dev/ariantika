@@ -5,7 +5,7 @@ export default function ContactPage() {
   return (
     <>
       {/* ---- main container ---- */}
-      <main className="contact__page">
+      <main id="main" tabIndex={-1} className="contact__page">
         {/* ---- page header ---- */}
         {/* <PageHeader header={header} /> */}
         {/* ---- contact section ---- */}

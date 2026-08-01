@@ -1,27 +1,26 @@
 @use "../../assets/styles" as *;
 
-// ---- research section ----
 .research {
   @include section;
 
-  // ---- container ----
   &__container {
     @include container;
-    @include flex-column;
-    align-items: center;
-    padding-block-end: clamp($space-16, 4vw, $space-40);
-
-    img {
-      max-width: 700px;
-      width: 100%;
-      aspect-ratio: 1;
-      margin-inline: auto;
-    }
+    padding-inline: 0;
   }
 
-  &__status {
-    color: red;
-    font-size: $font-size-18;
-    margin-top: -100px;
+  &__items {
+    max-width: fit-content;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp($space-16, 2vw, $space-24);
+    margin-inline: auto;
+
+    @include down(xl) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include down(md) {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 }

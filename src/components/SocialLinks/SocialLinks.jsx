@@ -17,43 +17,39 @@ export default function SocialLinks({
   const tooltipPlacement = direction === "vertical" ? "left" : "top";
 
   return (
-    <nav
-      className={`social-links social-links--${direction} ${className}`.trim()}
+    <motion.div
+      className={`social__links social__links--${direction} ${className}`.trim()}
       aria-label="Social links"
+      variants={socialLinksStagger}
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewportOnce}
     >
-      <motion.ul
-        className="social-links__list"
-        variants={socialLinksStagger}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportOnce}
-      >
-        {socialLinks.map((link) => {
-          const external = isExternalHref(link.href);
+      {socialLinks.map((link) => {
+        const external = isExternalHref(link.href);
 
-          return (
-            <motion.li
-              key={link.id}
-              className="social-links__item"
-              variants={scaleIn}
-            >
-              <Button
-                className="social-links__link"
-                style={{ "--color-link": link.color }}
-                href={link.href}
-                icon={link.icon}
-                aria-label={link.label}
-                tooltipPlacement={tooltipPlacement}
-                variant="primary"
-                size="small"
-                target={external ? "_blank" : undefined}
-                rel={external ? "noopener noreferrer" : undefined}
-                onPress={onItemClick}
-              />
-            </motion.li>
-          );
-        })}
-      </motion.ul>
-    </nav>
+        return (
+          <motion.span
+            key={link.id}
+            className="social__links-item"
+            variants={scaleIn}
+          >
+            <Button
+              className="social__links-link"
+              style={{ "--color-link": link.color }}
+              href={link.href}
+              icon={<link.icon />}
+              aria-label={link.label}
+              tooltipPlacement={tooltipPlacement}
+              variant="primary"
+              size="large"
+              target={external ? "_blank" : undefined}
+              rel={external ? "noopener noreferrer" : undefined}
+              onPress={onItemClick}
+            />
+          </motion.span>
+        );
+      })}
+    </motion.div>
   );
 }

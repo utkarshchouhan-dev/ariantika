@@ -1,0 +1,114 @@
+@use "../../assets/styles" as *;
+
+.quote-verse {
+  @include section;
+  position: relative;
+
+  &--primary {
+    --quote-verse-color: var(--primary);
+  }
+
+  &--secondary {
+    --quote-verse-color: var(--secondary);
+  }
+
+  &--accent {
+    --quote-verse-color: var(--accent);
+  }
+
+  &__icon {
+    position: absolute;
+    color: alpha(var(--quote-verse-color), 70);
+    filter: drop-shadow(3px 3px 0 alpha(var(--quote-verse-color), 20));
+    font-size: clamp($font-size-32, 5vw, $font-size-48);
+
+    &:first-child {
+      top: clamp($space-18, 3vw, $space-40);
+      left: clamp($space-18, 3vw, $space-40);
+      transform: scaleX(-1);
+    }
+
+    &:last-child {
+      bottom: clamp($space-18, 3vw, $space-40);
+      right: clamp($space-18, 3vw, $space-40);
+      transform: scaleY(-1);
+    }
+  }
+
+  &__card {
+    align-content: center;
+    position: relative;
+    margin-inline: auto;
+    max-width: $container-width;
+    padding: clamp($space-48, 10vw, $space-96) clamp($space-24, 6vw, $space-40);
+    text-align: center;
+    min-height: 250px;
+    background: linear-gradient(
+      -50deg,
+      alpha(var(--quote-verse-color), 20) 0%,
+      var(--background) 25%,
+      alpha(var(--quote-verse-color), 10) 50%,
+      var(--background) 75%,
+      alpha(var(--quote-verse-color), 5) 100%
+    );
+    background-size: 150% 150%;
+    animation: quote-verse-gradient 9s $ease-default infinite;
+    border-radius: clamp($radius-lg, 5vw, $radius-xl);
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+      background-size: 100% 100%;
+    }
+  }
+
+  &__content {
+    width: fit-content;
+    padding-block: clamp($space-20, 2vw, $space-32);
+    margin-inline: auto;
+  }
+
+  &__arabic {
+    font-family: $font-arabic;
+    font-size: clamp($font-size-20, 3.5vw, $font-size-36);
+    color: var(--text);
+    margin-bottom: $space-12;
+  }
+
+  &__translation {
+    font-size: clamp($font-size-14, 2vw, $font-size-20);
+    line-height: 1.7;
+    color: var(--text-muted);
+    font-style: $font-display;
+    max-width: 55ch;
+  }
+
+  &__source {
+    display: block;
+    font-size: clamp($font-size-12, 1.5vw, $font-size-14);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-style: normal;
+    font-weight: $fw-medium;
+    color: var(--quote-verse-color);
+    width: fit-content;
+    margin-inline: auto;
+    transition: color $duration-fast $ease-default;
+
+    @media (hover: hover) {
+      &:hover {
+        color: alpha(var(--quote-verse-color), 70);
+      }
+    }
+  }
+}
+
+@keyframes quote-verse-gradient {
+  0%,
+  100% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: 50% 50%;
+  }
+}

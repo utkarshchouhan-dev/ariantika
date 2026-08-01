@@ -1,0 +1,48 @@
+$button-scale-colors:
+  primary, secondary, tertiary, accent, info, success, warning, danger, neutral;
+
+$button-mapped-colors: (
+  surface: (
+    bg: var(--surface),
+    hover: var(--surface-muted),
+    active: var(--border),
+    border: var(--surface),
+    soft: var(--surface-muted),
+    softer: var(--background),
+    on: var(--text),
+    fg: var(--text),
+  ),
+);
+
+@mixin button-color-tokens(
+  $bg,
+  $hover,
+  $active,
+  $border,
+  $soft,
+  $softer,
+  $on,
+  $fg
+) {
+  --button-bg: #{$bg};
+  --button-hover: #{$hover};
+  --button-active: #{$active};
+  --button-border: #{$border};
+  --button-soft: #{$soft};
+  --button-softer: #{$softer};
+  --button-on: #{$on};
+  --button-fg: #{$fg};
+}
+
+@mixin button-derived-color-tokens($source) {
+  @include button-color-tokens(
+    $source,
+    color-mix(in oklab, #{$source} 92%, black),
+    color-mix(in oklab, #{$source} 86%, black),
+    color-mix(in oklab, #{$source} 55%, white),
+    color-mix(in oklab, #{$source} 10%, white),
+    color-mix(in oklab, #{$source} 8%, white),
+    var(--button-custom-on, #ffffff),
+    $source
+  );
+}

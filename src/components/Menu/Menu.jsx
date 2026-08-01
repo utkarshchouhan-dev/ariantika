@@ -9,7 +9,7 @@ import "./Menu.scss";
 const MotionModalOverlay = motion.create(ModalOverlay);
 const MotionModal = motion.create(Modal);
 
-const menuTransition = { duration: 0.3, ease: "easeInOut" };
+const menuTransition = { duration: 0.3, ease: "easeIn" };
 
 export default function Menu({ isOpen, onClose }) {
   return (
@@ -44,6 +44,7 @@ export default function Menu({ isOpen, onClose }) {
               className="menu__dialog"
             >
               <Navigation
+                animated
                 className={`menu__navigation ${
                   isOpen ? "menu__navigation--open" : ""
                 }`}

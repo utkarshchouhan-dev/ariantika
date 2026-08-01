@@ -1,10 +1,6 @@
-// ---- motion imports ----
 import * as motion from "motion/react-client";
+import { fadeUp, staggerContainer, viewportOnce } from "@/lib";
 
-// ---- lib imports ----
-import { fadeIn, fadeUp, staggerContainer, viewportOnce } from "@/lib";
-
-// ---- styles imports ----
 import "./SectionHeader.scss";
 
 // ---- section header component ----
@@ -35,14 +31,7 @@ export default function SectionHeader({
         id={headingId}
         variants={fadeUp}
       >
-        {/* ---- section header title mask ---- */}
-        <motion.span
-          className="section__header-title-mask"
-          variants={fadeIn}
-          aria-hidden="true"
-        />
-        {/* ---- section header title content ---- */}
-        {prefix}{" "}
+        {prefix}
         {accent ? (
           <Accent className="section__header-title-accent">{accent}</Accent>
         ) : null}

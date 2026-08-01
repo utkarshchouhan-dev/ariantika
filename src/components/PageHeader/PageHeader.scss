@@ -7,6 +7,9 @@
   gap: clamp($space-4, 2vw, $space-8);
   padding-block: clamp($space-24, 10vw, $space-64);
   width: 100%;
+  position: relative;
+  background-color: var(--surface);
+  padding-block: clamp(rem(30), 20vw, rem(150));
 
   // ---- page header eyebrow ----
   &-eyebrow {
@@ -14,17 +17,18 @@
     font-size: clamp($font-size-20, 2vw, $font-size-24);
     color: var(--accent);
     letter-spacing: 0.02em;
-    margin-bottom: $space-8;
   }
 
   // ---- section header title ----
   &-title {
-    font-size: clamp($font-size-48, 8vw, $font-size-72);
+    font-size: clamp(rem(45), 8vw, $font-size-72);
     font-weight: $fw-bold;
-    font-family: $font-brush;
+    font-family: $font-display;
     color: var(--primary);
     position: relative;
     z-index: $z-base;
+    letter-spacing: -0.04em;
+    text-align: center;
 
     // ---- section header title accent ----
     &-accent {
@@ -34,14 +38,35 @@
 
   // ---- section header subtitle ----
   &-subtitle {
-    font-size: clamp($font-size-16 - 1px, 3vw, $font-size-20);
+    font-size: clamp($font-size-14, 2vw, $font-size-20);
     color: var(--text-muted);
-    font-family: $font-display;
+    font-family: $font-primary;
     text-wrap: pretty;
     text-align: center;
     max-width: 65ch;
-    padding-inline: clamp($space-8, 2vw, $space-12);
+    padding-inline: $space-18;
     position: relative;
     z-index: $z-base;
   }
+}
+
+.custom-shape-divider-bottom-1785504141 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1785504141 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: clamp(rem(50), 10vw, rem(150));
+}
+
+.custom-shape-divider-bottom-1785504141 .shape-fill {
+  fill: var(--background);
 }

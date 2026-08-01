@@ -15,12 +15,22 @@
     --ic-slide-duration: 0.01ms;
   }
 
-  @media (width <= $breakpoint-md) {
+  @include down(md) {
     --ic-card-width: clamp(200px, 100vw, 300px);
   }
 
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 14%,
+    black 86%,
+    transparent
+  );
   perspective: calc(var(--ic-card-width) * 1.3);
   overflow-x: clip;
+  margin-inline: auto;
+  width: fit-content;
+  padding-block: $space-8;
 
   &__stage {
     @include flex-center;
@@ -30,8 +40,8 @@
     transform-style: preserve-3d;
     margin-bottom: $space-24;
 
-    @media (width <= $breakpoint-md) {
-      height: calc(var(--ic-card-width) * 1.2);
+    @include down(md) {
+      height: calc(var(--ic-card-width) * 1.15);
     }
   }
 
@@ -44,7 +54,7 @@
     user-select: none;
     will-change: transform, filter, opacity;
     z-index: $z-card;
-    filter: blur(5) brightness(0.98);
+    filter: blur(7);
     transform: translateX(var(--ic-side-x)) translateZ(var(--ic-side-depth))
       rotateY(calc(var(--ic-side-rotate) * -1)) scale(var(--ic-side-scale));
     transition:
@@ -104,14 +114,13 @@
   }
 
   &__dot {
-    position: relative;
     width: clamp($space-4, 1.6vw, $space-8);
     height: clamp($space-4, 1.6vw, $space-8);
     border: none;
     border-radius: $radius-2xl;
     background-color: var(--primary-soft);
     cursor: pointer;
-    transition: width 0.3s linear;
+    transition: width $duration-base linear;
     overflow: clip;
 
     &--active {

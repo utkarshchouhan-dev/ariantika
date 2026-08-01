@@ -1,6 +1,6 @@
 import Image from "next/image";
 import * as motion from "motion/react-client";
-import { PageHeader, SectionHeader, QuoteVerse, Button } from "@/components";
+import { PageHeader, SectionHeader, QuranVerse, Button } from "@/components";
 import { servicesPage, servicesMetaData } from "@/data";
 import {
   fadeUp,
@@ -26,13 +26,13 @@ export default function ServicesPage() {
     services,
     quran,
     whyChooseMe: { header: whyChooseHeader, items: whyChooseItems },
-    faq: { header: faqHeader, icons: faqIcons, items: faqItems },
+    faq: { header: faqHeader },
     contactCta,
   } = servicesPage;
 
   return (
     <>
-      <main className="services__page">
+      <main id="main" tabIndex={-1} className="services__page">
         {/* ---- page header ---- */}
         <PageHeader header={header} />
 
@@ -104,7 +104,7 @@ export default function ServicesPage() {
                         >
                           <service.list.icon />
                         </span>
-                        <span className="services__page-item-text">{item}</span>
+                        {item}
                       </motion.li>
                     ))}
                   </motion.ul>
@@ -114,7 +114,7 @@ export default function ServicesPage() {
           })}
 
           {/* ---- Quran verse ---- */}
-          <QuoteVerse
+          <QuranVerse
             arabic={quran.arabic}
             translation={quran.translation}
             source={quran.source}
@@ -141,25 +141,23 @@ export default function ServicesPage() {
               whileInView="visible"
               viewport={viewportOnce}
             >
-              {whyChooseItems.map(
-                ({ title: itemTitle, description, icon: Icon }) => (
-                  <motion.li
-                    key={itemTitle}
-                    className="services__page--why-choose-item"
-                    variants={fadeUp}
+              {whyChooseItems.map(({ title: itemTitle, icon: Icon }) => (
+                <motion.li
+                  key={itemTitle}
+                  className="services__page--why-choose-item"
+                  variants={fadeUp}
+                >
+                  <span
+                    className="services__page--why-choose-iconItem"
+                    aria-hidden="true"
                   >
-                    <span
-                      className="services__page--why-choose-iconItem"
-                      aria-hidden="true"
-                    >
-                      <Icon />
-                    </span>
-                    <h3 className="services__page--why-choose-titleItem">
-                      {itemTitle}
-                    </h3>
-                  </motion.li>
-                ),
-              )}
+                    <Icon />
+                  </span>
+                  <h3 className="services__page--why-choose-titleItem">
+                    {itemTitle}
+                  </h3>
+                </motion.li>
+              ))}
             </motion.ul>
           </section>
 
@@ -231,7 +229,6 @@ export default function ServicesPage() {
                   variant={contactCta.cta.variant}
                   size={contactCta.cta.size}
                   icon={contactCta.cta.icon}
-                  iconPosition="right"
                   aria-label={contactCta.cta.ariaLabel}
                 >
                   {contactCta.cta.label}

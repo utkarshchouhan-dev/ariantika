@@ -21,5 +21,17 @@ export default function sitemap() {
       changefreq: "daily",
       priority: 0.7,
     },
+    {
+      url: `${BASE_URL}/research`,
+      lastModified: new Date(),
+      changefreq: "daily",
+      priority: 0.6,
+    },
+    {
+      url: `${BASE_URL}/contact`,
+      lastModified: new Date(),
+      changefreq: "daily",
+      priority: 0.4,
+    },
   ];
 }

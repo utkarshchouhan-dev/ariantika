@@ -1,33 +1,36 @@
-import * as motion from "motion/react-client";
-import { SectionHeader } from "@/components";
-import { researchSection } from "@/data";
-import { fadeUp, viewportOnce } from "@/lib";
+import { ResearchCard, SectionHeader } from "@/components";
+import { getFeaturedPublications, researchSection } from "@/data";
 
 import "./Research.scss";
 
 export default function Research() {
-  const { researchHeadingId, header, placeholder } = researchSection;
+  const {
+    researchHeadingId,
+    header: { prefix, accent, subtitle },
+  } = researchSection;
+  const featuredPublications = getFeaturedPublications(3);
 
   return (
-    // ---- research section ----
     <section className="research" aria-labelledby={researchHeadingId}>
-      {/* ---- section header ---- */}
       <SectionHeader
-        headingId={researchHeadingId}
         className="research__header"
-        prefix={header.prefix}
-        accent={header.accent}
-        subtitle={header.subtitle}
+        headingId={researchHeadingId}
+        prefix={prefix}
+        accent={accent}
+        subtitle={subtitle}
       />
 
-      {/* ---- container ---- */}
-      <motion.div
-        className="research__container"
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportOnce}
-      ></motion.div>
+      <div className="research__container">
+        <div className="research__items">
+          {featuredPublications.map((publication, index) => (
+            <ResearchCard
+              key={publication.id}
+              publication={publication}
+              index={index}
+            />
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

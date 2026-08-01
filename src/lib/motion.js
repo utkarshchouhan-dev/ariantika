@@ -1,8 +1,7 @@
 // smooth "ease-out-expo" curve for a premium, settled feel
 export const EASE_OUT_EXPO = [0.16, 1, 0.3, 1];
 
-// default viewport config: reveal once, when ~20% is in view
-export const viewportOnce = { once: true, amount: 0.5 };
+export const viewportOnce = { once: true, amount: 0.29 };
 
 // orchestrates a staggered reveal of children
 export const staggerContainer = {
@@ -15,7 +14,7 @@ export const staggerContainer = {
 export const socialLinksStagger = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.08, delayChildren: 1 },
+    transition: { staggerChildren: 0.08, delayChildren: 0.7 },
   },
 };
 
@@ -29,7 +28,7 @@ export const staggerContainerFast = {
 
 // soft blur + lift reveal (default item)
 export const fadeUp = {
-  hidden: { opacity: 0, y: 28, filter: "blur(16px)" },
+  hidden: { opacity: 0, y: 30, filter: "blur(20px)" },
   visible: {
     opacity: 1,
     y: 0,
@@ -82,7 +81,7 @@ export const fadeIn = {
 
 // springy pop for buttons / cards / icons
 export const scaleIn = {
-  hidden: { opacity: 0, scale: 0.9, filter: "blur(10px)" },
+  hidden: { opacity: 0, scale: 0, filter: "blur(10px)" },
   visible: {
     opacity: 1,
     scale: 1,
@@ -93,7 +92,7 @@ export const scaleIn = {
 
 // springy pop with upward lift — CTA rows, action groups
 export const springPopUp = {
-  hidden: { opacity: 0, y: 20, scale: 0.92, filter: "blur(8px)" },
+  hidden: { opacity: 0, y: 20, scale: 0, filter: "blur(8px)" },
   visible: {
     opacity: 1,
     y: 0,
@@ -230,13 +229,13 @@ const deckSpreadWrapped = {
 };
 
 const deckSpreadSideTransition = {
-  delay: DECK_CENTER_DURATION - 0.3,
+  delay: 0.6 - 0.3,
   duration: 0.3,
   ease: "linear",
 };
 
 const deckSpreadCenterTransition = {
-  duration: DECK_CENTER_DURATION,
+  duration: 0.6,
   ease: EASE_OUT_EXPO,
 };
 
@@ -246,11 +245,11 @@ export const deckSpreadCard = {
 
     switch (index) {
       case 0:
-        return { opacity: 0, x: "100%" };
+        return { opacity: 0, x: "100%", zIndex: -1 };
       case 1:
-        return { opacity: 0, scale: 0.5 };
+        return { opacity: 0, scale: 0.5, zIndex: 1 };
       case 2:
-        return { opacity: 0, x: "-100%" };
+        return { opacity: 0, x: "-100%", zIndex: -1 };
       default:
         return {};
     }
@@ -265,12 +264,14 @@ export const deckSpreadCard = {
           opacity: 1,
           x: "0%",
           scale: 1,
+          zIndex: 1,
           transition: deckSpreadSideTransition,
         };
       case 1:
         return {
           opacity: 1,
           scale: 1,
+          zIndex: 2,
           transition: deckSpreadCenterTransition,
         };
       case 2:
@@ -278,6 +279,7 @@ export const deckSpreadCard = {
           opacity: 1,
           x: "0%",
           scale: 1,
+          zIndex: 1,
           transition: deckSpreadSideTransition,
         };
       default:

@@ -5,28 +5,24 @@
   @include section;
   position: relative;
   background-color: var(--background);
-  background-image: url("../../assets/images/contact/waves.svg");
 
-  &::after,
   &::before {
     content: "";
     position: absolute;
+    inset: 0;
+    top: 50%;
+    transform: translateY(-50%);
     width: 100%;
-    height: 80%;
-  }
+    height: 60%;
+    background-image: url("../../assets/images/contact/waves.svg");
 
-  &::after {
-    top: 0;
-    background-image: linear-gradient(
-      to bottom,
-      var(--background) 30%,
-      transparent
+    mask-image: linear-gradient(
+      to top,
+      transparent 0%,
+      black 20%,
+      black 80%,
+      transparent 100%
     );
-  }
-
-  &::before {
-    bottom: 0;
-    background-image: linear-gradient(to top, var(--background), transparent);
   }
 
   // ---- contact container ----
@@ -78,8 +74,8 @@
     font-size: clamp($font-size-12, 1.5vw, $font-size-14);
     font-weight: $fw-medium;
     text-transform: capitalize;
-    color: rgb(from var(--text-muted) r g b / 0.6);
-    transition: all 0.3s ease-in-out;
+    color: alpha(var(--text-muted), 60);
+    transition: all $duration-base $ease-default;
 
     &-icon {
       @include flex-center;
@@ -95,7 +91,7 @@
     }
 
     &--required {
-      font-size: calc($font-size-10 - 2px);
+      font-size: $font-size-8;
     }
   }
 
@@ -134,11 +130,11 @@
       padding-inline: clamp($space-14, 1.5vw, $space-16);
       width: calc(100% - clamp($space-14, 1.5vw, $space-16) * 2);
       border-radius: $radius-xl;
-      color: rgb(from var(--text) r g b / 0.4);
+      color: alpha(var(--text), 40);
       font-weight: $fw-medium;
 
       &:has(.contact__select--label--selected) {
-        color: rgb(from var(--text) r g b / 0.7);
+        color: alpha(var(--text), 70);
         font-weight: $fw-semibold;
       }
 
@@ -150,7 +146,7 @@
 
       &-icon {
         svg {
-          transition: transform 0.3s ease-in-out;
+          transition: transform $duration-base $ease-default;
         }
       }
     }
@@ -172,8 +168,8 @@
     opacity: 1;
     transform: translateY(0) scale(1);
     transition:
-      opacity 0.3s ease-in-out,
-      transform 0.2s ease-in-out;
+      opacity $duration-base $ease-default,
+      transform $duration-quick $ease-default;
 
     &[data-entering] {
       opacity: 0;
@@ -202,9 +198,9 @@
     font-size: clamp($font-size-12, 1.5vw, $font-size-14);
     font-weight: $fw-semibold;
     text-transform: capitalize;
-    color: rgb(from var(--text) r g b / 0.6);
+    color: alpha(var(--text), 60);
     border-bottom: 1px solid var(--primary-soft);
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color $duration-base $ease-default;
     cursor: pointer;
 
     @media (hover: hover) {
@@ -262,7 +258,7 @@
   font-weight: $fw-medium;
   line-height: 1.4;
   border-radius: $radius-xl;
-  box-shadow: 0 0 4px rgb(from var(--text) r g b / 0.12);
+  box-shadow: 0 0 4px alpha(var(--text), 10);
   pointer-events: none;
 
   &--success {

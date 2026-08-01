@@ -1,72 +1,44 @@
 "use client";
 
-import {
-  motion,
-  useAnimationFrame,
-  useMotionValue,
-  useReducedMotion,
-} from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-
 import { fadeIn, viewportOnce } from "@/lib";
 import { banner } from "@/data";
 
 import "./Banner.scss";
 
-const { ariaLabel, items, marquee, separator } = banner;
-const { repeatCount, scrollSpeed } = marquee;
-const SeparatorIcon = separator.icon;
+const {
+  items,
+  marquee: { repeatCount, scrollSpeed },
+  separator: { icon: SeparatorIcon },
+} = banner;
 
 const repeatedItems = Array.from({ length: repeatCount }, () => items).flat();
 
-// ---- banner group component ----
-function BannerGroup({ itemKeyPrefix, groupRef }) {
-  return (
-    <ul className="banner__group" ref={groupRef}>
-      {repeatedItems.map((item, index) => (
-        <li className="banner__item" key={`${itemKeyPrefix}-${item}-${index}`}>
-          <span className="banner__label">{item}</span>
-          <span className="banner__separator">
-            <SeparatorIcon />
-          </span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-// ---- main banner component ----
 export default function Banner() {
   const prefersReducedMotion = useReducedMotion();
-  const [loopWidth, setLoopWidth] = useState(0);
-  const firstGroupRef = useRef(null);
-  const x = useMotionValue(0);
+  const groupRef = useRef(null);
+  const [duration, setDuration] = useState(null);
 
-  // ---- update loop width ----
   useEffect(() => {
-    const updateLoopWidth = () => {
-      if (firstGroupRef.current) {
-        setLoopWidth(firstGroupRef.current.offsetWidth);
-      }
+    const measure = () => {
+      const width = groupRef.current?.offsetWidth;
+      if (!width) return;
+
+      setDuration((width * 2000) / scrollSpeed / 1000);
     };
 
-    updateLoopWidth();
-    window.addEventListener("resize", updateLoopWidth);
-
-    return () => window.removeEventListener("resize", updateLoopWidth);
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
   }, []);
 
-  // ---- animate the banner ----
-  useAnimationFrame((_, delta) => {
-    if (prefersReducedMotion || loopWidth === 0) return;
-
-    const moveBy = (scrollSpeed * delta) / 2000;
-    const next = x.get() - moveBy;
-    x.set(next <= -loopWidth ? next + loopWidth : next);
-  });
+  const trackStyle =
+    !prefersReducedMotion && duration
+      ? { "--marquee-duration": `${duration}s` }
+      : undefined;
 
   return (
-    // ---- banner section ----
     <section className="banner" aria-hidden="true">
       <motion.div
         className="banner__surface"
@@ -75,13 +47,30 @@ export default function Banner() {
         whileInView="visible"
         viewport={viewportOnce}
       >
-        <motion.div
-          className="banner__track"
-          style={{ x: prefersReducedMotion ? 0 : x }}
+        <div
+          className={`banner__track${duration && !prefersReducedMotion ? " banner__track--active" : ""}`}
+          style={trackStyle}
         >
-          <BannerGroup itemKeyPrefix="group-a" groupRef={firstGroupRef} />
-          <BannerGroup itemKeyPrefix="group-b" />
-        </motion.div>
+          {["a", "b"].map((prefix, index) => (
+            <ul
+              key={prefix}
+              className="banner__items"
+              ref={index === 0 ? groupRef : undefined}
+            >
+              {repeatedItems.map((item, itemIndex) => (
+                <li
+                  className="banner__item"
+                  key={`${prefix}-${item}-${itemIndex}`}
+                >
+                  <span className="banner__label">{item}</span>
+                  <span className="banner__separator">
+                    <SeparatorIcon />
+                  </span>
+                </li>
+              ))}
+            </ul>
+          ))}
+        </div>
       </motion.div>
     </section>
   );

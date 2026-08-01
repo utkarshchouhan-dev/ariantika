@@ -1,33 +1,56 @@
 // ---- hero data ----
-export { hero } from "./hero";
+export { hero } from "./hero/section";
 
 // ---- banner data ----
-export { banner } from "./banner";
+export { banner } from "./banner/section";
 
 // ---- about data ----
-export {
-  aboutMetadata,
-  aboutSection,
-  aboutMePageSteps,
-  aboutMePageCarousel,
-  aboutMePageStepsById,
-  aboutMePageCarouselStepIds,
-} from "./about";
+export { aboutCarouselStepIds } from "./about/config";
+export { aboutMePageCarousel, aboutMePageStepsById } from "./about/logic";
+export { aboutMetadata } from "./about/metadata";
+export { aboutMePageSteps } from "./about/page";
+export { aboutSection } from "./about/section";
+export { aboutMePageStepsSource } from "./about/source";
 
 // ---- social links data ----
-export { socialLinks } from "./socialLinks";
+export { socialLinks } from "./socialLinks/source";
 
 // ---- services data ----
-export { servicesMetaData, servicesPage, servicesSection } from "./services";
+export { servicesSection } from "./services/section";
+export { servicesSource } from "./services/source";
+export { servicesPage } from "./services/page";
+export { servicesMetaData } from "./services/metadata";
+export { servicesCards, servicesCursor } from "./services/cards";
 
 // ---- experience data ----
-export { experienceSection } from "./experience";
+export { experienceIcon, experienceItems } from "./experience/source";
+export { experienceSection } from "./experience/section";
 
 // ---- research data ----
-export { researchSection } from "./research";
+export { PUBLICATION_STATUS } from "./research/status";
+export {
+  getPublicationStatus,
+  getPublicationAccentVars,
+  getOrderedPublications,
+  getFeaturedPublications,
+  getPublicationBySlug,
+} from "./research/logic";
+export { researchCard } from "./research/card";
+export { researchPageMetadata } from "./research/metadata";
+export { researchPage } from "./research/page";
+export { researchSection } from "./research/section";
+export { researchPublications } from "./research/source";
 
 // ---- contact data ----
-export { contact } from "./contact";
+export { contactFormFields, contactForm } from "./contact/form";
+export { contact } from "./contact/section";
 
 // ---- footer data ----
-export { footer } from "./footer";
+export { footer } from "./footer/section";
+
+// ---- quran data ----
+export {
+  quranKnowledgeVerse,
+  quranTrustsVerse,
+  quranSaveLifeVerse,
+} from "./quran/source";

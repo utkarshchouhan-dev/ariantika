@@ -3,12 +3,14 @@ import { footer } from "@/data";
 import "./Footer.scss";
 
 export default function Footer() {
-  const { copyrightText, roleText } = footer.legal;
+  const {
+    legal: { copyrightText, roleText },
+  } = footer;
 
   return (
     <footer className="footer">
       <div className="footer__container">
-        <p className="footer__copyright">{copyrightText}</p>
+        <small className="footer__copyright">{copyrightText}</small>
         <p className="footer__role">{roleText}</p>
       </div>
     </footer>

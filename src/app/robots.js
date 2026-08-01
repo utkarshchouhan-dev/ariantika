@@ -3,7 +3,7 @@ export default function robots() {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: "/private/",
+      disallow: ["/private/", "/dev/"],
       crawlDelay: 1,
     },
     sitemap: "https://ariantika.me/sitemap.xml",

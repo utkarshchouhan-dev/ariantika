@@ -1,19 +1,21 @@
-import Link from "next/link";
 import Image from "next/image";
-import logoSrc from "@/assets/images/logo/ariantika-logo.png";
+import { Button } from "@/components";
+import logoSrc from "@/assets/images/logo/primary-logo.png";
+
 import "./Logo.scss";
 
 export default function Logo() {
   return (
-    <Link href="/" className="logo__wrapper" title="Home" aria-label="Home">
+    <Button href="/" variant="link" className="logo__wrapper" aria-label="Home">
       <Image
         src={logoSrc}
-        alt="logo "
-        width={150}
-        height={55}
+        alt="Ariantika's logo"
+        width={300}
+        height={300}
+        quality={50}
         priority
         className="logo__wrapper-image"
       />
-    </Link>
+    </Button>
   );
 }

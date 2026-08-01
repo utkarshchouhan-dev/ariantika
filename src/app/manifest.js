@@ -4,18 +4,18 @@ const PWA_ICON_512 = "/favicon/web-app-manifest-512x512.png";
 export default function manifest() {
   return {
     id: "/",
-    name: "Ariantika — Epidemiology & Biostatistics Researcher",
+    name: "Ariantika • Epidemiology & Biostatistics Researcher",
     short_name: "Ariantika",
     description:
-      "Portfolio of Ariantika, an Epidemiology & Biostatistics Researcher based in North Sumatra, Indonesia. Research in cancer, infectious, and non-communicable diseases, with experience in research design, SPSS statistical analysis, and translating data into public health insights.",
+      "I'm Ariantika, an Epidemiology & Biostatistics Researcher. Explore my research, publications, and my work in public health and data analysis.",
     lang: "en",
     dir: "ltr",
     start_url: "/?source=pwa",
     scope: "/",
     display: "standalone",
     orientation: "portrait",
-    background_color: "#f8fafc",
-    theme_color: "#1563a7",
+    background_color: "#97C7F2",
+    theme_color: "#BFDDF7",
     prefer_related_applications: false,
     categories: ["health", "medical", "education", "science", "research"],
     icons: [
@@ -53,6 +53,32 @@ export default function manifest() {
         description:
           "Research design, statistical analysis, and public health consulting",
         url: "/services",
+        icons: [
+          {
+            src: PWA_ICON_192,
+            sizes: "192x192",
+            type: "image/png",
+          },
+        ],
+      },
+      {
+        name: "Research",
+        short_name: "Research",
+        description: "Ariantika's research projects",
+        url: "/research",
+        icons: [
+          {
+            src: PWA_ICON_192,
+            sizes: "192x192",
+            type: "image/png",
+          },
+        ],
+      },
+      {
+        name: "Contact",
+        short_name: "Contact",
+        description: "Contact Ariantika for research inquiries",
+        url: "/contact",
         icons: [
           {
             src: PWA_ICON_192,

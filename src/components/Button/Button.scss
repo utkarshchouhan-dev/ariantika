@@ -1,4 +1,6 @@
+@use "sass:map";
 @use "../../assets/styles" as *;
+@use "./button.tokens" as *;
 
 .button {
   @include flex-center;
@@ -6,127 +8,171 @@
   cursor: pointer;
   border: 1px solid transparent;
   border-radius: $radius-xl;
+  font-size: var(--button-font-size);
+  font-weight: $fw-semibold;
+  padding: var(--button-padding);
   transition:
-    background-color 0.3s ease-in-out,
-    border-color 0.3s ease-in-out,
-    color 0.3s ease-in-out,
-    border-radius 0.3s ease-in-out,
-    transform 0.3s ease-in-out,
-    opacity 0.3s ease-in-out,
-    text-decoration 0.3s ease-in-out;
+    background-color $duration-fast $ease-default,
+    border-color $duration-fast $ease-default,
+    color $duration-fast $ease-default,
+    opacity $duration-fast $ease-default,
+    text-decoration $duration-fast $ease-default,
+    transform $duration-fast $ease-default;
 
-  // ---- Global states ----
+  --button-font-size: #{$font-size-16};
+  --button-icon-size: 1.25rem;
+  --button-gap: #{$space-8};
+  --button-padding: #{$space-16};
+
+  @include button-color-tokens(
+    var(--primary),
+    var(--primary-hover),
+    var(--primary-active),
+    var(--primary-border),
+    var(--primary-soft),
+    var(--primary-softer),
+    var(--primary-on),
+    var(--primary)
+  );
+
+  // ---- states ----
+
   &:disabled,
   &[data-disabled],
   &[aria-disabled="true"] {
+    opacity: 0.38;
     cursor: not-allowed;
-    opacity: 0.6;
-    pointer-events: none;
   }
 
   &[data-pressed] {
-    transform: scale(0.97);
+    transform: translateY(1.5px);
   }
 
-  // ---- Icon only ----
+  // ---- icon only ----
   &--icon-only {
     aspect-ratio: 1;
-    padding: clamp($space-4, 0.8vw, $space-8);
+    padding: clamp($space-10, 1.8vw, $space-12);
 
     .button__content {
       gap: 0;
     }
   }
 
-  // ---- Sizes ----
-  &__small {
-    font-size: clamp($font-size-14, 1vw, $font-size-16);
-    padding: clamp($space-10, 0.7vw, $space-12);
+  // ---- sizes ----
+
+  &--size-small {
+    --button-font-size: #{clamp($font-size-12, 1.5vw, $font-size-14)};
+    --button-icon-size: #{clamp($font-size-14, 1.5vw, $font-size-16)};
+    --button-padding: #{clamp($space-10, 1.5vw, $space-12)};
   }
 
-  &__default {
-    font-size: clamp($font-size-16, 1.2vw, $font-size-18);
-    padding: clamp($space-14, 1vw, $space-16);
+  &--size-default {
+    --button-font-size: #{clamp(rem(13), 1.5vw, $font-size-16)};
+    --button-icon-size: #{clamp($font-size-16, 1.5vw, $font-size-18)};
+    --button-padding: #{clamp($space-12, 1.5vw, $space-16)};
   }
 
-  &__large {
-    font-size: clamp($font-size-18, 1.2vw, $font-size-20);
-    padding: clamp($space-14, 1vw, $space-18);
+  &--size-large {
+    --button-font-size: #{clamp(rem(15), 1.5vw, $font-size-18)};
+    --button-icon-size: #{clamp($font-size-18, 1.5vw, $font-size-20)};
+    --button-padding: #{clamp($space-16, 1.5vw, $space-20)};
   }
 
-  // ---- Variants ----
-  &__primary {
-    background-color: var(--primary);
-    border-color: var(--primary);
-    color: var(--primary-on);
+  // ---- colors ----
+
+  @each $name in $button-scale-colors {
+    &--color-#{$name} {
+      @include button-color-tokens(
+        var(--#{$name}),
+        var(--#{$name}-hover),
+        var(--#{$name}-active),
+        var(--#{$name}-border),
+        var(--#{$name}-soft),
+        var(--#{$name}-softer),
+        var(--#{$name}-on),
+        var(--#{$name})
+      );
+    }
+  }
+
+  @each $name, $tokens in $button-mapped-colors {
+    &--color-#{$name} {
+      @include button-color-tokens(
+        map.get($tokens, bg),
+        map.get($tokens, hover),
+        map.get($tokens, active),
+        map.get($tokens, border),
+        map.get($tokens, soft),
+        map.get($tokens, softer),
+        map.get($tokens, on),
+        map.get($tokens, fg)
+      );
+    }
+  }
+
+  &--color-custom {
+    @include button-derived-color-tokens(var(--button-custom-color));
+  }
+
+  // ---- variants ----
+
+  &--variant-primary {
+    background-color: var(--button-bg);
+    border-color: var(--button-bg);
+    color: var(--button-on);
 
     @include button-hover {
-      background-color: var(--primary-hover);
-      border-color: var(--primary-hover);
+      background-color: var(--button-hover);
+      border-color: var(--button-hover);
     }
 
     &[data-pressed] {
-      background-color: var(--primary-active);
-      border-color: var(--primary-active);
+      background-color: var(--button-active);
+      border-color: var(--button-active);
     }
   }
 
-  &__secondary {
+  &--variant-secondary {
     background-color: transparent;
-    border-color: var(--primary-border);
-    color: var(--primary);
+    border-color: var(--button-border);
+    color: var(--button-fg);
 
     @include button-hover {
-      background-color: var(--primary-softer);
-      border-color: var(--primary-hover);
-      color: var(--primary-hover);
+      background-color: var(--button-softer);
+      border-color: var(--button-hover);
+      color: var(--button-hover);
     }
 
     &[data-pressed] {
-      background-color: var(--primary-soft);
-      border-color: var(--primary-hover);
-      color: var(--primary-active);
+      background-color: var(--button-soft);
+      border-color: var(--button-hover);
+      color: var(--button-active);
     }
   }
 
-  &__destructive {
-    background-color: var(--danger);
-    border-color: var(--danger);
-    color: var(--danger-on);
-
-    @include button-hover {
-      background-color: var(--danger-hover);
-      border-color: var(--danger-hover);
-    }
-
-    &[data-pressed] {
-      background-color: var(--danger-active);
-      border-color: var(--danger-active);
-    }
-  }
-
-  &__ghost {
+  &--variant-ghost {
     background-color: transparent;
     border-color: transparent;
-    color: var(--text);
+    color: var(--button-fg);
 
     @include button-hover {
-      background-color: var(--primary-softer);
-      color: var(--primary-hover);
+      background-color: var(--button-softer);
+      color: var(--button-hover);
     }
 
     &[data-pressed] {
-      background-color: var(--primary-active);
-      color: var(--primary-on);
+      background-color: var(--button-soft);
+      color: var(--button-active);
     }
   }
 
-  &__link {
+  &--variant-link {
     background-color: transparent;
     border-color: transparent;
     color: var(--text);
     border-radius: 0;
     width: auto;
+    min-height: auto;
     padding: 0;
 
     .button__content,
@@ -135,33 +181,33 @@
     }
 
     .button__icon {
-      display: inline;
+      display: inline-flex;
       vertical-align: middle;
-      margin-inline: $space-4;
+      margin-inline: 0;
 
       svg {
-        font-size: clamp($font-size-14, 1vw, $font-size-16);
+        font-size: var(--button-icon-size, 1.125rem);
       }
     }
 
     @include button-hover {
-      color: var(--secondary-hover);
+      color: var(--button-hover);
       text-decoration: underline;
       text-underline-offset: 3px;
     }
 
     &[data-pressed] {
-      color: var(--secondary-active);
-      transform: none;
+      color: var(--button-active);
     }
   }
 
   // ---- content ----
+
   &__content {
     @include flex-center;
-    gap: 5px;
+    gap: var(--button-gap);
     position: relative;
-    transition: opacity 0.2s ease;
+    transition: opacity $duration-quick ease;
 
     &.is-hidden {
       opacity: 0;
@@ -170,9 +216,10 @@
 
   &__icon {
     @include flex-center;
+    flex-shrink: 0;
 
     svg {
-      font-size: inherit;
+      font-size: var(--button-icon-size);
     }
   }
 
@@ -188,8 +235,8 @@
   }
 
   &__spinner {
-    width: 1em;
-    height: 1em;
+    width: var(--button-icon-size);
+    aspect-ratio: 1;
     border: 2px solid currentColor;
     border-bottom-color: transparent;
     border-radius: 50%;

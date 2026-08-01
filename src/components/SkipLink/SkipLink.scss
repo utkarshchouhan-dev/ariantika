@@ -1,0 +1,19 @@
+@use "../../assets/styles" as *;
+
+.skip-link {
+  position: absolute;
+  inset-block-start: $space-12;
+  inset-inline-start: $space-12;
+  z-index: $z-modal;
+  padding: $space-12 $space-16;
+  border-radius: $radius-xl;
+  background-color: var(--primary);
+  color: var(--primary-on);
+  transform: translateY(-180%);
+  transition: transform $duration-quick $ease-default;
+
+  &:focus,
+  &:focus-visible {
+    transform: translateY(0);
+  }
+}
