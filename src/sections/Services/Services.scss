@@ -10,17 +10,10 @@
     @include container;
     max-width: fit-content;
     margin-inline: auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp($space-10, 2.4vw, $space-16);
-
-    @include down(xl) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @include down(md) {
-      grid-template-columns: 1fr;
-    }
+    @include responsive-grid(
+      repeat(3, 1fr),
+      clamp($space-10, 2.4vw, $space-16)
+    );
   }
 
   // ---- card ----
@@ -67,7 +60,7 @@
     }
 
     // ---- pointer fine ----
-    @media (hover: hover) and (pointer: fine) {
+    @include fine-pointer-hover {
       &:hover {
         .service-card,
         .service-card * {
@@ -106,9 +99,7 @@
     &-image {
       object-fit: contain;
       scale: 0.7;
-      pointer-events: none;
-      user-select: none;
-      -webkit-user-drag: none;
+      @include unselectable-media;
     }
   }
 
@@ -155,7 +146,7 @@
       width: fit-content;
 
       svg {
-        font-size: clamp($font-size-10, 1.3vw, $font-size-12);
+        font-size: clamp($font-size-12, 2vw, $font-size-16);
         color: alpha(var(--primary), 80);
 
         @include down(md) {

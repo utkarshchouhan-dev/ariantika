@@ -10,18 +10,8 @@
 
   &__items {
     max-width: fit-content;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp($space-16, 2vw, $space-24);
+    @include responsive-grid;
     margin-inline: auto;
     justify-content: center;
-
-    @include down(xl) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @include down(md) {
-      grid-template-columns: repeat(1, 1fr);
-    }
   }
 }

@@ -1,26 +1,22 @@
-import ContactForm from "./ContactForm";
-import { contact } from "@/data";
-import { SectionHeader } from "@/components";
-
-import "./Contact.scss";
+import { Contact as ContactPanel, SectionHeader } from "@/components";
+import { contactHeader } from "@/data";
 
 export default function Contact() {
-  const { id, header } = contact;
+  const {
+    sectionHeader: { headingId, prefix, accent, subtitle },
+  } = contactHeader;
 
   return (
-    // ---- contact section ----
-    <section className="contact" id={id} aria-labelledby="contact-heading">
-      {/* ---- section header ---- */}
+    <section className="contact" id="contact" aria-labelledby={headingId}>
       <SectionHeader
-        headingId="contact-heading"
-        prefix={header.prefix}
-        accent={header.accent}
-        subtitle={header.subtitle}
+        headingId={headingId}
+        prefix={prefix}
+        accent={accent}
+        subtitle={subtitle}
       />
 
-      {/* ---- contact container ---- */}
       <div className="contact__container">
-        <ContactForm />
+        <ContactPanel />
       </div>
     </section>
   );

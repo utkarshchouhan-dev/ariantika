@@ -1,7 +1,7 @@
 import { PageHeader, ResearchCard } from "@/components";
 import {
   getOrderedPublications,
-  researchPage,
+  researchHeader,
   researchPageMetadata,
 } from "@/data";
 
@@ -14,7 +14,7 @@ export default function ResearchPage() {
 
   return (
     <main id="main" tabIndex={-1} className="research-page">
-      <PageHeader header={researchPage.header} />
+      <PageHeader header={researchHeader.pageHeader} />
 
       <div className="research-page__container">
         <div className="research-page__items">

@@ -1,0 +1,73 @@
+@use "../../assets/styles" as *;
+
+.toast-region {
+  position: fixed;
+  right: clamp($space-16, 3vw, $space-24);
+  bottom: clamp($space-16, 3vw, $space-24);
+  z-index: $z-modal;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: $space-8;
+  outline: none;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: clamp($space-12, 1.6vw, $space-16);
+  max-width: min(100vw - #{$space-32}, rem(420));
+  padding: clamp($space-12, 1.6vw, $space-14) clamp($space-12, 1.6vw, $space-16);
+  font-size: clamp($font-size-14, 1.5vw, $font-size-16);
+  font-weight: $fw-medium;
+  line-height: 1.4;
+  border-radius: $radius-xl;
+  box-shadow: 0 0 rem(4) alpha(var(--text), 10);
+
+  &--success {
+    color: var(--text-inverse);
+    background-color: var(--success);
+  }
+
+  &--error {
+    color: var(--text-inverse);
+    background-color: var(--danger);
+  }
+
+  &__content {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  &__close {
+    @include flex-center;
+    flex: 0 0 auto;
+    width: rem(28);
+    height: rem(28);
+    padding: 0;
+    color: inherit;
+    background: transparent;
+    border: 1px solid alpha(var(--text-inverse), 35);
+    border-radius: 50%;
+    cursor: pointer;
+    @include transition-base((background-color, border-color), $duration-fast);
+
+    svg {
+      width: rem(14);
+      height: rem(14);
+    }
+
+    &[data-hovered] {
+      background: alpha(var(--text-inverse), 15);
+      border-color: alpha(var(--text-inverse), 50);
+    }
+
+    &[data-focus-visible] {
+      outline: rem(2) solid var(--text-inverse);
+      outline-offset: rem(2);
+    }
+
+    &[data-pressed] {
+      background: alpha(var(--text-inverse), 25);
+    }
+  }
+}

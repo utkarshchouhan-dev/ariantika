@@ -3,7 +3,7 @@
 import * as motion from "motion/react-client";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components";
-import { fadeUp } from "@/lib";
+import { reveal } from "@/lib";
 
 import "./Navigation.scss";
 
@@ -68,7 +68,7 @@ export default function Navigation({
       <motion.li
         className="navigation__list--item"
         key={link.href}
-        variants={fadeUp}
+        variants={reveal}
       >
         {button}
       </motion.li>

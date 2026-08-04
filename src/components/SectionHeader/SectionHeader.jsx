@@ -1,5 +1,5 @@
 import * as motion from "motion/react-client";
-import { fadeUp, staggerContainer, viewportOnce } from "@/lib";
+import { reveal, stagger, viewportOnce } from "@/lib";
 
 import "./SectionHeader.scss";
 
@@ -12,6 +12,7 @@ export default function SectionHeader({
   suffix,
   subtitle,
   className = "",
+  ariaLabel,
 }) {
   // ---- accent tag ----
   const Accent = accentTag === "small" ? "small" : "span";
@@ -20,7 +21,7 @@ export default function SectionHeader({
     // ---- section header ----
     <motion.header
       className={`section__header ${className}`.trim()}
-      variants={staggerContainer}
+      variants={stagger}
       initial="hidden"
       whileInView="visible"
       viewport={viewportOnce}
@@ -29,7 +30,8 @@ export default function SectionHeader({
       <motion.h2
         className="section__header-title"
         id={headingId}
-        variants={fadeUp}
+        variants={reveal}
+        aria-label={ariaLabel}
       >
         {prefix}
         {accent ? (
@@ -41,7 +43,7 @@ export default function SectionHeader({
 
       {/* ---- subtitle ---- */}
       {subtitle ? (
-        <motion.p className="section__header-subtitle" variants={fadeUp}>
+        <motion.p className="section__header-subtitle" variants={reveal}>
           {subtitle}
         </motion.p>
       ) : null}

@@ -1,42 +1,26 @@
-const SITE_URL = "https://ariantika.me";
-
-const openGraphImage = {
-  url: "/opengraph-image.png",
-  width: 1200,
-  height: 630,
-  alt: "Ariantika • Epidemiology & Biostatistics Researcher",
-  type: "image/png",
-};
+import {
+  SITE_URL,
+  OPEN_GRAPH_IMAGE,
+  SITE_DEFAULT_DESCRIPTION,
+  SITE_DEFAULT_TITLE,
+  SITE_KEYWORDS,
+  SITE_NAME,
+  SITE_TITLE_TEMPLATE,
+} from "@/lib";
 
 const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Ariantika • Epidemiology & Biostatistics Researcher",
-    template: "%s | Ariantika",
+    default: SITE_DEFAULT_TITLE,
+    template: SITE_TITLE_TEMPLATE,
   },
-  description:
-    "I'm Ariantika, an Epidemiology & Biostatistics Researcher. Explore my research, publications, and work in public health and data analysis.",
-  keywords: [
-    "Ariantika",
-    "Ariantikaa",
-    "ariantika effendi",
-    "Ariantika researcher",
-    "epidemiology researcher",
-    "biostatistics researcher",
-    "public health researcher",
-    "public health Indonesia",
-    "cancer research",
-    "infectious disease research",
-    "non-communicable disease research",
-    "SPSS statistical analysis",
-    "research design",
-    "health data analysis",
-    "researcher North Sumatra",
-    "researcher Indonesia",
-  ],
-  authors: [{ name: "Ariantika" }],
+  description: SITE_DEFAULT_DESCRIPTION,
+  applicationName: SITE_NAME,
+  keywords: SITE_KEYWORDS,
+  authors: [{ name: "Ariantika", url: SITE_URL }],
   creator: "Ariantika",
   publisher: "Ariantika",
+  referrer: "origin-when-cross-origin",
   robots: {
     index: true,
     follow: true,
@@ -50,32 +34,21 @@ const metadata = {
   },
   manifest: "/manifest.webmanifest",
   other: {
-    "theme-color": "#1563a7",
+    "theme-color": "#BFDDF7",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: SITE_URL,
-    siteName: "Ariantika • Epidemiology & Biostatistics Researcher",
-    title: "Ariantika",
-    description:
-      "Portfolio of Ariantika, an Epidemiology & Biostatistics researcher focused on public health and disease research.",
-    images: [openGraphImage],
+    siteName: SITE_NAME,
+    title: SITE_DEFAULT_TITLE,
+    description: SITE_DEFAULT_DESCRIPTION,
+    images: [OPEN_GRAPH_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ariantika | Epidemiology & Biostatistics Researcher ",
-    description:
-      "Explore Ariantika's research, publications, and work in public health and data analysis.",
-    site: SITE_URL,
-    creator: "Ariantika",
-    images: [openGraphImage.url],
-  },
-  alternates: {
-    canonical: SITE_URL,
-  },
-  verification: {
-    google: "4AhP3TwACu_yGCE3TRLJ7jVgr5BA1DETZePAmR9uqhI",
+    title: SITE_DEFAULT_TITLE,
+    description: SITE_DEFAULT_DESCRIPTION,
+    images: [OPEN_GRAPH_IMAGE.url],
   },
 };
 

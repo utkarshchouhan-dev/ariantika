@@ -3,7 +3,7 @@
 .hover-card {
   position: relative;
 
-  @media (hover: hover) and (pointer: fine) {
+  @include fine-pointer-hover {
     &:hover {
       cursor: none;
 
@@ -20,7 +20,7 @@
     left: 0;
     z-index: $z-card;
     width: clamp(55px, 1.5vw, 60px);
-    aspect-ratio: 1;
+    @include square;
     background-color: alpha(var(--primary), 50);
     border-radius: 50%;
     backdrop-filter: blur(5px);

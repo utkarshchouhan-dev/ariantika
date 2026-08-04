@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { LuQuote } from "react-icons/lu";
 import * as motion from "motion/react-client";
-import { fadeUp, viewportOnce } from "@/lib";
+import { reveal, viewportOnce } from "@/lib";
 
 import "./QuranVerse.scss";
 
@@ -50,17 +50,17 @@ export default function QuoteVerse({
             className="quote-verse__arabic"
             lang="ar"
             dir="rtl"
-            variants={fadeUp}
+            variants={reveal}
           >
             {arabic}
           </motion.p>
 
-          <motion.p className="quote-verse__translation" variants={fadeUp}>
+          <motion.p className="quote-verse__translation" variants={reveal}>
             {translation}
           </motion.p>
         </div>
 
-        <motion.cite className="quote-verse__source" variants={fadeUp}>
+        <motion.cite className="quote-verse__source" variants={reveal}>
           <Link target="_blank" href={href}>
             [{source}]
           </Link>

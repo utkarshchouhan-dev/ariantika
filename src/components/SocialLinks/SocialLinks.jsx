@@ -1,7 +1,7 @@
 import * as motion from "motion/react-client";
 import { Button } from "@/components";
 import { socialLinks } from "@/data";
-import { scaleIn, socialLinksStagger, viewportOnce } from "@/lib";
+import { revealSpring, stagger, viewportOnce } from "@/lib";
 
 import "./SocialLinks.scss";
 
@@ -20,7 +20,7 @@ export default function SocialLinks({
     <motion.div
       className={`social__links social__links--${direction} ${className}`.trim()}
       aria-label="Social links"
-      variants={socialLinksStagger}
+      variants={stagger}
       initial="hidden"
       whileInView="visible"
       viewport={viewportOnce}
@@ -32,7 +32,7 @@ export default function SocialLinks({
           <motion.span
             key={link.id}
             className="social__links-item"
-            variants={scaleIn}
+            variants={revealSpring}
           >
             <Button
               className="social__links-link"

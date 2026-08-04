@@ -1,13 +1,13 @@
 import { ResearchCard, SectionHeader } from "@/components";
-import { getFeaturedPublications, researchSection } from "@/data";
+import { getFeaturedPublications, researchHeader, researchSource } from "@/data";
 
 import "./Research.scss";
 
 export default function Research() {
+  const { researchHeadingId } = researchSource;
   const {
-    researchHeadingId,
-    header: { prefix, accent, subtitle },
-  } = researchSection;
+    sectionHeader: { prefix, accent, subtitle },
+  } = researchHeader;
   const featuredPublications = getFeaturedPublications(3);
 
   return (

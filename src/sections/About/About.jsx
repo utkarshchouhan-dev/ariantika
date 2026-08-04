@@ -1,26 +1,27 @@
 import * as motion from "motion/react-client";
 import { Button, ImageCarousel, SectionHeader } from "@/components";
-import { aboutMePageCarousel, aboutSection } from "@/data";
-import { fadeUp, viewportOnce } from "@/lib";
+import { aboutHeader, aboutSection, aboutSource } from "@/data";
+import { viewportOnce } from "@/lib";
 
 import "./About.scss";
 
 export default function About() {
   // ---- about data ----
   const {
-    aboutHeadingId,
-    header: { prefix, accent, accentTag, subtitle },
     carousel: { ariaLabel },
     paragraphs,
     cta: { href, label, icon: Icon },
   } = aboutSection;
+  const {
+    sectionHeader: { headingId, prefix, accent, accentTag, subtitle },
+  } = aboutHeader;
 
   return (
     // ---- about section ----
-    <section className="about" aria-labelledby={aboutHeadingId}>
+    <section className="about" aria-labelledby={headingId}>
       {/* ---- section header ---- */}
       <SectionHeader
-        headingId={aboutHeadingId}
+        headingId={headingId}
         prefix={prefix}
         accent={accent}
         accentTag={accentTag}
@@ -30,14 +31,20 @@ export default function About() {
       {/* ---- container ---- */}
       <div className="about__container">
         {/* ---- media ---- */}
-        <ImageCarousel images={aboutMePageCarousel} ariaLabel={ariaLabel} />
-
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={viewportOnce}
+        >
+          <ImageCarousel images={aboutSource.carousel} ariaLabel={ariaLabel} />
+        </motion.div>
         {/* ---- content ---- */}
         <motion.div
           className="about__paragraphs"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
           viewport={viewportOnce}
         >
           {paragraphs.map((paragraph, index) => (

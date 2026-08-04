@@ -1,18 +1,16 @@
 @use "../../assets/styles" as *;
 
 .back-to-top {
-  position: fixed;
-  right: clamp($space-12, 2vw, $space-20);
-  bottom: clamp($space-12, 2vw, $space-20);
-  z-index: $z-floating;
+  @include fixed-floating;
   opacity: 0;
   visibility: hidden;
   transform: translateY($space-8);
   pointer-events: none;
-  transition:
-    opacity $duration-base $ease-default,
-    transform $duration-base $ease-default,
-    visibility $duration-base $ease-default;
+  @include transition-base(
+    (opacity, transform, visibility),
+    $duration-base,
+    $ease-default
+  );
 
   &--visible {
     opacity: 1;
@@ -22,7 +20,7 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@include reduced-motion {
   .back-to-top {
     transition: none;
   }

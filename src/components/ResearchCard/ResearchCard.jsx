@@ -4,7 +4,7 @@ import { Button, TooltipText } from "@/components";
 import {
   getPublicationAccentVars,
   getPublicationStatus,
-  researchSection,
+  researchSource,
 } from "@/data";
 
 import "./ResearchCard.scss";
@@ -23,7 +23,7 @@ export default function ResearchCard({
 
   const {
     card: { yearIcon: YearIcon, detailsIcon: DetailsIcon, detailsAriaLabel },
-  } = researchSection;
+  } = researchSource;
 
   const labelWithQuartile = quartile ? `${label} (${quartile})` : label;
   const { label: statusLabel } = getPublicationStatus(status);
@@ -33,7 +33,7 @@ export default function ResearchCard({
     <motion.article
       className={`research-card ${className}`.trim()}
       style={accentVars}
-      initial={{ opacity: 0, y: 30, filter: "blur(20px)" }}
+      initial={{ opacity: 0, y: 70, filter: "blur(20px)" }}
       whileInView={{
         opacity: 1,
         y: 0,

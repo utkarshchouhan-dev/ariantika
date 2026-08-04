@@ -9,7 +9,7 @@
   --ic-slide-ease: cubic-bezier(0.16, 1, 0.3, 1);
   --ic-slide-duration: 0.65s;
 
-  @media (prefers-reduced-motion: reduce) {
+  @include reduced-motion {
     --ic-side-rotate: 0deg;
     --ic-side-depth: 0px;
     --ic-slide-duration: 0.01ms;
@@ -19,13 +19,7 @@
     --ic-card-width: clamp(200px, 100vw, 300px);
   }
 
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 14%,
-    black 86%,
-    transparent
-  );
+  @include fade-edges-mask(to right, 14%, 86%);
   perspective: calc(var(--ic-card-width) * 1.3);
   overflow-x: clip;
   margin-inline: auto;

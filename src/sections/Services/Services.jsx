@@ -1,72 +1,75 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HoverCard, SectionHeader } from "@/components";
-import { servicesSection } from "@/data";
+import { servicesHeader, servicesSource } from "@/data";
 
 import "./Services.scss";
 
 export default function Services() {
   const {
-    servicesHeadingId,
-    header,
-    cards,
-    cursor: { icon: CursorIcon },
-  } = servicesSection;
+    servicesSection,
+    checkIcon: CheckIcon,
+    arrowIcon: ArrowIcon,
+  } = servicesSource;
+  const {
+    sectionHeader: { prefix, accent, suffix, subtitle, headingId },
+  } = servicesHeader;
 
   return (
-    <section className="services" aria-labelledby={servicesHeadingId}>
+    <section className="services" aria-labelledby={headingId}>
       {/* ---- section header ---- */}
       <SectionHeader
-        headingId={servicesHeadingId}
-        prefix={header.prefix}
-        accent={header.accent}
-        suffix={header.suffix}
-        subtitle={header.subtitle}
+        headingId={headingId}
+        prefix={prefix}
+        accent={accent}
+        suffix={suffix}
+        subtitle={subtitle}
       />
 
       {/* ---- services container ---- */}
       <ul className="services__container">
-        {cards.map((card) => (
+        {servicesSection.map((service) => (
           <HoverCard
-            key={card.id}
-            index={card.id}
-            cursorIcon={<CursorIcon />}
+            key={service.id}
+            index={service.id}
+            cursorIcon={<ArrowIcon />}
             className="services__card"
           >
             <Link
-              href={card.href}
+              href={service.href}
               className="services__link"
-              aria-label={`This link leads to the ${card.title} service.`}
+              aria-label={`This link leads to the ${service.title} service.`}
             >
               <div className="services__media">
                 <Image
                   className="services__media-image"
-                  src={card.image}
-                  alt={card.imageAlt}
+                  src={service.image}
+                  alt={service.imageAlt}
                   fill
-                  sizes={card.imageSizes}
+                  sizes={service.imageSizes}
                 />
               </div>
 
               <div className="services__content">
-                <h3 className="services__title">{card.title}</h3>
-                <p className="services__description">{card.description}</p>
+                <h3 className="services__title">
+                  {service.title}
+                  <span className="sr-only">.</span>
+                </h3>
+                <p className="services__description">{service.description}</p>
 
-                {card.bullets.length > 0 && (
-                  <ul className="services__bullets">
-                    {card.bullets.map((bullet) => (
-                      <li key={bullet} className="services__bullet">
-                        <span
-                          className="services__bullet-icon"
-                          aria-hidden="true"
-                        >
-                          <card.icon />
-                        </span>
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                <ul className="services__bullets">
+                  {service.bullets.map((bullet) => (
+                    <li key={bullet} className="services__bullet">
+                      <span
+                        className="services__bullet-icon"
+                        aria-hidden="true"
+                      >
+                        <CheckIcon />
+                      </span>
+                      {bullet}.
+                    </li>
+                  ))}
+                </ul>
               </div>
             </Link>
           </HoverCard>

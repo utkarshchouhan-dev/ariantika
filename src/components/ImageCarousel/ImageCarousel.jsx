@@ -3,7 +3,6 @@
 import Image from "next/image";
 import * as motion from "motion/react-client";
 import { useCallback, useEffect, useState } from "react";
-import { fadeUp, viewportOnce } from "@/lib";
 
 import "./ImageCarousel.scss";
 
@@ -65,10 +64,6 @@ export default function ImageCarousel({ images = [], ariaLabel }) {
       onFocus={() => setIsPaused(true)}
       onBlur={() => setIsPaused(false)}
       onKeyDown={handleKeyDown}
-      variants={fadeUp}
-      initial="hidden"
-      whileInView="visible"
-      viewport={viewportOnce}
     >
       <div className="image-carousel__stage">
         {slides.map((img, idx) => {

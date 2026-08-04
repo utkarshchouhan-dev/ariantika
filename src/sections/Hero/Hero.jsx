@@ -3,11 +3,11 @@ import * as motion from "motion/react-client";
 import { Button, TooltipText } from "@/components";
 import { hero } from "@/data";
 import {
-  fadeUp,
-  mediaReveal,
-  rotateSettle,
-  springPopDelayed,
-  staggerContainer,
+  reveal,
+  revealMedia,
+  revealRotate,
+  revealSpring,
+  stagger,
   viewportOnce,
 } from "@/lib";
 
@@ -21,7 +21,7 @@ export default function Hero() {
     location: { icon: locationIcon, text: locationText },
     description: { beforeAbbr, abbr, afterAbbr },
     actions,
-    image: { src, alt, width, height, sizes },
+    image: { src, alt },
     badge: { ringText, years, yearsLabel },
   } = hero;
 
@@ -34,13 +34,13 @@ export default function Hero() {
         {/* ---- hero content ---- */}
         <motion.div
           className="hero__content"
-          variants={staggerContainer}
+          variants={stagger}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
         >
           {/* ---- greeting ---- */}
-          <motion.p className="hero__greeting" variants={fadeUp}>
+          <motion.p className="hero__greeting" variants={reveal}>
             {greetingText}
             <span className="hero__greeting-icon" aria-hidden="true">
               {greetingIcon}
@@ -50,7 +50,7 @@ export default function Hero() {
           {/* ---- title ---- */}
           <motion.h1
             className="hero__title"
-            variants={fadeUp}
+            variants={reveal}
             aria-label={`${name}${highlightSrOnly} ${highlight}`}
           >
             <span className="hero__title-name" aria-hidden="true">
@@ -61,10 +61,10 @@ export default function Hero() {
           </motion.h1>
 
           {/* ---- location ---- */}
-          <motion.address className="hero__location" variants={fadeUp}>
+          <motion.address className="hero__location" variants={reveal}>
             <motion.span
               className="hero__location-icon"
-              variants={rotateSettle}
+              variants={revealRotate}
               aria-hidden="true"
             >
               <LocationIcon />
@@ -73,12 +73,17 @@ export default function Hero() {
           </motion.address>
 
           {/* ---- description ---- */}
-          <motion.p className="hero__description" variants={fadeUp}>
+          <motion.p
+            className="hero__description"
+            variants={reveal}
+            aria-label={`${beforeAbbr}${abbr.title}${afterAbbr}`}
+          >
             {beforeAbbr}
             <TooltipText
               as="abbr"
               className="hero__description-abbr"
               content={abbr.title}
+              aria-hidden="true"
             >
               {abbr.label}
             </TooltipText>
@@ -90,7 +95,7 @@ export default function Hero() {
             {/* ---- contact button ---- */}
             {actions.map((action) => {
               return (
-                <motion.div key={action.id} variants={fadeUp}>
+                <motion.div key={action.id} variants={reveal}>
                   <Button
                     className="hero__actions-button"
                     variant={action.variant}
@@ -112,7 +117,7 @@ export default function Hero() {
         <div className="hero__visual">
           <motion.div
             className="hero__image"
-            variants={mediaReveal}
+            variants={revealMedia}
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
@@ -121,9 +126,9 @@ export default function Hero() {
             <Image
               src={src}
               alt={alt}
-              width={width}
-              height={height}
-              sizes={sizes}
+              width={500}
+              height={500}
+              sizes="(max-width: 625px) 250px, (max-width: 1250px) 40vw, 500px"
               priority
               fetchPriority="high"
             />
@@ -131,7 +136,7 @@ export default function Hero() {
             {/* ---- badge ---- */}
             <motion.span
               className="hero__badge"
-              variants={springPopDelayed}
+              variants={revealSpring}
               aria-hidden="true"
             >
               <svg className="hero__badge-svg" viewBox="0 0 200 200">

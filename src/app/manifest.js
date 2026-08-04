@@ -5,9 +5,9 @@ export default function manifest() {
   return {
     id: "/",
     name: "Ariantika • Epidemiology & Biostatistics Researcher",
-    short_name: "Ariantika",
+    short_name: "Ariantika • Epidemiology & Biostatistics Researcher",
     description:
-      "I'm Ariantika, an Epidemiology & Biostatistics Researcher. Explore my research, publications, and my work in public health and data analysis.",
+      "If you want to know more about me, you can find all information about my publications and my interests here.",
     lang: "en",
     dir: "ltr",
     start_url: "/?source=pwa",
@@ -36,8 +36,7 @@ export default function manifest() {
       {
         name: "About Me",
         short_name: "About",
-        description:
-          "Learn about Ariantika's background and research experience",
+        description: "Learn about my background and research experience",
         url: "/aboutme",
         icons: [
           {
@@ -51,7 +50,7 @@ export default function manifest() {
         name: "Services",
         short_name: "Services",
         description:
-          "Research design, statistical analysis, and public health consulting",
+          "I offer services for research design, statistical analysis, and public health consulting",
         url: "/services",
         icons: [
           {
@@ -64,7 +63,7 @@ export default function manifest() {
       {
         name: "Research",
         short_name: "Research",
-        description: "Ariantika's research projects",
+        description: "My research projects",
         url: "/research",
         icons: [
           {
@@ -77,7 +76,7 @@ export default function manifest() {
       {
         name: "Contact",
         short_name: "Contact",
-        description: "Contact Ariantika for research inquiries",
+        description: "Contact me for research inquiries",
         url: "/contact",
         icons: [
           {

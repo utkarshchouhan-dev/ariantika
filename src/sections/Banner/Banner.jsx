@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-import { fadeIn, viewportOnce } from "@/lib";
+import { reveal, viewportOnce } from "@/lib";
 import { banner } from "@/data";
 
 import "./Banner.scss";
@@ -42,7 +42,7 @@ export default function Banner() {
     <section className="banner" aria-hidden="true">
       <motion.div
         className="banner__surface"
-        variants={fadeIn}
+        variants={reveal}
         initial="hidden"
         whileInView="visible"
         viewport={viewportOnce}

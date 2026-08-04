@@ -1,5 +1,5 @@
 import * as motion from "motion/react-client";
-import { fadeUp, staggerContainer, viewportOnce } from "@/lib";
+import { reveal, stagger, viewportOnce } from "@/lib";
 
 import "./PageHeader.scss";
 
@@ -9,25 +9,29 @@ export default function PageHeader({ header, className = "" }) {
   return (
     <motion.header
       className={`page__header ${className}`.trim()}
-      variants={staggerContainer}
+      variants={stagger}
       initial="hidden"
       whileInView="visible"
       viewport={viewportOnce}
     >
-      <motion.span className="page__header-eyebrow" variants={fadeUp}>
+      <motion.span className="page__header-eyebrow" variants={reveal}>
         {eyebrow}
       </motion.span>
-      <motion.h1 className="page__header-title" variants={fadeUp}>
+      <motion.h1 className="page__header-title" variants={reveal}>
         {title.prefix ? `${title.prefix} ` : null}
         {title.accent ? (
           <span className="page__header-title-accent">{title.accent}</span>
         ) : null}
         {title.suffix ? ` ${title.suffix}` : null}
       </motion.h1>
-      <motion.p className="page__header-subtitle" variants={fadeUp}>
+      <motion.p className="page__header-subtitle" variants={reveal}>
         {subtitle}
       </motion.p>
-      <div className="custom-shape-divider-bottom-1785504141">
+      <div
+        className="custom-shape-divider-bottom-1785504141"
+        variants={reveal}
+        aria-hidden="true"
+      >
         <svg
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"

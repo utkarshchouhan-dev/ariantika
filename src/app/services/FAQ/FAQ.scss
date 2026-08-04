@@ -1,0 +1,96 @@
+@use "../../../assets/styles" as *;
+
+.services__faq {
+  @include section;
+
+  header h2 {
+    word-spacing: -15px;
+  }
+
+  &-list {
+    padding-inline: clamp($space-8, 0.5vw, $space-10);
+    max-width: 1000px;
+    margin-inline: auto;
+  }
+
+  &-item {
+    padding-inline: clamp($space-8, 0.5vw, $space-10);
+    background-color: var(--background);
+    border-bottom: 1px solid var(--border);
+    transition: background-color $duration-base $ease-default;
+
+    &:not([data-expanded]):hover {
+      background-color: var(--primary-softer);
+    }
+  }
+
+  &-heading {
+    margin: 0;
+  }
+
+  &-trigger {
+    @include flex-between;
+    width: 100%;
+    gap: clamp($space-12, 2vw, $space-24);
+    padding-block: clamp($space-16, 2vw, $space-24);
+    cursor: pointer;
+    text-align: left;
+    color: var(--text);
+
+    &:focus-within {
+      border-radius: 0;
+    }
+  }
+
+  &-question {
+    font-size: clamp(rem(15), 2vw, rem(18));
+    font-weight: $fw-bold;
+    color: var(--text-light);
+    line-height: 1.5;
+
+    .services__faq-item[data-expanded] & {
+      color: var(--accent);
+    }
+  }
+
+  &-icon {
+    @include flex-center;
+    flex-shrink: 0;
+    color: var(--text-light);
+    font-size: clamp($font-size-18, 2vw, $font-size-24);
+
+    &-minus {
+      display: none;
+    }
+  }
+
+  &-item[data-expanded] &-icon {
+    color: var(--accent);
+
+    .services__faq-icon-plus {
+      display: none;
+    }
+
+    .services__faq-icon-minus {
+      display: block;
+    }
+  }
+
+  &-panel {
+    overflow: clip;
+    height: var(--disclosure-panel-height);
+    @include transition-base(height, $duration-base, linear);
+
+    @include reduced-motion {
+      transition: none;
+    }
+
+    p {
+      padding-bottom: clamp($space-16, 2vw, $space-24);
+      max-width: 70ch;
+      font-size: clamp(rem(13), 2vw, $font-size-16);
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+  }
+}

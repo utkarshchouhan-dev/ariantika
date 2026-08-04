@@ -1,16 +1,16 @@
-import { Contact } from "@/sections";
-// import { PageHeader } from "@/components";
+import { Contact, PageHeader } from "@/components";
+import { contactHeader, contactMetadata } from "@/data";
+
+export const metadata = contactMetadata;
 
 export default function ContactPage() {
   return (
-    <>
-      {/* ---- main container ---- */}
-      <main id="main" tabIndex={-1} className="contact__page">
-        {/* ---- page header ---- */}
-        {/* <PageHeader header={header} /> */}
-        {/* ---- contact section ---- */}
+    <main id="main" tabIndex={-1} className="contact__page">
+      <PageHeader header={contactHeader.pageHeader} />
+
+      <div className="contact__container contact__container--page">
         <Contact />
-      </main>
-    </>
+      </div>
+    </main>
   );
 }

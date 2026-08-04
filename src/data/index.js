@@ -1,56 +1,55 @@
 // ---- hero data ----
-export { hero } from "./hero/section";
+export { hero } from "./hero/hero";
+
+// ---- home metadata ----
+export { homeMetadata } from "./home/metadata";
 
 // ---- banner data ----
-export { banner } from "./banner/section";
+export { banner } from "./banner/banner";
 
 // ---- about data ----
-export { aboutCarouselStepIds } from "./about/config";
-export { aboutMePageCarousel, aboutMePageStepsById } from "./about/logic";
+export { aboutSource, aboutSection } from "./about/source";
+export { aboutHeader } from "./about/header";
 export { aboutMetadata } from "./about/metadata";
-export { aboutMePageSteps } from "./about/page";
-export { aboutSection } from "./about/section";
-export { aboutMePageStepsSource } from "./about/source";
 
 // ---- social links data ----
-export { socialLinks } from "./socialLinks/source";
+export { socialLinks } from "./socialLinks/socialLinks";
 
 // ---- services data ----
-export { servicesSection } from "./services/section";
-export { servicesSource } from "./services/source";
-export { servicesPage } from "./services/page";
-export { servicesMetaData } from "./services/metadata";
-export { servicesCards, servicesCursor } from "./services/cards";
+export { servicesHeader } from "./services/header";
+export { servicesSource } from "./services/services";
+export { servicesMetadata } from "./services/metadata";
+export { servicesWhyChooseMe } from "./services/whyChooseMe";
+export { servicesFaq } from "./services/faq";
+export { servicesContact } from "./services/contact";
 
 // ---- experience data ----
-export { experienceIcon, experienceItems } from "./experience/source";
-export { experienceSection } from "./experience/section";
+export { experienceSection } from "./experience/experience";
 
 // ---- research data ----
-export { PUBLICATION_STATUS } from "./research/status";
 export {
+  PUBLICATION_STATUS,
+  researchSource,
   getPublicationStatus,
   getPublicationAccentVars,
   getOrderedPublications,
   getFeaturedPublications,
   getPublicationBySlug,
-} from "./research/logic";
-export { researchCard } from "./research/card";
+} from "./research/research";
+export { researchHeader } from "./research/header";
 export { researchPageMetadata } from "./research/metadata";
-export { researchPage } from "./research/page";
-export { researchSection } from "./research/section";
-export { researchPublications } from "./research/source";
 
 // ---- contact data ----
-export { contactFormFields, contactForm } from "./contact/form";
-export { contact } from "./contact/section";
+export { contactForm, getContactServiceOptions } from "./contact/form";
+export { contactHeader } from "./contact/header";
+export { contactMetadata } from "./contact/metadata";
 
 // ---- footer data ----
-export { footer } from "./footer/section";
+export { footer } from "./footer/footer";
 
 // ---- quran data ----
 export {
   quranKnowledgeVerse,
   quranTrustsVerse,
   quranSaveLifeVerse,
-} from "./quran/source";
+} from "./quran/quran";

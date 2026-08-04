@@ -1,39 +1,56 @@
+@use "sass:list";
 @use "./tokens" as *;
 @use "./functions" as *;
 
+// ---- accessibility ----
 @mixin focus-ring {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
   border-radius: $radius-xl;
 }
 
-// Flexbox mixins
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+// ---- flexbox ----
 @mixin flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-// Flexbox between mixin
 @mixin flex-between {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-// Flexbox column mixin
 @mixin flex-column {
   display: flex;
   flex-direction: column;
 }
 
-// Section mixin
+// ---- layout ----
 @mixin section {
   width: 100%;
-  padding-block: clamp(50px, 10vw, 80px);
+  padding-block: clamp(rem(50), 10vw, rem(80));
 }
 
-// page
 @mixin page {
   width: 100%;
   background-color: var(--background);
@@ -45,100 +62,8 @@
   );
 }
 
-@mixin page-header-lead {
-  font-size: clamp($font-size-18, 1.5vw, $font-size-24);
-  color: var(--text-muted);
-  font-family: $font-brush;
-  text-wrap: pretty;
-  text-align: center;
-  max-width: 70ch;
-  padding-inline: clamp($space-4, 2vw, $space-8);
-  margin: 0;
-}
-
-/// Page header block styles.
-/// @param {String} $lead [both] - Style `subtitle`, `description`, or `both` lead elements.
-@mixin page-header($lead: both) {
-  $root: &;
-
-  @include flex-column;
-  align-items: center;
-  padding-block: clamp($space-18, 5vw, $space-32);
-  width: 100%;
-  gap: clamp($space-4, 2vw, $space-8);
-  margin-bottom: $space-48;
-
-  #{$root}:not(:has(#{$root}-eyebrow)) {
-    gap: clamp($space-4, 1vw, $space-8);
-  }
-
-  #{$root}:not(:has(#{$root}-subtitle)):not(:has(#{$root}-description)) {
-    margin-bottom: clamp($space-32, 4vw, $space-40);
-  }
-
-  &-eyebrow {
-    font-family: $font-brush;
-    font-size: clamp($font-size-18, 2vw, $font-size-24);
-    color: var(--accent);
-    letter-spacing: 0.02em;
-    margin-bottom: clamp($space-8, 2vw, $space-12);
-  }
-
-  #{$root}:not(:has(#{$root}-eyebrow)) &-title {
-    margin-top: 0;
-  }
-
-  &-title {
-    font-size: clamp($font-size-48, 8vw, $font-size-72);
-    font-weight: $fw-bold;
-    letter-spacing: -0.02em;
-    font-family: $font-brush;
-    color: var(--primary);
-
-    &-accent {
-      color: var(--secondary);
-    }
-  }
-
-  @if $lead == "subtitle" or $lead == both {
-    &-subtitle {
-      @include page-header-lead;
-    }
-  }
-
-  @if $lead == "description" or $lead == both {
-    &-description {
-      @include page-header-lead;
-    }
-  }
-}
-
-@mixin grid-backdrop($size: 48px, $opacity: 0.35) {
-  position: relative;
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(to right, alpha(var(--primary), 10) 1px, transparent 1px),
-      linear-gradient(to bottom, alpha(var(--primary), 10) 1px, transparent 1px);
-    background-size: $size $size;
-    -webkit-mask-image: radial-gradient(
-      ellipse at center,
-      black 0%,
-      transparent 75%
-    );
-    mask-image: radial-gradient(ellipse at center, black 0%, transparent 75%);
-    opacity: $opacity;
-    pointer-events: none;
-    z-index: 0;
-  }
-}
-
-// Container mixin
 @mixin container {
-  --tablet-width: 700px;
+  --tablet-width: rem(700);
 
   width: 100%;
   max-width: $container-width;
@@ -152,7 +77,102 @@
   }
 }
 
-// Hover only when not pressed, expanded or current page.
+@mixin responsive-grid(
+  $columns: repeat(3, 1fr),
+  $gap: clamp($space-16, 2vw, $space-24),
+  $breakpoints: (
+    xl: repeat(2, 1fr),
+    md: repeat(1, 1fr),
+  )
+) {
+  display: grid;
+  grid-template-columns: $columns;
+  gap: $gap;
+
+  @each $breakpoint, $cols in $breakpoints {
+    @include down($breakpoint) {
+      grid-template-columns: $cols;
+    }
+  }
+}
+
+@mixin fixed-floating(
+  $inset-block-end: clamp($space-12, 2vw, $space-20),
+  $inset-inline-end: clamp($space-12, 2vw, $space-20),
+  $z-index: $z-floating
+) {
+  position: fixed;
+  inset-block-end: $inset-block-end;
+  inset-inline-end: $inset-inline-end;
+  z-index: $z-index;
+}
+
+// ---- media ----
+@mixin unselectable-media {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+@mixin cover-image {
+  object-fit: cover;
+  @include unselectable-media;
+}
+
+@mixin square($size: null) {
+  aspect-ratio: 1;
+
+  @if $size {
+    width: $size;
+    height: $size;
+  }
+}
+
+// ---- visual effects ----
+@mixin fade-edges-mask($direction: to right, $edge-start: 20%, $edge-end: 80%) {
+  mask-image: linear-gradient(
+    $direction,
+    transparent 0%,
+    black $edge-start,
+    black $edge-end,
+    transparent 100%
+  );
+}
+
+@mixin grid-backdrop(
+  $size: rem(48),
+  $line-color: alpha(var(--text-inverse), 10),
+  $fade: 75%
+) {
+  background-image:
+    linear-gradient(to right, $line-color 1px, transparent 1px),
+    linear-gradient(to bottom, $line-color 1px, transparent 1px);
+  background-size: $size $size;
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent $fade);
+}
+
+@mixin wave-divider-bottom($fill: var(--background)) {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+
+  svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: clamp(rem(50), 10vw, rem(150));
+  }
+
+  .shape-fill {
+    fill: $fill;
+  }
+}
+
+// ---- interaction ----
 @mixin button-hover {
   @media (hover: hover) {
     &:not([data-pressed]):not([aria-expanded="true"]):not(
@@ -160,5 +180,30 @@
       )[data-hovered] {
       @content;
     }
+  }
+}
+
+@mixin fine-pointer-hover {
+  @media (hover: hover) and (pointer: fine) {
+    @content;
+  }
+}
+
+// ---- motion ----
+@mixin transition-base(
+  $properties: all,
+  $duration: $duration-base,
+  $ease: $ease-default
+) {
+  @if list.length($properties) > 1 {
+    $transitions: ();
+
+    @each $property in $properties {
+      $transitions: list.append($transitions, $property $duration $ease, comma);
+    }
+
+    transition: $transitions;
+  } @else {
+    transition: $properties $duration $ease;
   }
 }

@@ -1,8 +1,13 @@
 import Image from "next/image";
 import * as motion from "motion/react-client";
-import { aboutMetadata, aboutMePageSteps } from "@/data";
+import {
+  aboutMetadata,
+  aboutHeader,
+  aboutSource,
+  quranKnowledgeVerse,
+} from "@/data";
 import { PageHeader, QuranVerse } from "@/components";
-import { fadeUp, slideInLeft, slideInRight } from "@/lib";
+import { reveal } from "@/lib";
 
 import "./page.scss";
 
@@ -11,46 +16,45 @@ export const metadata = aboutMetadata;
 
 // ---- about me page ----
 export default function AboutMe() {
-  const { header, steps, quote } = aboutMePageSteps;
+  const { pageHeader } = aboutHeader;
+  const { aboutPageSteps } = aboutSource;
+  const quote = quranKnowledgeVerse;
   return (
     <>
       <main id="main" tabIndex={-1} className="about__me">
         {/* ---- header ---- */}
-        <PageHeader header={header} />
+        <PageHeader header={pageHeader} />
 
         <div className="about__me-container">
           {/* ---- steps list ---- */}
           <div className="about__me-steps">
-            {steps.map((step, i) => {
+            {aboutPageSteps.map((step, i) => {
               const isOdd = i % 2 === 0 ? "odd" : "";
-              const photoVariant = isOdd === "odd" ? slideInRight : slideInLeft;
-              const contentVariant =
-                isOdd === "odd" ? slideInLeft : slideInRight;
-              const IconVariant = step.icon;
+              const { id, title, image, alt, icon: Icon, text } = step;
 
               return (
-                <motion.section key={step.id} className="about__me--step">
+                <motion.section key={id} className="about__me--step">
                   <motion.div
                     className={`about__me--photo about__me--photo-${isOdd}`}
-                    variants={fadeUp}
+                    variants={reveal}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.4 }}
                   >
                     <Image
-                      src={step.image}
+                      src={image}
                       className="about__me--photo-img"
                       width={800}
                       height={800}
                       sizes="(max-width: 768px) 100vw, 800px"
-                      alt={step.alt}
+                      alt={alt}
                     />
                   </motion.div>
 
                   {/* ---- content ---- */}
                   <motion.div
                     className="about__me--content"
-                    variants={fadeUp}
+                    variants={reveal}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.4 }}
@@ -62,13 +66,13 @@ export default function AboutMe() {
                         className={`about__me--content-icon about__me--content-icon-${isOdd}`}
                         aria-hidden="true"
                       >
-                        <IconVariant />
+                        <Icon />
                       </span>
 
-                      {step.title}
+                      {title}
                     </h2>
 
-                    <p className="about__me--content-text">{step.text}</p>
+                    <p className="about__me--content-text">{text}</p>
                   </motion.div>
                 </motion.section>
               );

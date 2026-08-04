@@ -3,21 +3,16 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import * as motion from "motion/react-client";
-import { useMediaQuery } from "react-responsive";
 import { Logo, Navigation, Menu, Button } from "@/components";
-import {
-  stickyBarReveal,
-  stickyBarTransition,
-  useHideOnScrollDown,
-} from "@/lib";
+import { useHideOnScrollDown, useMediaQuery } from "@/hooks";
+import { revealBar, barTransition } from "@/lib";
+import { mediaQueries } from "@/utils";
 
 import "./Header.scss";
 
-const MOBILE_NAV_MEDIA = "(max-width: 767px)";
-
 export default function Header() {
   const pathname = usePathname();
-  const isMobileNav = useMediaQuery({ query: MOBILE_NAV_MEDIA });
+  const isMobileNav = useMediaQuery(mediaQueries.mobile);
 
   const [isMounted, setIsMounted] = useState(false);
   const headerRef = useRef(null);
@@ -43,10 +38,10 @@ export default function Header() {
     <motion.header
       ref={headerRef}
       data-react-aria-top-layer=""
-      variants={stickyBarReveal}
+      variants={revealBar}
       initial="hidden"
       animate={hidden ? "hidden" : "visible"}
-      transition={stickyBarTransition}
+      transition={barTransition}
       className={`header ${isMobileMenuOpen ? "header--mobile-menu-open" : ""}`}
     >
       <div

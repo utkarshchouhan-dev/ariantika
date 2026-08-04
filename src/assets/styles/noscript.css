@@ -1,0 +1,124 @@
+/*
+ * Progressive enhancement styles — loaded only when JavaScript is disabled.
+ * Linked from <noscript> in the root layout; never bundled into main.scss.
+ */
+
+/* ==========================================================================
+   Motion
+   ========================================================================== */
+
+/*
+ * motion/react-client SSR-applies initial="hidden" as inline styles.
+ * Without JS, whileInView never runs so content stays invisible.
+ */
+body [style*="opacity: 0"]:not(.hover-card__cursor),
+body [style*="opacity:0"]:not(.hover-card__cursor) {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+/* revealBar: header hidden via translateY(-150) only, no opacity */
+body > header.header[style*="transform"] {
+  transform: none !important;
+}
+
+/* ==========================================================================
+   Hover Card
+   ========================================================================== */
+
+/* Custom cursor — keep hidden; JS drives position and visibility */
+body .hover-card__cursor {
+  display: none !important;
+}
+
+/* HoverCard sets cursor: none for the custom cursor effect */
+body .hover-card,
+body .hover-card :is(a, button, [role="link"]) {
+  cursor: auto !important;
+}
+
+body .hover-card a {
+  cursor: pointer !important;
+}
+
+/* ==========================================================================
+   React Aria
+   ========================================================================== */
+
+/*
+ * Disclosures need JS for expand/collapse.
+ * Show all panel content when scripting is off.
+ */
+body .experience__content,
+body .services__faq-panel {
+  height: auto !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+}
+
+body .experience__content[hidden] {
+  display: grid !important;
+}
+
+body .services__faq-panel[hidden] {
+  display: block !important;
+}
+
+/* ==========================================================================
+   Navigation
+   ========================================================================== */
+
+/*
+ * Header nav is client-gated (isMounted); provide a static fallback.
+ */
+body .noscript-nav {
+  position: fixed;
+  top: 0.5rem;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+body .noscript-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  justify-content: end;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body .noscript-nav a {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+body .noscript-nav a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  body .noscript-nav {
+    top: 5rem;
+    margin: 0 2rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 0.5rem;
+    border: 1px solid #bfdcf7;
+  }
+
+  body .noscript-nav__list {
+    justify-content: center;
+  }
+}

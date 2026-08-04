@@ -1,63 +1,27 @@
-import {
-  FaRegUser,
-  FaRegEnvelope,
-  FaRegMessage,
-  FaStarOfLife,
-  FaChevronDown,
-} from "react-icons/fa6";
+import { FaCheck } from "react-icons/fa6";
+import { PiCaretDownBold, PiPaperPlaneTiltBold } from "react-icons/pi";
+import { servicesSource } from "../services/services";
 
-import { servicesSource } from "../services/source";
-
-// ---- contact form fields source ----
-export const contactFormFields = [
-  {
-    name: "fullName",
-    label: "your full name",
-    icon: FaRegUser,
-    type: "text",
-    autoComplete: "name",
-    required: true,
-  },
-  {
-    name: "email",
-    label: "your email",
-    icon: FaRegEnvelope,
-    type: "email",
-    autoComplete: "email",
-    required: true,
-  },
-  {
-    name: "service",
-    label: "select a service",
-    icon: FaChevronDown,
-    type: "select",
-    optionsGroupLabel: "Select a service",
-    required: false,
-    options: [
-      ...servicesSource.map((service) => ({
-        value: service.id,
-        label: service.title,
-      })),
-      { value: "other", label: "Other" },
-    ],
-  },
-  {
-    name: "message",
-    label: "message",
-    icon: FaRegMessage,
-    type: "textarea",
-    required: true,
-  },
-];
-
-// ---- contact form config ----
 export const contactForm = {
-  submitLabel: "Send Message",
+  submitLabel: "Send",
   sendingLabel: "Sending...",
-  successMessage: "Sent",
+  successMessage: "Your message has been sent.",
   errorMessage: "Something went wrong. Please try again.",
   notConfiguredMessage:
     "The form is not connected yet. Add the Formspree URL to continue.",
-  requireIcon: <FaStarOfLife />,
-  fields: contactFormFields,
+  servicePlaceholder: "Select a service (optional)",
+  serviceOtherLabel: "Other",
+  checkIcon: FaCheck,
+  selectCaretIcon: PiCaretDownBold,
+  submitIcon: PiPaperPlaneTiltBold,
 };
+
+export function getContactServiceOptions() {
+  return [
+    ...servicesSource.servicesPage.map((service) => ({
+      value: service.id,
+      label: service.title,
+    })),
+    { value: "other", label: contactForm.serviceOtherLabel },
+  ];
+}

@@ -11,7 +11,7 @@ import {
 } from "react-aria-components";
 import { SectionHeader } from "@/components";
 import { experienceSection } from "@/data";
-import { fadeUp, viewportOnce } from "@/lib";
+import { reveal, viewportOnce } from "@/lib";
 
 import "./Experience.scss";
 
@@ -38,6 +38,7 @@ export default function Experience() {
           prefix={prefix}
           accent={accent}
           subtitle={subtitle}
+          aria-label="my experience"
         />
 
         {/* ---- container ---- */}
@@ -56,7 +57,7 @@ export default function Experience() {
               className={({ isExpanded }) =>
                 `experience__item${isExpanded ? " experience__item--open" : ""}`
               }
-              variants={fadeUp}
+              variants={reveal}
               initial="hidden"
               whileInView="visible"
               viewport={viewportOnce}
@@ -155,7 +156,7 @@ export default function Experience() {
                           <motion.li
                             key={`${item.id}-detail-${detailIndex}`}
                             className="experience__detail"
-                            variants={fadeUp}
+                            variants={reveal}
                           >
                             {detail}
                           </motion.li>

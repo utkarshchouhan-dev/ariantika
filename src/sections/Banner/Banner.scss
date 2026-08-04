@@ -10,13 +10,7 @@
     margin-inline: auto;
     width: 95svw;
     background-color: var(--background);
-    mask-image: linear-gradient(
-      to right,
-      transparent,
-      black 20%,
-      black 80%,
-      transparent
-    );
+    @include fade-edges-mask;
 
     @include down(md) {
       width: calc(100svw - $space-4 * 2);
@@ -74,7 +68,7 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@include reduced-motion {
   .banner__track--active {
     animation: none;
   }

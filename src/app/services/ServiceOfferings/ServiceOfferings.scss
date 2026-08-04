@@ -1,0 +1,96 @@
+@use "../../../assets/styles" as *;
+
+.service__offerings {
+  @include flex-between;
+  @include section;
+  gap: clamp($space-8, 2vw, $space-10);
+  padding-inline: clamp($space-14, 1.5vw, $space-16);
+  scroll-margin-top: clamp(10px, 10vw, 150px);
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &--primary {
+    --service-color: var(--primary);
+    scroll-margin-top: clamp(20px, 10vw, 200px);
+  }
+
+  &--secondary {
+    --service-color: var(--secondary);
+  }
+
+  &--accent {
+    --service-color: var(--accent);
+  }
+
+  &:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+
+  @include down(lg) {
+    flex-direction: column;
+
+    &:nth-child(even) {
+      flex-direction: column;
+    }
+  }
+
+  &-image {
+    max-width: clamp(280px, 50vw, 500px);
+    aspect-ratio: 1;
+
+    &--img {
+      object-fit: cover;
+      filter: drop-shadow(0 0 50px alpha(var(--service-color), 10));
+    }
+  }
+
+  &-content {
+    width: fit-content;
+    @include flex-column;
+    gap: clamp($space-14, 2vw, $space-16);
+  }
+
+  &-title {
+    font-family: $font-display;
+    font-size: clamp($font-size-24, 3.5vw, $font-size-32);
+    font-weight: $fw-bold;
+    color: var(--service-color);
+  }
+
+  &-description {
+    font-size: clamp(rem(14), 2vw, $font-size-16);
+    color: var(--text-light);
+    line-height: 1.6;
+    text-wrap: pretty;
+    word-break: keep-all;
+    max-width: 55ch;
+  }
+
+  &-list {
+    @include flex-column;
+    gap: clamp($space-12, 2vw, $space-20);
+    width: fit-content;
+    margin-top: clamp($space-10, 2vw, $space-14);
+  }
+
+  &-item {
+    @include flex-center;
+    justify-content: flex-start;
+    gap: $space-4;
+    font-size: clamp($font-size-14, 2vw, $font-size-16);
+    color: var(--text-muted);
+    font-weight: $fw-regular;
+
+    &-icon {
+      align-self: baseline;
+
+      svg {
+        stroke-width: 2px;
+        font-size: clamp(rem(15), 2vw, rem(17));
+        color: var(--service-color);
+      }
+    }
+  }
+}

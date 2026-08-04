@@ -2,11 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring } from "motion/react";
-import { useMediaQuery } from "react-responsive";
+import { useMediaQuery } from "@/hooks";
+import { mediaQueries } from "@/utils";
 import {
-  deckSpreadCard,
-  DECK_SPREAD_DESKTOP_MEDIA,
-  hoverPop,
+  hoverCursor,
+  revealDeck,
   viewportOnce,
 } from "@/lib";
 
@@ -46,7 +46,7 @@ export default function HoverCard({
     y.set(py);
   };
 
-  const matchesDesktop = useMediaQuery({ query: DECK_SPREAD_DESKTOP_MEDIA });
+  const matchesDesktop = useMediaQuery(mediaQueries.deckDesktop);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -64,7 +64,7 @@ export default function HoverCard({
       className={`hover-card ${className}`.trim()}
       onMouseEnter={(event) => setCursorPosition(event, true)}
       onMouseMove={(event) => setCursorPosition(event, false)}
-      variants={deckSpreadCard}
+      variants={revealDeck}
       custom={{ index, isDesktop }}
       initial="hidden"
       whileInView="visible"
@@ -77,7 +77,7 @@ export default function HoverCard({
         <motion.span
           className="hover-card__cursor"
           style={{ x: springX, y: springY }}
-          variants={hoverPop}
+          variants={hoverCursor}
           transition={{ type: "spring", stiffness: 200, damping: 15 }}
           aria-hidden="true"
         >

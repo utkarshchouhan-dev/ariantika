@@ -1,46 +1,18 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { Inter, Sour_Gummy, Caveat_Brush, Amiri } from "next/font/google";
 import { Header, Footer, ToastRegion, SkipLink, BackToTop } from "@/components";
+import { JsonLd, getPersonJsonLd } from "@/lib";
 import { generateMetadata } from "./metadata";
 
 import "@/assets/styles/main.scss";
 
 export { generateMetadata };
 
-const SITE_URL = "https://ariantika.me";
-
-// Person JSON-LD
-const personJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ProfilePage",
-  mainEntity: {
-    "@type": "Person",
-    name: "Ariantika",
-    alternateName: "ariantika",
-    jobTitle: "Epidemiology & Biostatistics Researcher",
-    description:
-      "Epidemiology & Biostatistics researcher focused on cancer, infectious, and non-communicable diseases. Research design, SPSS analysis, and public health insights from North Sumatra, Indonesia.",
-    url: SITE_URL,
-    mainEntityOfPage: SITE_URL,
-    image: `${SITE_URL}/opengraph-image.png`,
-    email: "mailto:ariantikaeffendi@gmail.com",
-    sameAs: ["https://www.linkedin.com/in/ariantikaa"],
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "North Sumatra",
-      addressCountry: "Indonesia",
-    },
-    knowsAbout: [
-      "Epidemiology",
-      "Biostatistics",
-      "Cancer",
-      "Infectious Diseases",
-      "Non-Communicable Diseases",
-      "SPSS",
-      "Research Design",
-      "Public Health",
-    ],
-  },
-};
+const noscriptCss = readFileSync(
+  join(process.cwd(), "src/assets/styles/noscript.css"),
+  "utf8",
+);
 
 const inter = Inter({
   subsets: ["latin"],
@@ -76,15 +48,37 @@ export default function RootLayout({ children }) {
       className={`${inter.variable} ${sourGummy.variable} ${caveatBrush.variable} ${amiri.variable}`}
     >
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(personJsonLd),
-          }}
-        />
+        <JsonLd data={getPersonJsonLd()} />
+        <noscript>
+          <style dangerouslySetInnerHTML={{ __html: noscriptCss }} />
+        </noscript>
       </head>
       <body>
         <SkipLink href="#main">Skip to main content</SkipLink>
+        <noscript>
+          {/* Native anchors required — Next.js Link depends on JavaScript */}
+          {/* eslint-disable @next/next/no-html-link-for-pages */}
+          <nav className="noscript-nav" aria-label="Site navigation">
+            <ul className="noscript-nav__list">
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/aboutme">About</a>
+              </li>
+              <li>
+                <a href="/services">Services</a>
+              </li>
+              <li>
+                <a href="/research">Research</a>
+              </li>
+              <li>
+                <a href="/contact">Contact</a>
+              </li>
+            </ul>
+          </nav>
+          {/* eslint-enable @next/next/no-html-link-for-pages */}
+        </noscript>
         <Header />
         {children}
         <BackToTop />

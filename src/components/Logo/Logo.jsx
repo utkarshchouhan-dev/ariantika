@@ -10,10 +10,10 @@ export default function Logo() {
       <Image
         src={logoSrc}
         alt="Ariantika's logo"
-        width={300}
-        height={300}
-        quality={50}
+        width={110}
+        height={110}
         priority
+        sizes="(max-width: 768px) 80px, 110px"
         className="logo__wrapper-image"
       />
     </Button>

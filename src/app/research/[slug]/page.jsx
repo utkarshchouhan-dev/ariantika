@@ -1,10 +1,11 @@
 import { notFound } from "next/navigation";
-import { getPublicationBySlug, researchPublications } from "@/data";
+import { getPublicationBySlug, researchSource } from "@/data";
+import { createPageMetadata } from "@/lib";
 
 import "./page.scss";
 
 export function generateStaticParams() {
-  return researchPublications.map((publication) => ({
+  return researchSource.publications.map((publication) => ({
     slug: publication.slug,
   }));
 }
@@ -14,15 +15,23 @@ export async function generateMetadata({ params }) {
   const publication = getPublicationBySlug(slug);
 
   if (!publication) {
-    return {
+    return createPageMetadata({
+      path: `/research/${slug}`,
       title: "Publication Not Found",
-    };
+      description:
+        "This publication could not be found. View all research publications on ariantika.me.",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    });
   }
 
-  return {
+  return createPageMetadata({
+    path: `/research/${slug}`,
     title: publication.cover.title,
     description: publication.cover.summary,
-  };
+  });
 }
 
 export default async function ResearchPublicationPage({ params }) {

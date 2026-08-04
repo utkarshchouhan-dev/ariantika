@@ -42,18 +42,6 @@
     content: "";
     position: absolute;
     inset: 0;
-    background-image:
-      linear-gradient(
-        to right,
-        alpha(var(--text-inverse), 10) 1px,
-        transparent 1px
-      ),
-      linear-gradient(
-        to bottom,
-        alpha(var(--text-inverse), 10) 1px,
-        transparent 1px
-      );
-    background-size: rem(48) rem(48);
-    mask-image: radial-gradient(ellipse at center, black 0%, transparent 75%);
+    @include grid-backdrop;
   }
 }
