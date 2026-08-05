@@ -5,10 +5,11 @@ import * as motion from "motion/react-client";
 import { servicesSource } from "@/data";
 import {
   reveal,
+  revealEager,
+  revealInView,
   revealSlideLeft,
   revealSlideRight,
   stagger,
-  viewportOnce,
 } from "@/lib";
 
 import "./ServiceOfferings.scss";
@@ -18,6 +19,8 @@ export default function ServiceOfferings() {
 
   return servicesPage.map((service, i) => {
     const isReversed = i % 2 === 0;
+    const isAboveFold = i === 0;
+    const sectionMotion = isAboveFold ? revealEager : revealInView;
     const imageVariant = isReversed ? revealSlideLeft : revealSlideRight;
     const contentVariant = isReversed ? revealSlideRight : revealSlideLeft;
     const { id, title, description, bullets, theme, image, imageAlt } = service;
@@ -33,9 +36,7 @@ export default function ServiceOfferings() {
         <motion.div
           className="service__offerings-image"
           variants={imageVariant}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
+          {...sectionMotion}
         >
           <Image
             className="service__offerings-image--img"
@@ -45,30 +46,29 @@ export default function ServiceOfferings() {
             height={500}
             sizes="(max-width: 1024px) 280px, 500px"
             quality={70}
-            loading={i === 0 ? "eager" : "lazy"}
+            priority={isAboveFold}
+            loading={isAboveFold ? "eager" : "lazy"}
+            fetchPriority={isAboveFold ? "high" : undefined}
           />
         </motion.div>
 
         <motion.div
           className="service__offerings-content"
           variants={contentVariant}
+          {...sectionMotion}
         >
           <motion.h2
             className="service__offerings-title"
             id={`${id}-title`}
             variants={reveal}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
+            {...sectionMotion}
           >
             {title}:
           </motion.h2>
           <motion.p
             className="service__offerings-description"
             variants={reveal}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
+            {...sectionMotion}
           >
             {description}
           </motion.p>
@@ -79,9 +79,7 @@ export default function ServiceOfferings() {
                 key={item}
                 className="service__offerings-item"
                 variants={reveal}
-                initial="hidden"
-                whileInView="visible"
-                viewport={viewportOnce}
+                {...(isAboveFold ? revealEager : revealInView)}
               >
                 <span
                   className="service__offerings-item-icon"

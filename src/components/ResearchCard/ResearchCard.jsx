@@ -12,7 +12,9 @@ import "./ResearchCard.scss";
 export default function ResearchCard({
   publication: card,
   index = 0,
+  priority = false,
   className = "",
+  as: Heading = "h3",
 }) {
   const {
     cover: { title, summary, image, imageAlt },
@@ -28,23 +30,28 @@ export default function ResearchCard({
   const labelWithQuartile = quartile ? `${label} (${quartile})` : label;
   const { label: statusLabel } = getPublicationStatus(status);
   const accentVars = getPublicationAccentVars(status);
+  const cardMotion = priority
+    ? { initial: { opacity: 1, y: 0, filter: "blur(0px)" } }
+    : {
+        initial: { opacity: 0, y: 70, filter: "blur(20px)" },
+        whileInView: {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          transition: {
+            duration: 0.8,
+            ease: [0.16, 1, 0.3, 1],
+            delay: index * 0.2,
+          },
+        },
+        viewport: { once: true, amount: 0.2 },
+      };
 
   return (
     <motion.article
       className={`research-card ${className}`.trim()}
       style={accentVars}
-      initial={{ opacity: 0, y: 70, filter: "blur(20px)" }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
-        transition: {
-          duration: 0.8,
-          ease: [0.16, 1, 0.3, 1],
-          delay: index * 0.2,
-        },
-      }}
-      viewport={{ once: true, amount: 0.2 }}
+      {...cardMotion}
     >
       <div className="research-card__media">
         {image ? (
@@ -56,7 +63,9 @@ export default function ResearchCard({
             height={800}
             sizes="(max-width: 768px) 350px, 400px"
             quality={70}
-            loading="lazy"
+            priority={priority}
+            loading={priority ? "eager" : "lazy"}
+            fetchPriority={priority ? "high" : undefined}
           />
         ) : null}
       </div>
@@ -64,7 +73,7 @@ export default function ResearchCard({
       <span className="research-card__badge">{statusLabel}</span>
 
       <div className="research-card__content">
-        <h3 className="research-card__title">{title}</h3>
+        <Heading className="research-card__title">{title}</Heading>
         <p className="research-card__summary">{summary}</p>
 
         <div className="research-card__meta-container">

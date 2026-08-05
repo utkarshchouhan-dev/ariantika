@@ -5,10 +5,10 @@ import ContactForm from "./ContactForm";
 
 import "./Contact.scss";
 
-export default function Contact({ className = "" }) {
+export default function Contact({ className = "", priority = false }) {
   return (
     <div className={`contact__panel ${className}`.trim()}>
-      <ContactForm />
+      <ContactForm priority={priority} />
       <SocialLinks direction="horizontal" className="contact__social" />
     </div>
   );

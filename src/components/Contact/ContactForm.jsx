@@ -38,7 +38,7 @@ function ContactField({ name, state, children, trailing, multiline = false }) {
 }
 
 // ==== Form component ====
-export default function ContactForm() {
+export default function ContactForm({ priority = false }) {
   // --- Icons ---
   const {
     checkIcon: CheckIcon,
@@ -69,10 +69,10 @@ export default function ContactForm() {
       className="contact__form"
       onSubmit={handleSubmit}
       validationBehavior="aria"
+      variants={reveal}
       initial="hidden"
       whileInView="visible"
       viewport={viewportOnce}
-      variants={reveal}
     >
       {/* ++++ Honeypot field ++++ */}
       <p className="contact__honeypot" aria-hidden="true">

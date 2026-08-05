@@ -43,12 +43,11 @@
     border-radius: $radius-md;
     background-color: var(--surface);
     color: var(--card-accent);
-    font-size: clamp($font-size-10, 1vw, $font-size-12);
+    font-size: clamp(rem(11), 1.2vw, rem(13));
     font-weight: $fw-bold;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    line-height: 1;
-    box-shadow: 0 0 3px 0 alpha(var(--card-accent), 20);
+    line-height: 1.4;
   }
 
   &__content {

@@ -9,7 +9,6 @@
   &__surface {
     margin-inline: auto;
     width: 95svw;
-    background-color: var(--background);
     @include fade-edges-mask;
 
     @include down(md) {

@@ -53,13 +53,7 @@
 
 @mixin page {
   width: 100%;
-  background-color: var(--background);
-  background: linear-gradient(
-    to bottom,
-    var(--primary-softer),
-    var(--background) 400px,
-    var(--background) 100%
-  );
+  background-color: var(--surface);
 }
 
 @mixin container {
@@ -151,7 +145,7 @@
   mask-image: radial-gradient(ellipse at center, black 0%, transparent $fade);
 }
 
-@mixin wave-divider-bottom($fill: var(--background)) {
+@mixin wave-divider-bottom($fill: var(--surface)) {
   position: absolute;
   bottom: 0;
   left: 0;

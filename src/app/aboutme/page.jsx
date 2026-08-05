@@ -44,10 +44,9 @@ export default function AboutMe() {
                     <Image
                       src={image}
                       className="about__me--photo-img"
-                      width={400}
-                      height={400}
-                      sizes="(max-width: 768px) 280px, 400px"
-                      quality={70}
+                      fill
+                      sizes="(max-width: 700px) 280px, (max-width: 1000px) 40vw, 400px"
+                      quality={65}
                       loading={i === 0 ? "eager" : "lazy"}
                       alt={alt}
                     />

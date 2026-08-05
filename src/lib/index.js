@@ -4,6 +4,8 @@ export {
   stagger,
   staggerList,
   reveal,
+  revealInView,
+  revealEager,
   revealStagger,
   revealSpring,
   revealRotate,

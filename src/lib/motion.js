@@ -15,6 +15,17 @@ const BLUR_VISIBLE = "blur(0px)";
 
 export const viewportOnce = { once: true, amount: 0.29 };
 
+export const revealInView = {
+  initial: "hidden",
+  whileInView: "visible",
+  viewport: viewportOnce,
+};
+
+export const revealEager = {
+  initial: "visible",
+  animate: "visible",
+};
+
 function createStagger() {
   return {
     hidden: {},

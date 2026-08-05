@@ -7,7 +7,7 @@
   // ---- wrapper ----
   &__wrapper {
     --experience-width: 95%;
-    background-color: var(--primary-soft);
+    background-color: var(--primary-softer);
     width: var(--experience-width);
     margin-inline: auto;
     border-radius: clamp($radius-lg, 3vw, $radius-2xl);
@@ -77,7 +77,7 @@
   &__item {
     width: 100%;
     border-radius: $radius-lg;
-    background-color: var(--primary-softer);
+    background-color: var(--primary-soft);
     box-shadow: 0 0 0 1px var(--primary-on);
     transition: background-color $duration-base $ease-default;
 

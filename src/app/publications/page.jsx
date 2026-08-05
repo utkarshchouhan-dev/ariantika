@@ -23,6 +23,8 @@ export default function ResearchPage() {
               key={publication.id}
               publication={publication}
               index={index}
+              priority={index === 0}
+              as="h2"
             />
           ))}
         </div>

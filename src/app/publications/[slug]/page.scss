@@ -12,15 +12,6 @@
     height: calc(100svh - clamp($space-40, 8vw, $space-96));
   }
 
-  &__title {
-    max-width: 28ch;
-    font-size: clamp($font-size-28, 4vw, $font-size-48);
-    font-weight: $fw-bold;
-    line-height: $line-height-tight;
-    color: var(--text);
-    text-wrap: balance;
-  }
-
   &__status {
     margin: 0;
     font-size: clamp($font-size-24, 3vw, $font-size-32);

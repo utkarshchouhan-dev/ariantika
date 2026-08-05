@@ -99,8 +99,8 @@
   font-weight: $fw-medium;
   font-family: $font-primary;
   color: var(--text-light);
-  background: var(--primary-soft);
-  border: 2px solid var(--primary-soft);
+  background: var(--primary-softer);
+  border: 2px solid var(--primary-softer);
   outline: none;
   border-radius: $radius-lg;
   transition:
@@ -245,6 +245,7 @@
 }
 
 .contact__page {
+  @include page;
   .contact__container--page {
     padding-top: clamp($space-40, 8vw, rem(70));
   }
