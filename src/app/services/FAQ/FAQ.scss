@@ -15,7 +15,6 @@
 
   &-item {
     padding-inline: clamp($space-8, 0.5vw, $space-10);
-    background-color: var(--surface);
     border-bottom: 1px solid var(--border);
     transition: background-color $duration-base $ease-default;
 

@@ -8,7 +8,12 @@
   padding-block: clamp($space-24, 10vw, $space-64);
   width: 100%;
   position: relative;
-  background-color: var(--background);
+  background: linear-gradient(
+    to bottom,
+    var(--primary-softer),
+    var(--surface) 150px,
+    var(--surface) 100%
+  );
   padding-block: clamp(rem(30), 20vw, rem(150));
 
   // ---- page header eyebrow ----
@@ -51,5 +56,5 @@
 }
 
 .custom-shape-divider-bottom-1785504141 {
-  @include wave-divider-bottom;
+  @include wave-divider-bottom($fill: var(--background));
 }

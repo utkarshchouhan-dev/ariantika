@@ -36,7 +36,6 @@ export default function ServiceOfferings() {
         <motion.div
           className="service__offerings-image"
           variants={imageVariant}
-          {...sectionMotion}
         >
           <Image
             className="service__offerings-image--img"

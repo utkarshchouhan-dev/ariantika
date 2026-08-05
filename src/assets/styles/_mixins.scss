@@ -53,7 +53,12 @@
 
 @mixin page {
   width: 100%;
-  background-color: var(--surface);
+  background: linear-gradient(
+    to bottom,
+    var(--primary-softer),
+    var(--background) 400px,
+    var(--background) 100%
+  );
 }
 
 @mixin container {

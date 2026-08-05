@@ -30,28 +30,23 @@ export default function ResearchCard({
   const labelWithQuartile = quartile ? `${label} (${quartile})` : label;
   const { label: statusLabel } = getPublicationStatus(status);
   const accentVars = getPublicationAccentVars(status);
-  const cardMotion = priority
-    ? { initial: { opacity: 1, y: 0, filter: "blur(0px)" } }
-    : {
-        initial: { opacity: 0, y: 70, filter: "blur(20px)" },
-        whileInView: {
-          opacity: 1,
-          y: 0,
-          filter: "blur(0px)",
-          transition: {
-            duration: 0.8,
-            ease: [0.16, 1, 0.3, 1],
-            delay: index * 0.2,
-          },
-        },
-        viewport: { once: true, amount: 0.2 },
-      };
 
   return (
     <motion.article
       className={`research-card ${className}`.trim()}
       style={accentVars}
-      {...cardMotion}
+      initial={{ opacity: 0, y: 70, filter: "blur(20px)" }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+        transition: {
+          duration: 0.8,
+          ease: [0.16, 1, 0.3, 1],
+          delay: index * 0.2,
+        },
+      }}
+      viewport={{ once: true, amount: 0.2 }}
     >
       <div className="research-card__media">
         {image ? (
