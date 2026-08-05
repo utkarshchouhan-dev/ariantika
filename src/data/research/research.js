@@ -1,9 +1,9 @@
 import { PiArrowUpRightBold, PiCalendarDotsLight } from "react-icons/pi";
 
-import lungCancerImage from "@/assets/images/research/lung-cancer.png";
-import dyspneaImage from "@/assets/images/research/dyspnea.png";
-import hospitalInfectionImage from "@/assets/images/research/hospital-infection.png";
-import tuberculosisLungsImage from "@/assets/images/research/tuberculosis-lungs.png";
+import lungCancerImage from "@/assets/images/research/lung-cancer.webp";
+import dyspneaImage from "@/assets/images/research/dyspnea.webp";
+import hospitalInfectionImage from "@/assets/images/research/hospital-infection.webp";
+import tuberculosisLungsImage from "@/assets/images/research/tuberculosis-lungs.webp";
 
 export const PUBLICATION_STATUS = {
   published: {
@@ -39,7 +39,7 @@ const publications = [
       year: 2024,
       type: "Journal Article",
       quartile: null,
-      label: "Journal Respirologi",
+      label: "Journal of Respirologi",
       tooltip: "Journal Respirologi Indonesia",
     },
   },

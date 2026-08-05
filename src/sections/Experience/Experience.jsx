@@ -80,6 +80,8 @@ export default function Experience() {
                             alt={item.logoAlt}
                             width={56}
                             height={56}
+                            sizes="56px"
+                            quality={75}
                           />
                         ) : (
                           // ---- initial is for fallback ----

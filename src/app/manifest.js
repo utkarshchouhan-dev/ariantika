@@ -61,10 +61,10 @@ export default function manifest() {
         ],
       },
       {
-        name: "Research",
-        short_name: "Research",
-        description: "My research projects",
-        url: "/research",
+        name: "Publications",
+        short_name: "Publications",
+        description: "My research publications",
+        url: "/publications",
         icons: [
           {
             src: PWA_ICON_192,

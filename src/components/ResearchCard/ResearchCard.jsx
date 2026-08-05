@@ -54,7 +54,9 @@ export default function ResearchCard({
             alt={imageAlt ?? ""}
             width={800}
             height={800}
-            sizes="(max-width: 768px) 100vw, 400px"
+            sizes="(max-width: 768px) 350px, 400px"
+            quality={70}
+            loading="lazy"
           />
         ) : null}
       </div>
@@ -104,7 +106,7 @@ export default function ResearchCard({
               className="research-card__action"
               variant="primary"
               size="large"
-              href={`/research/${slug}`}
+              href={`/publications/${slug}`}
               icon={<DetailsIcon />}
               aria-label={detailsAriaLabel}
             />

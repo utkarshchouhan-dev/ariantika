@@ -20,7 +20,7 @@
   font-size: clamp($font-size-14, 1.5vw, $font-size-16);
   font-weight: $fw-medium;
   line-height: 1.4;
-  border-radius: $radius-xl;
+  border-radius: $radius-lg;
   box-shadow: 0 0 rem(4) alpha(var(--text), 10);
 
   &--success {
@@ -44,9 +44,8 @@
     width: rem(28);
     height: rem(28);
     padding: 0;
-    color: inherit;
-    background: transparent;
-    border: 1px solid alpha(var(--text-inverse), 35);
+    color: var(--text);
+    background: var(--surface);
     border-radius: 50%;
     cursor: pointer;
     @include transition-base((background-color, border-color), $duration-fast);
@@ -56,9 +55,11 @@
       height: rem(14);
     }
 
-    &[data-hovered] {
-      background: alpha(var(--text-inverse), 15);
-      border-color: alpha(var(--text-inverse), 50);
+    @media (hover: hover) {
+      &[data-hovered] {
+        background: alpha(var(--text-inverse), 15);
+        border-color: alpha(var(--text-inverse), 50);
+      }
     }
 
     &[data-focus-visible] {

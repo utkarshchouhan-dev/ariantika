@@ -41,9 +41,11 @@ export default function ServiceOfferings() {
             className="service__offerings-image--img"
             src={image}
             alt={imageAlt}
-            width={800}
-            height={800}
-            sizes="(max-width: 1024px) 80vw, 500px"
+            width={500}
+            height={500}
+            sizes="(max-width: 1024px) 280px, 500px"
+            quality={70}
+            loading={i === 0 ? "eager" : "lazy"}
           />
         </motion.div>
 

@@ -16,7 +16,7 @@ export async function generateMetadata({ params }) {
 
   if (!publication) {
     return createPageMetadata({
-      path: `/research/${slug}`,
+      path: `/publications/${slug}`,
       title: "Publication Not Found",
       description:
         "This publication could not be found. View all research publications on ariantika.me.",
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }) {
   }
 
   return createPageMetadata({
-    path: `/research/${slug}`,
+    path: `/publications/${slug}`,
     title: publication.cover.title,
     description: publication.cover.summary,
   });

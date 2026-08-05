@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { contactForm, getContactServiceOptions } from "@/data";
 import { addToast } from "@/utils";
 import {
-  FORMSPREE_ENDPOINT,
+  CONTACT_SUBMIT_ROUTE,
   INITIAL_VALUES,
   REQUIRED_FIELDS,
 } from "./contact.constants";
@@ -162,22 +162,21 @@ export function useContactForm() {
         return;
       }
 
-      if (!FORMSPREE_ENDPOINT) {
-        addToast(contactForm.notConfiguredMessage, "error");
-        return;
-      }
-
       setIsSending(true);
 
       try {
-        const response = await fetch(FORMSPREE_ENDPOINT, {
+        const response = await fetch(CONTACT_SUBMIT_ROUTE, {
           method: "POST",
           body: new FormData(formRef.current),
-          headers: { Accept: "application/json" },
         });
 
+        if (response.status === 503) {
+          addToast(contactForm.notConfiguredMessage, "error");
+          return;
+        }
+
         if (!response.ok) {
-          throw new Error("Formspree request failed");
+          throw new Error("Contact submission failed");
         }
 
         formRef.current?.reset();

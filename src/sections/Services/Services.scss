@@ -21,7 +21,7 @@
     position: relative;
     max-width: 400px;
     margin-inline: auto;
-    border-radius: $radius-xl;
+    border-radius: clamp($radius-lg, 3vw, $radius-xl);
     will-change: transform;
     transition:
       scale $duration-base $ease-default,
@@ -85,7 +85,7 @@
     padding: clamp($space-12, 1vw, $space-14);
     background-color: var(--surface);
     border: 1px solid alpha(var(--primary), 20);
-    border-radius: $radius-xl;
+    border-radius: inherit;
   }
 
   &__media {

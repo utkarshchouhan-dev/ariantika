@@ -14,9 +14,9 @@
   // ---- page header eyebrow ----
   &-eyebrow {
     font-family: $font-brush;
-    font-size: clamp($font-size-20, 2vw, $font-size-24);
-    color: var(--accent);
-    letter-spacing: 0.02em;
+    font-size: clamp($font-size-18, 2vw, $font-size-24);
+    font-weight: $fw-bold;
+    color: var(--accent-active);
   }
 
   // ---- section header title ----

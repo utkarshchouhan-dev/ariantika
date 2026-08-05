@@ -96,7 +96,8 @@ export default function ImageCarousel({ images = [], ariaLabel }) {
                   height={640}
                   className="image-carousel__image"
                   draggable={false}
-                  sizes="(max-width: 768px) 80vw, 460px"
+                  sizes="(max-width: 768px) 300px, 400px"
+                  quality={70}
                   priority={idx === 0}
                   loading={idx === 0 ? "eager" : "lazy"}
                 />

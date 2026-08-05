@@ -29,3 +29,4 @@ export {
   SITE_KEYWORDS,
 } from "./metadata/constants";
 export { createPageMetadata } from "./metadata/create-page-metadata";
+export { submitContactForm } from "./contact/submit-contact";

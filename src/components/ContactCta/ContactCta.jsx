@@ -30,8 +30,11 @@ export default function ContactCta({
             className="contact__cta-avatar--img"
             src={image.src}
             alt={image.alt}
-            width={100}
-            height={100}
+            width={80}
+            height={80}
+            sizes="80px"
+            quality={70}
+            loading="lazy"
           />
         </motion.div>
 

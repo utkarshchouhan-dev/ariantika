@@ -42,7 +42,7 @@
   &__card {
     position: absolute;
     width: var(--ic-card-width);
-    border-radius: $radius-xl;
+    border-radius: clamp($radius-lg, 3vw, $radius-xl);
     background-color: var(--image-bg);
     overflow: hidden;
     user-select: none;

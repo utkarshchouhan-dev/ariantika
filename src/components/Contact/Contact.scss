@@ -11,6 +11,10 @@
   @include flex-column;
   gap: clamp($space-16, 2.5vw, $space-20);
   width: min(100%, 500px);
+
+  @include down(md) {
+    width: 350px;
+  }
 }
 
 .contact__honeypot {
@@ -74,7 +78,6 @@
     .contact__textarea,
     .contact__select-trigger {
       border-color: var(--success);
-      // box-shadow: 0 0 0 1px alpha(var(--success), 35);
     }
   }
 
@@ -97,7 +100,7 @@
   font-family: $font-primary;
   color: var(--text-light);
   background: var(--primary-soft);
-  border: 1px solid var(--primary-soft);
+  border: 2px solid var(--primary-soft);
   outline: none;
   border-radius: $radius-lg;
   transition:
@@ -110,8 +113,10 @@
     color: var(--text-muted);
   }
 
-  &:hover:not(:disabled) {
-    background-color: var(--primary-softer);
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      background-color: var(--primary-softer);
+    }
   }
 
   &:focus,
@@ -124,28 +129,12 @@
 }
 
 .contact__textarea {
-  height: rem(200);
+  max-height: rem(500);
+  min-height: rem(200);
   padding-bottom: clamp(rem(28), 4vw, $space-32);
   line-height: 1.65;
-  font-size: clamp($font-size-16, 2.5vw, $font-size-20);
-  padding-right: clamp($space-24, 3vw, $space-32);
+  padding-right: clamp($space-18, 2.5vw, rem(28));
   resize: none;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--primary) var(--primary-soft);
-
-  &::-webkit-scrollbar {
-    width: rem(3);
-  }
-
-  &::placeholder {
-    font-size: clamp($font-size-14, 1.5vw, $font-size-16);
-    letter-spacing: -0.015em;
-  }
-}
-
-.contact__select {
-  width: 100%;
 }
 
 .contact__select-trigger {
@@ -183,9 +172,9 @@
 .contact__select-popover {
   width: var(--trigger-width);
   background: var(--surface);
-  border: 1px solid var(--surface-dark-muted);
-  border-radius: $radius-md;
-  box-shadow: 0 rem(16) rem(40) alpha(var(--text), 10);
+  border: 1px solid var(--primary-soft);
+  border-radius: $radius-lg;
+  box-shadow: 0 rem(6) rem(16) alpha(var(--surface-dark), 10);
   overflow: hidden;
 
   &[data-entering],
@@ -206,8 +195,8 @@
 
 .contact__select-option {
   padding: clamp($space-12, 1.8vw, $space-14) clamp($space-14, 2vw, $space-16);
-  font-size: clamp($font-size-12, 1.4vw, $font-size-14);
-  font-weight: $fw-medium;
+  font-size: clamp($font-size-14, 1.8vw, $font-size-16);
+  font-weight: $fw-semibold;
   color: alpha(var(--text), 75);
   border-bottom: 1px solid var(--primary-softer);
   cursor: pointer;
@@ -240,10 +229,6 @@
   margin-top: $space-8;
 }
 
-.contact__social {
-  justify-content: center;
-}
-
 .contact__visually-hidden {
   @include sr-only;
 }
@@ -251,27 +236,9 @@
 // ---- contact section wrapper ----
 .contact {
   @include section;
-  position: relative;
-  background-color: var(--background);
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100%;
-    height: 60%;
-    // background-image: url("../../assets/images/contact/waves.svg");
-    pointer-events: none;
-
-    @include fade-edges-mask(to top);
-  }
 
   &__container {
     @include container;
-    position: relative;
-    z-index: $z-base;
     @include flex-column;
     align-items: center;
   }
@@ -279,6 +246,6 @@
 
 .contact__page {
   .contact__container--page {
-    padding-block: clamp($space-24, 5vw, $space-40);
+    padding-top: clamp($space-40, 8vw, rem(70));
   }
 }

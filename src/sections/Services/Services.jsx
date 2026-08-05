@@ -46,7 +46,8 @@ export default function Services() {
                   src={service.image}
                   alt={service.imageAlt}
                   fill
-                  sizes={service.imageSizes}
+                  sizes="(max-width: 768px) 100vw, 400px"
+                  quality={70}
                 />
               </div>
 

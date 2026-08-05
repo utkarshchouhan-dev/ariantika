@@ -129,6 +129,7 @@ export default function Hero() {
               width={500}
               height={500}
               sizes="(max-width: 625px) 250px, (max-width: 1250px) 40vw, 500px"
+              quality={75}
               priority
               fetchPriority="high"
             />

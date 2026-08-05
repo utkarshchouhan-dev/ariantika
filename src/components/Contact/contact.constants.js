@@ -1,6 +1,4 @@
-// ==== endpoint for the formspee form ====
-export const FORMSPREE_ENDPOINT =
-  process.env.NEXT_PUBLIC_FORMSPREE_FORM_URL?.trim();
+export const CONTACT_SUBMIT_ROUTE = "/api/contact";
 
 // ==== initial values for the contact form ====
 export const INITIAL_VALUES = {

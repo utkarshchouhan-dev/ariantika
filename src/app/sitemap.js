@@ -9,7 +9,7 @@ const staticRoutes = [
   { path: "/", priority: 1.0 },
   { path: "/aboutme", priority: 0.8 },
   { path: "/services", priority: 0.8 },
-  { path: "/research", priority: 0.8 },
+  { path: "/publications", priority: 0.8 },
   { path: "/contact", priority: 0.8 },
 ];
 
@@ -28,7 +28,7 @@ export default function sitemap() {
   }));
 
   const publications = getOrderedPublications().map((publication) => ({
-    url: `${SITE_URL}/research/${publication.slug}`,
+    url: `${SITE_URL}/publications/${publication.slug}`,
     lastModified,
     changefreq: "monthly",
     priority: 0.8,

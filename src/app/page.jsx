@@ -4,7 +4,7 @@ import {
   About,
   Services,
   Experience,
-  Research,
+  Publication,
   Contact,
 } from "@/sections";
 import { JsonLd, getProfilePageJsonLd } from "@/lib";
@@ -38,8 +38,8 @@ export default function Home() {
         {/* ---- experience section ---- */}
         <Experience />
 
-        {/* ---- research section ---- */}
-        <Research />
+        {/* ---- publication section ---- */}
+        <Publication />
 
         {/* ---- quran save life ---- */}
         <QuranVerse

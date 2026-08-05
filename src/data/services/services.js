@@ -1,8 +1,8 @@
 import { PiArrowUpRightBold, PiCheckCircleBold } from "react-icons/pi";
 
-import scientificWritingImgPage from "@/assets/images/services_page/scientific-writing.png";
-import researchDesignImgPage from "@/assets/images/services_page/research-design.png";
-import copyEditingImgPage from "@/assets/images/services_page/copy-editing.png";
+import scientificWritingImgPage from "@/assets/images/services_page/scientific-writing.webp";
+import researchDesignImgPage from "@/assets/images/services_page/research-design.webp";
+import copyEditingImgPage from "@/assets/images/services_page/copy-editing.webp";
 import scientificWritingImg from "@/assets/images/services/scientific-writing.svg";
 import researchDesignImg from "@/assets/images/services/research-design.svg";
 import copyEditingImg from "@/assets/images/services/copy-editing.svg";
@@ -65,6 +65,7 @@ const servicesSectionContent = [
   {
     image: scientificWritingImg,
     imageAlt: "Illustration of a person working at a laptop.",
+    imageSizes: "(max-width: 768px) 350px, 400px",
     title: "Scientific Writing & Publication",
     description:
       "Supporting academic writing and journal submission in line with publication standards.",
@@ -79,6 +80,7 @@ const servicesSectionContent = [
   {
     image: researchDesignImg,
     imageAlt: "Illustration of a browser dashboard with bar charts.",
+    imageSizes: "(max-width: 768px) 350px, 400px",
     title: "Research Design & Data Analysis",
     description:
       "Building reliable research through stronger methodology, data analysis, and statistical interpretation.",
@@ -93,6 +95,7 @@ const servicesSectionContent = [
   {
     image: copyEditingImg,
     imageAlt: "Illustration of a document with editing marks.",
+    imageSizes: "(max-width: 768px) 350px, 400px",
     title: "Copy Editing & Translation",
     description:
       "Improving clarity, consistency, and readability for international academic communication.",

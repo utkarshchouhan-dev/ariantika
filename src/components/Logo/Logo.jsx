@@ -14,6 +14,7 @@ export default function Logo() {
         height={110}
         priority
         sizes="(max-width: 768px) 80px, 110px"
+        quality={75}
         className="logo__wrapper-image"
       />
     </Button>

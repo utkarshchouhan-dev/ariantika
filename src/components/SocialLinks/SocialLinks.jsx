@@ -42,7 +42,7 @@ export default function SocialLinks({
               aria-label={link.label}
               tooltipPlacement={tooltipPlacement}
               variant="primary"
-              size="large"
+              size="default"
               target={external ? "_blank" : undefined}
               rel={external ? "noopener noreferrer" : undefined}
               onPress={onItemClick}

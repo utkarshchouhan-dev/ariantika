@@ -70,7 +70,7 @@ export default function RootLayout({ children }) {
                 <a href="/services">Services</a>
               </li>
               <li>
-                <a href="/research">Research</a>
+                <a href="/publications">Publications</a>
               </li>
               <li>
                 <a href="/contact">Contact</a>

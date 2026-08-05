@@ -44,9 +44,11 @@ export default function AboutMe() {
                     <Image
                       src={image}
                       className="about__me--photo-img"
-                      width={800}
-                      height={800}
-                      sizes="(max-width: 768px) 100vw, 800px"
+                      width={400}
+                      height={400}
+                      sizes="(max-width: 768px) 280px, 400px"
+                      quality={70}
+                      loading={i === 0 ? "eager" : "lazy"}
                       alt={alt}
                     />
                   </motion.div>

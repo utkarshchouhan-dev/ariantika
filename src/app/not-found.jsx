@@ -1,5 +1,5 @@
 import Image from "next/image";
-import notFoundImage from "@/assets/images/not_found/not-found.png";
+import notFoundImage from "@/assets/images/not_found/not-found.webp";
 import * as motion from "motion/react-client";
 import { reveal, viewportOnce } from "@/lib";
 import { createPageMetadata } from "@/lib";
@@ -31,8 +31,10 @@ export default function NotFound() {
           src={notFoundImage}
           alt="404 - Page not found"
           className="not-found__image"
-          width={1000}
-          height={1000}
+          width={560}
+          height={560}
+          sizes="(max-width: 768px) 90vw, 560px"
+          quality={70}
           priority
         />
       </motion.div>
