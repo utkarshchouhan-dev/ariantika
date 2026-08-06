@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import { Logo, Navigation, Menu, Button } from "@/components";
+import { Logo, Navigation, Menu } from "@/components";
 import { useHideOnScrollDown, useMediaQuery } from "@/hooks";
 import { mediaQueries } from "@/utils";
 
@@ -48,9 +48,7 @@ export default function Header() {
 
         {/* menu open button */}
         {isMounted && isMobileNav ? (
-          <Button
-            type="button"
-            variant="secondary"
+          <button
             className={`header__menu-open ${
               isMobileMenuOpen ? "header__menu-open--active" : ""
             }`}
@@ -60,12 +58,12 @@ export default function Header() {
               isMobileMenuOpen ? "site-navigation-menu" : undefined
             }
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-            onPress={toggleMenu}
+            onClick={toggleMenu}
           >
             <span className="header__menu-line" aria-hidden="true" />
             <span className="header__menu-line" aria-hidden="true" />
             <span className="header__menu-line" aria-hidden="true" />
-          </Button>
+          </button>
         ) : null}
 
         {/* navigation */}

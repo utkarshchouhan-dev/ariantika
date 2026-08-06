@@ -29,7 +29,7 @@
   }
 
   &__menu-open {
-    @include flex-center;
+    @include flex-between;
     flex-direction: column;
     width: $space-24;
     aspect-ratio: 1;
