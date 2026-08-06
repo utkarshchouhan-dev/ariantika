@@ -33,7 +33,7 @@ Professional portfolio website for **Ariantika** — an Epidemiology & Biostatis
 ### Install & run
 
 ```bash
-git clone <repository-url>
+git clone <[repository-url](https://github.com/moulahguine/ariantika.git)>
 cd ariantika
 pnpm install
 pnpm dev
