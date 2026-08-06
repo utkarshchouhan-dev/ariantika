@@ -50,7 +50,7 @@ Create a local `.env` file (see `.env.example` if present, or copy the block bel
 NEXT_PUBLIC_SITE_URL=https://ariantika.me
 
 # Formspree endpoint for the contact form (required for submissions)
-FORMSPREE_FORM_URL=https://formspree.io/f/<your-form-id>
+FORMSPREE_FORM_URL=https://formspree.io/f/<form-id>
 ```
 
 | Variable               | Required           | Description                                                                      |
