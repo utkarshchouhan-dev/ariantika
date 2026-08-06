@@ -1,4 +1,3 @@
-// Matches src/assets/styles/tokens/_breakpoints.scss
 export const BREAKPOINTS = {
   sm: 450,
   md: 768,

@@ -1,3 +1,4 @@
+// Sections
 export { default as Hero } from "./Hero/Hero";
 export { default as Banner } from "./Banner/Banner";
 export { default as About } from "./About/About";

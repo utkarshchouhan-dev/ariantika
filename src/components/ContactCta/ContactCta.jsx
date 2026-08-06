@@ -1,7 +1,5 @@
 import Image from "next/image";
-import * as motion from "motion/react-client";
 import { Button } from "@/components";
-import { reveal, revealSpring, stagger, viewportOnce } from "@/lib";
 
 import "./ContactCta.scss";
 
@@ -18,14 +16,9 @@ export default function ContactCta({
       className={`contact__cta ${className}`.trim()}
       aria-labelledby={headingId}
     >
-      <motion.div
-        className="contact__cta-card"
-        variants={stagger}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportOnce}
-      >
-        <motion.div variants={revealSpring} className="contact__cta-avatar">
+      {/* ---- contact cta card ---- */}
+      <div className="contact__cta-card">
+        <div className="contact__cta-avatar">
           <Image
             className="contact__cta-avatar--img"
             src={image.src}
@@ -36,21 +29,15 @@ export default function ContactCta({
             quality={70}
             loading="lazy"
           />
-        </motion.div>
+        </div>
 
-        <motion.h2
-          className="contact__cta-title"
-          id={headingId}
-          variants={reveal}
-        >
+        <h2 className="contact__cta-title" id={headingId}>
           {title}
-        </motion.h2>
+        </h2>
 
-        <motion.p className="contact__cta-subtitle" variants={reveal}>
-          {subtitle}
-        </motion.p>
+        <p className="contact__cta-subtitle">{subtitle}</p>
 
-        <motion.div variants={revealSpring}>
+        <div className="contact__cta-action">
           <Button
             className="contact__cta-button"
             href={cta.href}
@@ -61,8 +48,8 @@ export default function ContactCta({
           >
             {cta.label}
           </Button>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   );
 }

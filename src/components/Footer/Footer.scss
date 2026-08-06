@@ -4,6 +4,7 @@
   @include section;
   margin-top: auto;
   padding: 0;
+  @include reveal();
 
   &__container {
     @include container;

@@ -4,6 +4,11 @@
 .about {
   @include section;
 
+  &__media,
+  &__paragraphs {
+    @include reveal($variant: up-large, $duration: $motion-duration-medium);
+  }
+
   // ---- container ----
   &__container {
     @include container;

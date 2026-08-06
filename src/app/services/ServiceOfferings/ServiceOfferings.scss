@@ -1,8 +1,9 @@
 @use "../../../assets/styles" as *;
 
+// ---- service offerings ----
 .service__offerings {
-  @include flex-between;
   @include section;
+  @include flex-between;
   gap: clamp($space-8, 2vw, $space-10);
   padding-inline: clamp($space-14, 1.5vw, $space-16);
   scroll-margin-top: clamp(10px, 10vw, 150px);
@@ -11,6 +12,7 @@
     padding-top: 0;
   }
 
+  // ---- theme ----
   &--primary {
     --service-color: var(--primary);
     scroll-margin-top: clamp(20px, 10vw, 200px);
@@ -36,7 +38,9 @@
     }
   }
 
+  // ---- image ----
   &-image {
+    @include reveal($direction: right);
     max-width: clamp(280px, 50vw, 500px);
     aspect-ratio: 1;
 
@@ -46,6 +50,25 @@
     }
   }
 
+  // ---- reversed ----
+  &--reversed {
+    .service__offerings-image {
+      @include reveal($direction: left);
+    }
+
+    .service__offerings-content {
+      @include reveal($direction: right);
+    }
+  }
+
+  // ---- not reversed ----
+  &:not(&--reversed) {
+    .service__offerings-content {
+      @include reveal($direction: left);
+    }
+  }
+
+  // ---- content ----
   &-content {
     width: fit-content;
     @include flex-column;
@@ -53,6 +76,7 @@
   }
 
   &-title {
+    @include reveal();
     font-family: $font-display;
     font-size: clamp($font-size-24, 3.5vw, $font-size-32);
     font-weight: $fw-bold;
@@ -60,6 +84,7 @@
   }
 
   &-description {
+    @include reveal();
     font-size: clamp(rem(14), 2vw, $font-size-16);
     color: var(--text-light);
     line-height: 1.6;
@@ -69,6 +94,7 @@
   }
 
   &-list {
+    @include reveal-group($max-children: 5);
     @include flex-column;
     gap: clamp($space-12, 2vw, $space-20);
     width: fit-content;

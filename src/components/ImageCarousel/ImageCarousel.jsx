@@ -6,38 +6,49 @@ import { useCallback, useEffect, useState } from "react";
 
 import "./ImageCarousel.scss";
 
+// ---- autoplay milliseconds ----
 const AUTOPLAY_MS = 2500;
 const SWIPE_THRESHOLD = 1;
 
+// ---- function for getting the slide role ----
 function getSlideRole(index, active, total) {
   if (index === active) return "active";
   if (index === (active - 1 + total) % total) return "prev";
   return "next";
 }
 
+// ---- image carousel ----
 export default function ImageCarousel({ images = [], ariaLabel }) {
+  // ---- slides ----
   const slides = images.slice(0, 3);
+  // ---- total ----
   const total = slides.length;
+  // ---- active ----
   const [active, setActive] = useState(0);
+  // ---- is paused ----
   const [isPaused, setIsPaused] = useState(false);
 
+  // ---- go to ----
   const goTo = useCallback(
     (next) => setActive(((next % total) + total) % total),
     [total],
   );
 
+  // ---- useEffect for autoplay ----
   useEffect(() => {
     if (isPaused || total <= 1) return undefined;
     const id = window.setTimeout(() => goTo(active + 1), AUTOPLAY_MS);
     return () => window.clearTimeout(id);
   }, [active, isPaused, total, goTo]);
 
+  // ---- handle drag end ----
   const handleDragEnd = (_event, info) => {
     const projected = info.offset.x + info.velocity.x * 0.2;
     if (projected < -SWIPE_THRESHOLD) goTo(active + 1);
     else if (projected > SWIPE_THRESHOLD) goTo(active - 1);
   };
 
+  // ---- handle key down ----
   const handleKeyDown = (event) => {
     if (event.key === "ArrowRight") {
       event.preventDefault();
@@ -48,6 +59,7 @@ export default function ImageCarousel({ images = [], ariaLabel }) {
     }
   };
 
+  // ---- if no slides, return null ----
   if (total === 0) return null;
 
   return (
@@ -66,8 +78,11 @@ export default function ImageCarousel({ images = [], ariaLabel }) {
       onKeyDown={handleKeyDown}
     >
       <div className="image-carousel__stage">
+        {/* ---- slides ---- */}
         {slides.map((img, idx) => {
+          // ---- get slide role ----
           const role = getSlideRole(idx, active, total);
+          // ---- is active ----
           const isActive = role === "active";
 
           return (

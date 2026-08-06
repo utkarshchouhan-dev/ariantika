@@ -10,6 +10,12 @@
   }
 
   &__items {
+    @include reveal-group(
+      $step: $motion-stagger-step,
+      $delay-children: 0s,
+      $variant: up-medium,
+      $max-children: 3
+    );
     max-width: fit-content;
     @include responsive-grid;
     margin-inline: auto;

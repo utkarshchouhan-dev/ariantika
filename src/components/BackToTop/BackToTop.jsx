@@ -9,6 +9,7 @@ import "./BackToTop.scss";
 
 const MIN_PAGE_HEIGHT = 800;
 
+// ---- here is the page height ----
 function getPageHeight() {
   return Math.max(
     document.documentElement.scrollHeight,
@@ -16,11 +17,13 @@ function getPageHeight() {
   );
 }
 
+// ---- back to top ----
 export default function BackToTop() {
   const pathname = usePathname();
   const [visible, setVisible] = useState(false);
   const [isTallPage, setIsTallPage] = useState(false);
 
+  // ---- measure page height ----
   useEffect(() => {
     const measure = () => {
       setIsTallPage(getPageHeight() > MIN_PAGE_HEIGHT);
@@ -37,6 +40,7 @@ export default function BackToTop() {
     };
   }, [pathname]);
 
+  // ---- check if page is tall ----
   useEffect(() => {
     if (!isTallPage) return undefined;
 
@@ -52,6 +56,7 @@ export default function BackToTop() {
 
   if (!isTallPage) return null;
 
+  // ---- scroll to top ----
   const scrollToTop = () => {
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",

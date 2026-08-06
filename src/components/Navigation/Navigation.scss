@@ -1,15 +1,28 @@
 @use "../../assets/styles" as *;
 
+// ---- navigation ----
 .navigation {
+  // ---- vertical ----
   &--vertical {
     width: 100%;
     margin-inline: auto;
   }
 
+  // ---- list ----
   &__list {
     @include flex-center;
     gap: clamp($space-4, 0.8vw, $space-8);
 
+    // ---- animated? ----
+    &--animated {
+      @include reveal-group(
+        $delay-children: $motion-stagger-delay-nav,
+        $trigger: eager,
+        $max-children: 6
+      );
+    }
+
+    // ---- vertical ----
     &--vertical {
       flex-direction: column;
       align-items: stretch;
@@ -17,6 +30,7 @@
       width: 100%;
     }
 
+    // ---- link ----
     &--link {
       width: 100%;
       color: var(--primary);

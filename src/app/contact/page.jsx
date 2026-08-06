@@ -9,7 +9,7 @@ export default function ContactPage() {
       <PageHeader header={contactHeader.pageHeader} />
 
       <div className="contact__container contact__container--page">
-        <Contact priority />
+        <Contact />
       </div>
     </main>
   );

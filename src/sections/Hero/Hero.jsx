@@ -1,20 +1,11 @@
 import Image from "next/image";
-import * as motion from "motion/react-client";
 import { Button, TooltipText } from "@/components";
 import { hero } from "@/data";
-import {
-  reveal,
-  revealMedia,
-  revealRotate,
-  revealSpring,
-  stagger,
-  viewportOnce,
-} from "@/lib";
 
 import "./Hero.scss";
 
 export default function Hero() {
-  // ---- hero data ----
+  // ---- data ----
   const {
     greeting: { text: greetingText, icon: greetingIcon },
     title: { name, highlightSrOnly, highlight },
@@ -32,25 +23,18 @@ export default function Hero() {
     <section className="hero " aria-label="Introduction">
       <div className="hero__container">
         {/* ---- hero content ---- */}
-        <motion.div
-          className="hero__content"
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-        >
+        <div className="hero__content">
           {/* ---- greeting ---- */}
-          <motion.p className="hero__greeting" variants={reveal}>
+          <p className="hero__greeting">
             {greetingText}
             <span className="hero__greeting-icon" aria-hidden="true">
               {greetingIcon}
             </span>
-          </motion.p>
+          </p>
 
           {/* ---- title ---- */}
-          <motion.h1
+          <h1
             className="hero__title"
-            variants={reveal}
             aria-label={`${name}${highlightSrOnly} ${highlight}`}
           >
             <span className="hero__title-name" aria-hidden="true">
@@ -58,24 +42,19 @@ export default function Hero() {
             </span>
 
             <mark className="hero__title-highlight">{highlight}</mark>
-          </motion.h1>
+          </h1>
 
           {/* ---- location ---- */}
-          <motion.address className="hero__location" variants={reveal}>
-            <motion.span
-              className="hero__location-icon"
-              variants={revealRotate}
-              aria-hidden="true"
-            >
+          <address className="hero__location">
+            <span className="hero__location-icon" aria-hidden="true">
               <LocationIcon />
-            </motion.span>
+            </span>
             {locationText}
-          </motion.address>
+          </address>
 
           {/* ---- description ---- */}
-          <motion.p
+          <p
             className="hero__description"
-            variants={reveal}
             aria-label={`${beforeAbbr}${abbr.title}${afterAbbr}`}
           >
             {beforeAbbr}
@@ -88,41 +67,30 @@ export default function Hero() {
               {abbr.label}
             </TooltipText>
             {afterAbbr}
-          </motion.p>
+          </p>
 
           {/* ---- actions ---- */}
           <div className="hero__actions">
-            {/* ---- contact button ---- */}
-            {actions.map((action) => {
-              return (
-                <motion.div key={action.id} variants={reveal}>
-                  <Button
-                    className="hero__actions-button"
-                    variant={action.variant}
-                    size="default"
-                    href={action.href}
-                    icon={<action.icon />}
-                    aria-label={action.ariaLabel}
-                    download={action.download}
-                  >
-                    {action.label}
-                  </Button>
-                </motion.div>
-              );
-            })}
+            {actions.map((action) => (
+              <Button
+                key={action.id}
+                className="hero__actions-button"
+                variant={action.variant}
+                size="default"
+                href={action.href}
+                icon={<action.icon />}
+                aria-label={action.ariaLabel}
+                download={action.download}
+              >
+                {action.label}
+              </Button>
+            ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* ---- media ---- */}
         <div className="hero__visual">
-          <motion.div
-            className="hero__image"
-            variants={revealMedia}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
-          >
-            {/* ---- images ---- */}
+          <div className="hero__image">
             <Image
               src={src}
               alt={alt}
@@ -135,11 +103,7 @@ export default function Hero() {
             />
 
             {/* ---- badge ---- */}
-            <motion.span
-              className="hero__badge"
-              variants={revealSpring}
-              aria-hidden="true"
-            >
+            <span className="hero__badge" aria-hidden="true">
               <svg className="hero__badge-svg" viewBox="0 0 200 200">
                 <defs>
                   <path
@@ -159,8 +123,8 @@ export default function Hero() {
                 <span className="hero__badge-number">{years}+</span>
                 <span className="hero__badge-label">{yearsLabel}</span>
               </div>
-            </motion.span>
-          </motion.div>
+            </span>
+          </div>
         </div>
       </div>
     </section>

@@ -13,12 +13,14 @@ import { homeMetadata, quranSaveLifeVerse } from "@/data";
 
 import "./page.scss";
 
+// ---- metadata ----
 export const metadata = homeMetadata;
 
 // ---- home page ----
 export default function Home() {
   return (
     <>
+      {/* ---- json-ld ---- */}
       <JsonLd data={getProfilePageJsonLd()} />
 
       {/* ---- main container ---- */}

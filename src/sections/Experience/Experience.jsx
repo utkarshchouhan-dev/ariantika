@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "motion/react";
 import Image from "next/image";
 import {
   Button,
@@ -11,13 +10,11 @@ import {
 } from "react-aria-components";
 import { SectionHeader } from "@/components";
 import { experienceSection } from "@/data";
-import { reveal, viewportOnce } from "@/lib";
 
 import "./Experience.scss";
 
-const MotionDisclosure = motion.create(Disclosure);
-
 export default function Experience() {
+  // ---- data ----
   const {
     experienceHeadingId,
     header: { prefix, accent, subtitle },
@@ -25,11 +22,13 @@ export default function Experience() {
     items,
   } = experienceSection;
 
+  // ---- default expanded key ----
   const defaultExpandedKey = items[0]?.id;
 
   return (
     // ---- experience section ----
     <section className="experience" aria-labelledby={experienceHeadingId}>
+      {/* ---- wrapper ---- */}
       <div className="experience__wrapper">
         {/* ---- section header ---- */}
         <SectionHeader
@@ -51,16 +50,12 @@ export default function Experience() {
         >
           {items.map((item) => (
             // ---- item ----
-            <MotionDisclosure
+            <Disclosure
               key={item.id}
               id={item.id}
               className={({ isExpanded }) =>
                 `experience__item${isExpanded ? " experience__item--open" : ""}`
               }
-              variants={reveal}
-              initial="hidden"
-              whileInView="visible"
-              viewport={viewportOnce}
             >
               {({ isExpanded }) => (
                 <>
@@ -133,18 +128,13 @@ export default function Experience() {
                       </div>
 
                       {/* ---- chevron ---- */}
-                      <motion.div
+                      <div
                         className="experience__chevron-container"
                         aria-hidden="true"
-                        animate={{
-                          rotate: isExpanded ? 180 : 0,
-                        }}
-                        transition={{
-                          duration: 0.35,
-                        }}
+                        data-expanded={isExpanded ? "true" : "false"}
                       >
                         <ChevronIcon className="experience__chevron" />
-                      </motion.div>
+                      </div>
                     </Button>
                   </Heading>
 
@@ -155,20 +145,19 @@ export default function Experience() {
                       <ul className="experience__details">
                         {item.details.map((detail, detailIndex) => (
                           // ---- list ----
-                          <motion.li
+                          <li
                             key={`${item.id}-detail-${detailIndex}`}
                             className="experience__detail"
-                            variants={reveal}
                           >
                             {detail}
-                          </motion.li>
+                          </li>
                         ))}
                       </ul>
                     ) : null}
                   </DisclosurePanel>
                 </>
               )}
-            </MotionDisclosure>
+            </Disclosure>
           ))}
         </DisclosureGroup>
       </div>

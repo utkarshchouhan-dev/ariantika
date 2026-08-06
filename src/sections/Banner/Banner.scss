@@ -1,12 +1,13 @@
 @use "../../assets/styles" as *;
 
-// ---- banner section ----
+// ---- banner ----
 .banner {
+  --marquee-duration: #{$motion-marquee-duration};
   position: relative;
   width: 100%;
 
-  // ---- banner surface ----
   &__surface {
+    @include reveal();
     margin-inline: auto;
     width: 95svw;
     @include fade-edges-mask;
@@ -17,18 +18,17 @@
     }
   }
 
-  // ---- banner track ----
   &__track {
     display: flex;
     width: max-content;
     min-width: 100%;
+    animation: banner-marquee var(--marquee-duration) linear infinite;
 
-    &--active {
-      animation: banner-marquee var(--marquee-duration) linear infinite;
+    @include reduced-motion {
+      animation: none;
     }
   }
 
-  // ---- banner group ----
   &__items {
     @include flex-center;
     justify-content: flex-start;
@@ -37,14 +37,12 @@
     padding: clamp($space-14, 2vw, $space-20) clamp($space-32, 4vw, $space-40);
   }
 
-  // ---- banner item ----
   &__item {
     @include flex-center;
     gap: $space-20;
     white-space: nowrap;
   }
 
-  // ---- banner label ----
   &__label {
     font-size: clamp($font-size-14, 2vw, $font-size-18);
     font-weight: $fw-semibold;
@@ -53,7 +51,6 @@
     padding: $space-4;
   }
 
-  // ---- banner separator icon ----
   &__separator {
     @include flex-center;
     font-size: clamp($font-size-16, 2vw, $font-size-18);
@@ -63,12 +60,6 @@
 
 @keyframes banner-marquee {
   to {
-    transform: translateX(-50%);
-  }
-}
-
-@include reduced-motion {
-  .banner__track--active {
-    animation: none;
+    translate: -50% 0;
   }
 }

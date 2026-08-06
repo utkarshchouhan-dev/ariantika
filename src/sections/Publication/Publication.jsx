@@ -26,12 +26,8 @@ export default function Publication() {
 
       <div className="research__container">
         <div className="research__items">
-          {featuredPublications.map((publication, index) => (
-            <ResearchCard
-              key={publication.id}
-              publication={publication}
-              index={index}
-            />
+          {featuredPublications.map((publication) => (
+            <ResearchCard key={publication.id} publication={publication} />
           ))}
         </div>
       </div>

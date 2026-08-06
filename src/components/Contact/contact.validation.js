@@ -6,7 +6,7 @@ export const MESSAGE_MIN_LENGTH = 50;
 export const MESSAGE_MAX_LENGTH = 200;
 export const NAME_MIN_LENGTH = 2;
 
-// ==== function for getting the full name error ====
+// ---- function for getting the full name error ----
 export function getFullNameError(value) {
   if (!value) {
     return "Please enter your name.";
@@ -19,12 +19,12 @@ export function getFullNameError(value) {
   return "";
 }
 
-// ==== function for checking if the full name is valid ====
+// ---- function for checking if the full name is valid ----
 export function isFullNameValid(value) {
   return value.trim().length >= NAME_MIN_LENGTH;
 }
 
-// ==== function for getting the email error ====
+// ---- function for getting the email error ----
 export function getEmailError(value) {
   if (!value) {
     return "Please enter your email.";
@@ -41,7 +41,7 @@ export function getEmailError(value) {
   return "";
 }
 
-// ==== function for checking if the email is valid ====
+// ---- function for checking if the email is valid ----
 export function isEmailValid(value) {
   if (!value) return false;
   if (EMAIL_TYPING_ERROR_PATTERN.test(value) || value.split("@").length > 2) {
@@ -51,7 +51,7 @@ export function isEmailValid(value) {
   return EMAIL_PATTERN.test(value.trim());
 }
 
-// ==== function for getting the message error ====
+// ---- function for getting the message error ----
 export function getMessageError(value) {
   if (!value) {
     return "Please enter a message.";
@@ -68,26 +68,26 @@ export function getMessageError(value) {
   return "";
 }
 
-// ==== function for checking if the message is valid ====
+// ---- function for checking if the message is valid ----
 export function isMessageValid(value) {
   return (
     value.length >= MESSAGE_MIN_LENGTH && value.length <= MESSAGE_MAX_LENGTH
   );
 }
 
-// ==== object for getting the field error ====
+// ---- object for getting the field error ----
 const FIELD_ERROR_GETTERS = {
   fullName: getFullNameError,
   email: getEmailError,
   message: getMessageError,
 };
 
-// ==== function for getting the field error ====
+// ---- function for getting the field error ----
 export function getFieldError(field, value) {
   return FIELD_ERROR_GETTERS[field]?.(value) ?? "";
 }
 
-// ==== function for validating the contact form ====
+// ---- function for validating the contact form ----
 export function validateContactForm(values) {
   return {
     fullName: getFullNameError(values.fullName),

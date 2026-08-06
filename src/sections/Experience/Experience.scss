@@ -1,53 +1,24 @@
 @use "../../assets/styles" as *;
 
-// ---- experience section ----
+// ---- experience ----
 .experience {
   @include section;
 
   // ---- wrapper ----
   &__wrapper {
-    --experience-width: 95%;
+    --experience-width: #{$motion-view-width-to};
     background-color: var(--primary-softer);
-    width: var(--experience-width);
     margin-inline: auto;
     border-radius: clamp($radius-lg, 3vw, $radius-2xl);
 
+    @include view-scroll-width($fallback: var(--experience-width));
+
     @include down(xl) {
-      --experience-width: 100%;
+      --experience-width: #{$motion-view-width-to-narrow};
     }
 
     @include down(md) {
       background-color: transparent;
-    }
-
-    // ---- animation ----
-    @supports (animation-timeline: view()) {
-      width: var(--experience-width);
-      animation: experience-width linear forwards;
-      animation-timeline: view();
-      animation-range: entry 0% cover 40%;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      animation: none;
-      width: var(--experience-width);
-    }
-
-    @keyframes experience-width {
-      from {
-        width: 70%;
-      }
-      to {
-        width: 95%;
-      }
-    }
-
-    @include down(lg) {
-      @keyframes experience-width {
-        to {
-          width: 100%;
-        }
-      }
     }
   }
 
@@ -67,6 +38,7 @@
     max-width: 900px;
     gap: clamp($space-8, 2.5vw, $space-12);
     padding-block-end: clamp($space-32, 6vw, $space-72);
+    @include reveal-group($max-children: 4);
 
     @include down(md) {
       max-width: 615px;

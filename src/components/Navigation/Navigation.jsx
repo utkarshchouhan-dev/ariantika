@@ -1,12 +1,11 @@
 "use client";
 
-import * as motion from "motion/react-client";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components";
-import { reveal } from "@/lib";
 
 import "./Navigation.scss";
 
+// ---- navigation links ----
 const links = [
   { label: "Home", href: "/" },
   { label: "About", href: "/aboutme" },
@@ -15,80 +14,55 @@ const links = [
   { label: "Contact", href: "/contact" },
 ];
 
-const listStagger = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.1, delayChildren: 0.05 },
-  },
-};
-
+// ---- navigation ----
 export default function Navigation({
   className = "",
   direction = "horizontal",
   animated = false,
   onNavigate,
 }) {
+  // ---- pathname ----
   const pathname = usePathname();
 
+  // ---- is active ----
   const isActive = (href) =>
     href === "/"
       ? pathname === "/"
       : pathname === href || pathname.startsWith(`${href}/`);
 
+  // ---- is vertical ----
   const isVertical = direction === "vertical";
 
+  // ---- list class name ----
   const listClassName = `navigation__list ${
     isVertical ? "navigation__list--vertical" : ""
-  }`.trim();
+  }${animated ? " navigation__list--animated" : ""}`.trim();
 
-  const items = links.map((link) => {
-    const active = isActive(link.href);
-    const button = (
-      <Button
-        href={link.href}
-        variant="ghost"
-        size="default"
-        className="navigation__list--link"
-        aria-current={active ? "page" : undefined}
-        onPress={onNavigate}
-      >
-        {link.label}
-      </Button>
-    );
-
-    if (!animated) {
-      return (
-        <li className="navigation__list--item" key={link.href}>
-          {button}
-        </li>
-      );
-    }
-
-    return (
-      <motion.li
-        className="navigation__list--item"
-        key={link.href}
-        variants={reveal}
-      >
-        {button}
-      </motion.li>
-    );
-  });
-
+  // ---- return navigation ----
   return (
     <nav className={`navigation navigation--${direction} ${className}`.trim()}>
-      {animated ? (
-        <motion.ul
-          className={listClassName}
-          variants={listStagger}
-          initial="hidden"
-          animate="visible"
-        >
-          {items}
-        </motion.ul>
-      ) : (
-        <ul className={listClassName}>{items}</ul>
-      )}
+      <ul className={listClassName}>
+        {/* ---- links ---- */}
+        {links.map((link) => {
+          // ---- is active ----
+          const active = isActive(link.href);
+
+          return (
+            <li className="navigation__list--item" key={link.href}>
+              <Button
+                href={link.href}
+                variant="ghost"
+                size="default"
+                className="navigation__list--link"
+                aria-current={active ? "page" : undefined}
+                onPress={onNavigate}
+              >
+                {link.label}
+              </Button>
+            </li>
+          );
+        })}
+      </ul>
     </nav>
   );
 }

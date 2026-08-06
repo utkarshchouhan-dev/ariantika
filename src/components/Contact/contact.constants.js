@@ -1,6 +1,6 @@
 export const CONTACT_SUBMIT_ROUTE = "/api/contact";
 
-// ==== initial values for the contact form ====
+// ---- initial values for the contact form ----
 export const INITIAL_VALUES = {
   fullName: "",
   email: "",
@@ -8,5 +8,5 @@ export const INITIAL_VALUES = {
   message: "",
 };
 
-// ==== required fields for the contact form ====
+// ---- required fields for the contact form ----
 export const REQUIRED_FIELDS = ["fullName", "email", "message"];

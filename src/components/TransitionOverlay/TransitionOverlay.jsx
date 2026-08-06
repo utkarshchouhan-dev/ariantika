@@ -2,38 +2,60 @@
 
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
-import { EASE_OUT_EXPO } from "@/lib";
+import {
+  EASE_OUT_EXPO,
+  PAGE_TRANSITION_ENTER_DURATION,
+  PAGE_TRANSITION_ENTER_STAGGER,
+  PAGE_TRANSITION_EXIT_DURATION,
+  PAGE_TRANSITION_EXIT_STAGGER,
+  PAGE_TRANSITION_HOLD,
+  PAGE_TRANSITION_SHEET_COUNT,
+  PAGE_TRANSITION_TOTAL_MS,
+  markPageTransitionDone,
+} from "@/lib";
 
 import "./TransitionOverlay.scss";
 
+// ---- sheets ----
 const SHEETS = ["accent", "secondary", "primary"];
 
-const ENTER_DURATION = 0.28;
-const ENTER_STAGGER = 0.05;
-const HOLD = 0.03;
-const EXIT_DURATION = 0.34;
-const EXIT_STAGGER = 0.06;
+// ---- last sheet ----
+const LAST = PAGE_TRANSITION_SHEET_COUNT - 1;
 
-const LAST = SHEETS.length - 1;
-const ENTER_SPAN = LAST * ENTER_STAGGER + ENTER_DURATION;
-const EXIT_AT = ENTER_SPAN + HOLD;
-const TOTAL = EXIT_AT + LAST * EXIT_STAGGER + EXIT_DURATION;
+// ---- enter span ----
+const ENTER_SPAN =
+  LAST * PAGE_TRANSITION_ENTER_STAGGER + PAGE_TRANSITION_ENTER_DURATION;
 
-export default function TransitionOverlay() {
+// ---- exit at ----
+const EXIT_AT = ENTER_SPAN + PAGE_TRANSITION_HOLD;
+
+// ---- transition overlay ----
+export default function TransitionOverlay({ onComplete }) {
   const reduceMotion = useReducedMotion();
   const [phase, setPhase] = useState("entering");
 
+  // ---- it is time to exit ----
   useEffect(() => {
-    if (reduceMotion) return undefined;
+    delete document.documentElement.dataset.pageTransition;
+
+    if (reduceMotion) {
+      markPageTransitionDone();
+      onComplete?.();
+      return undefined;
+    }
 
     const toExit = setTimeout(() => setPhase("leaving"), EXIT_AT * 1000);
-    const toDone = setTimeout(() => setPhase("done"), TOTAL * 1000);
+    const toDone = setTimeout(() => {
+      setPhase("done");
+      markPageTransitionDone();
+      onComplete?.();
+    }, PAGE_TRANSITION_TOTAL_MS);
 
     return () => {
       clearTimeout(toExit);
       clearTimeout(toDone);
     };
-  }, [reduceMotion]);
+  }, [reduceMotion, onComplete]);
 
   if (reduceMotion || phase === "done") return null;
 
@@ -48,11 +70,13 @@ export default function TransitionOverlay() {
           initial={{ y: "100%" }}
           animate={{ y: isLeaving ? "-100%" : "0%" }}
           transition={{
-            duration: isLeaving ? EXIT_DURATION : ENTER_DURATION,
+            duration: isLeaving
+              ? PAGE_TRANSITION_EXIT_DURATION
+              : PAGE_TRANSITION_ENTER_DURATION,
             ease: EASE_OUT_EXPO,
             delay: isLeaving
-              ? (LAST - index) * EXIT_STAGGER
-              : index * ENTER_STAGGER,
+              ? (LAST - index) * PAGE_TRANSITION_EXIT_STAGGER
+              : index * PAGE_TRANSITION_ENTER_STAGGER,
           }}
         >
           <span className="transition-overlay__fill" />

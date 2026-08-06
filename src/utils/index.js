@@ -1,5 +1,10 @@
+// Experience Duration
 export { getExperienceDuration } from "./experience-duration";
+
+// Toast Queue
 export { appToastQueue, addToast } from "./toastQueue";
+
+// Media
 export {
   BREAKPOINTS,
   mediaUp,
@@ -13,4 +18,3 @@ export {
   isLargeDesktop,
   isDeckDesktop,
 } from "./media";
-

@@ -36,6 +36,11 @@
     }
   }
 
+  &--photo,
+  &--content {
+    @include reveal;
+  }
+
   // ---- image ----
   &--photo {
     width: clamp(280px, 40vw, 400px);

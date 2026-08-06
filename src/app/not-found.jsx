@@ -1,11 +1,10 @@
 import Image from "next/image";
 import notFoundImage from "@/assets/images/not_found/not-found.webp";
-import * as motion from "motion/react-client";
-import { reveal, revealEager } from "@/lib";
 import { createPageMetadata } from "@/lib";
 
 import "./not-found.scss";
 
+// ---- metadata ----
 export const metadata = createPageMetadata({
   title: "Page not found",
   description:
@@ -20,7 +19,8 @@ export const metadata = createPageMetadata({
 export default function NotFound() {
   return (
     <main id="main" tabIndex={-1} className="not-found">
-      <motion.div className="not-found__container" variants={reveal} {...revealEager}>
+      {/* ---- container ---- */}
+      <div className="not-found__container">
         <Image
           src={notFoundImage}
           alt="404 - Page not found"
@@ -31,7 +31,7 @@ export default function NotFound() {
           quality={70}
           priority
         />
-      </motion.div>
+      </div>
     </main>
   );
 }

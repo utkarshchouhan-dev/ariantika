@@ -2,10 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import * as motion from "motion/react-client";
 import { Logo, Navigation, Menu, Button } from "@/components";
 import { useHideOnScrollDown, useMediaQuery } from "@/hooks";
-import { revealBar, barTransition } from "@/lib";
 import { mediaQueries } from "@/utils";
 
 import "./Header.scss";
@@ -35,14 +33,12 @@ export default function Header() {
   }, []);
 
   return (
-    <motion.header
+    <header
       ref={headerRef}
       data-react-aria-top-layer=""
-      variants={revealBar}
-      initial="hidden"
-      animate={hidden ? "hidden" : "visible"}
-      transition={barTransition}
-      className={`header ${isMobileMenuOpen ? "header--mobile-menu-open" : ""}`}
+      className={`header${hidden ? " header--hidden" : ""}${
+        isMobileMenuOpen ? " header--mobile-menu-open" : ""
+      }`}
     >
       <div
         className={`header__container ${isMobileMenuOpen ? "header__container--mobile-menu-open" : ""}`}
@@ -80,6 +76,6 @@ export default function Header() {
 
       {/* mobile menu */}
       <Menu isOpen={isMobileMenuOpen} onClose={closeMenu} />
-    </motion.header>
+    </header>
   );
 }

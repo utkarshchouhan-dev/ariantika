@@ -20,12 +20,12 @@ import {
   validateContactForm,
 } from "./contact.validation";
 
-// ==== function for getting the first invalid field ====
+// ---- function for getting the first invalid field ----
 function getFirstInvalidField(values) {
   return REQUIRED_FIELDS.find((field) => getFieldError(field, values[field]));
 }
 
-// ==== function for getting the visible error ====
+// ---- function for getting the visible error ----
 function getVisibleError(
   field,
   rawError,
@@ -44,7 +44,7 @@ function getVisibleError(
   return "";
 }
 
-// ==== hook for the contact form ====
+// ---- hook for the contact form ----
 export function useContactForm() {
   const formRef = useRef(null);
   const [isSending, setIsSending] = useState(false);
@@ -54,10 +54,10 @@ export function useContactForm() {
   const [submitAttempted, setSubmitAttempted] = useState(false);
   const [submitErrorField, setSubmitErrorField] = useState(null);
 
-  // --- Service options ---
+  // ---- service options ----
   const serviceOptions = useMemo(() => getContactServiceOptions(), []);
 
-  // --- errors before validation ---
+  // ---- errors before validation ----
   const rawErrors = useMemo(
     () => ({
       fullName: getFullNameError(values.fullName),
@@ -67,7 +67,7 @@ export function useContactForm() {
     [values.fullName, values.email, values.message],
   );
 
-  // --- errors after validation ---
+  // ---- errors after validation ----
   const errors = useMemo(() => {
     const context = { touched, blurred, submitAttempted, submitErrorField };
 
@@ -87,7 +87,7 @@ export function useContactForm() {
     [values.fullName, values.email, values.message],
   );
 
-  // --- field states ---
+  // ---- field states ----
   const fieldStates = useMemo(
     () => ({
       fullName: getFieldState({
@@ -112,7 +112,7 @@ export function useContactForm() {
     [values, errors, valid, blurred],
   );
 
-  // --- useEffect for handling the submit error field ---
+  // ---- useEffect for handling the submit error field ----
   useEffect(() => {
     if (!submitAttempted || !submitErrorField) return;
 
@@ -130,17 +130,18 @@ export function useContactForm() {
     }
   }, [values, submitAttempted, submitErrorField]);
 
-  // --- set field value ---
+  // ---- set field value ----
   const setFieldValue = useCallback((name, value) => {
     setValues((prev) => ({ ...prev, [name]: value }));
     setTouched((prev) => ({ ...prev, [name]: true }));
   }, []);
 
-  // --- mark blurred ---
+  // ---- mark blurred ----
   const markBlurred = useCallback((name) => {
     setBlurred((prev) => ({ ...prev, [name]: true }));
   }, []);
 
+  // ---- handle submit ----
   const handleSubmit = useCallback(
     async (event) => {
       event.preventDefault();

@@ -13,6 +13,7 @@ import {
 
 import "./Button.scss";
 
+// ---- button ----
 function Button({
   ref,
   children,
@@ -39,8 +40,10 @@ function Button({
   const isIconOnly = Boolean(icon) && !hasLabel;
   const tooltipText = rest["aria-label"] ?? label;
 
+  // ---- resolve button color ----
   const { colorClass, colorStyle } = resolveButtonColor(color);
 
+  // ---- class names ----
   const classNames = [
     "button",
     `button--variant-${variant}`,
@@ -52,6 +55,7 @@ function Button({
     .filter(Boolean)
     .join(" ");
 
+  // ---- shared props ----
   const sharedProps = {
     ref,
     onPress,
@@ -63,6 +67,7 @@ function Button({
     ...rest,
   };
 
+  // ---- content ----
   const content = (
     <ButtonContent
       icon={icon}
@@ -75,6 +80,7 @@ function Button({
     </ButtonContent>
   );
 
+  // ---- trigger ----
   let trigger;
 
   if (href == null) {
@@ -112,6 +118,7 @@ function Button({
     );
   }
 
+  // ---- tooltip ----
   if (isIconOnly && tooltipText) {
     return (
       <TooltipTrigger>

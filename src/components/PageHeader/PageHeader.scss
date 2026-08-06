@@ -1,22 +1,25 @@
 @use "../../assets/styles" as *;
 
-// ---- section header ----
+// ---- page header ----
 .page__header {
-  @include flex-column;
-  align-items: center;
-  gap: clamp($space-4, 2vw, $space-8);
-  padding-block: clamp($space-24, 10vw, $space-64);
-  width: 100%;
   position: relative;
-  background: linear-gradient(
-    to bottom,
-    var(--primary-softer),
-    var(--surface) 150px,
-    var(--surface) 100%
-  );
+  width: 100%;
+  overflow: hidden;
   padding-block: clamp(rem(30), 20vw, rem(150));
+  @include page-header-surface;
+  @include page-header-surface-reveal;
+  @include reveal-group($max-children: 3);
 
-  // ---- page header eyebrow ----
+  // ---- inner ----
+  &-inner {
+    @include flex-column;
+    position: relative;
+    z-index: $z-base;
+    align-items: center;
+    gap: clamp($space-4, 2vw, $space-8);
+  }
+
+  // ---- eyebrow ----
   &-eyebrow {
     font-family: $font-brush;
     font-size: clamp($font-size-18, 2vw, $font-size-24);
@@ -24,24 +27,22 @@
     color: var(--accent);
   }
 
-  // ---- section header title ----
+  // ---- title ----
   &-title {
     font-size: clamp(rem(45), 8vw, $font-size-72);
     font-weight: $fw-bold;
     font-family: $font-display;
     color: var(--primary);
-    position: relative;
-    z-index: $z-base;
     letter-spacing: -0.04em;
     text-align: center;
 
-    // ---- section header title accent ----
+    // ---- accent ----
     &-accent {
       color: var(--secondary);
     }
   }
 
-  // ---- section header subtitle ----
+  // ---- subtitle ----
   &-subtitle {
     font-size: clamp($font-size-14, 2vw, $font-size-20);
     color: var(--text-muted);
@@ -50,11 +51,5 @@
     text-align: center;
     max-width: 65ch;
     padding-inline: $space-18;
-    position: relative;
-    z-index: $z-base;
   }
-}
-
-.custom-shape-divider-bottom-1785504141 {
-  @include wave-divider-bottom($fill: var(--background));
 }

@@ -22,7 +22,6 @@ export default function ResearchPage() {
             <ResearchCard
               key={publication.id}
               publication={publication}
-              index={index}
               priority={index === 0}
               as="h2"
             />

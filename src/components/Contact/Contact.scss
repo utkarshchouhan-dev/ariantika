@@ -1,5 +1,6 @@
 @use "../../assets/styles" as *;
 
+// ---- contact panel ----
 .contact__panel {
   @include flex-column;
   align-items: center;
@@ -7,7 +8,9 @@
   width: 100%;
 }
 
+// ---- contact form ----
 .contact__form {
+  @include reveal-group($max-children: 7, $variant: spring);
   @include flex-column;
   gap: clamp($space-16, 2.5vw, $space-20);
   width: min(100%, 500px);
@@ -17,15 +20,18 @@
   }
 }
 
+// ---- contact honeypot ----
 .contact__honeypot {
   @include sr-only;
 }
 
+// ---- contact field ----
 .contact__field {
   @include flex-column;
   gap: $space-8;
   position: relative;
 
+  // ---- contact field check ----
   &-check {
     @include flex-center;
     position: absolute;
@@ -37,6 +43,7 @@
     pointer-events: none;
   }
 
+  // ---- contact field count ----
   &-count {
     position: absolute;
     right: clamp($space-12, 2vw, $space-16);
@@ -47,6 +54,7 @@
     pointer-events: none;
   }
 
+  // ---- contact field error ----
   &-error {
     display: block;
     margin: 0;
@@ -61,17 +69,20 @@
     }
   }
 
+  // ---- contact field full name ----
   &[data-field="fullName"] {
     .contact__input {
       text-transform: capitalize;
     }
   }
 
+  // ---- contact field multiline check ----
   &--multiline &-check {
     top: clamp($space-12, 2vw, $space-16);
     transform: none;
   }
 
+  // ---- contact field valid ----
   &--valid,
   &--valid-blurred {
     .contact__input,
@@ -81,6 +92,7 @@
     }
   }
 
+  // ---- contact field invalid ----
   &--invalid {
     .contact__input,
     .contact__textarea,
@@ -90,6 +102,7 @@
   }
 }
 
+// ---- contact input, textarea, select trigger ----
 .contact__input,
 .contact__textarea,
 .contact__select-trigger {
@@ -119,6 +132,7 @@
     }
   }
 
+  // ---- contact input, textarea, select trigger focus ----
   &:focus,
   &:focus-visible,
   &[data-focus-visible] {
@@ -128,6 +142,7 @@
   }
 }
 
+// ---- contact textarea ----
 .contact__textarea {
   max-height: rem(500);
   min-height: rem(200);
@@ -137,18 +152,20 @@
   resize: none;
 }
 
+// ---- contact select trigger ----
 .contact__select-trigger {
   @include flex-between;
   gap: $space-12;
   cursor: pointer;
   text-align: left;
-  width: calc(100% - clamp($space-12, 2vw, $space-16) * 2 - 2px);
+  width: calc(100% - clamp($space-12, 2vw, $space-16) * 2 - 4px);
 
   &[data-placeholder] .contact__select-value {
     color: alpha(var(--text-muted), 70);
   }
 }
 
+// ---- contact select value ----
 .contact__select-value {
   flex: 1;
   min-width: 0;
@@ -157,6 +174,7 @@
   white-space: nowrap;
 }
 
+// ---- contact select icon ----
 .contact__select-icon {
   @include flex-center;
   flex-shrink: 0;
@@ -165,10 +183,12 @@
   transition: transform $duration-base $ease-default;
 }
 
+// ---- contact select open ----
 .contact__select[data-open] .contact__select-icon {
   transform: rotate(180deg);
 }
 
+// ---- contact select popover ----
 .contact__select-popover {
   width: var(--trigger-width);
   background: var(--surface);
@@ -187,12 +207,14 @@
   }
 }
 
+// ---- contact select list ----
 .contact__select-list {
   max-height: rem(260);
   overflow: auto;
   outline: none;
 }
 
+// ---- contact select option ----
 .contact__select-option {
   padding: clamp($space-12, 1.8vw, $space-14) clamp($space-14, 2vw, $space-16);
   font-size: clamp($font-size-14, 1.8vw, $font-size-16);
@@ -218,17 +240,20 @@
   }
 }
 
+// ---- contact field message ----
 .contact__field[data-field="message"] {
   &:has(.contact__field-check) .contact__field-count {
     right: clamp($space-32, 5vw, $space-40);
   }
 }
 
+// ---- contact submit ----
 .contact__submit {
   width: calc(100% - clamp($space-12, 2vw, $space-16) * 2 - 2px);
   margin-top: $space-8;
 }
 
+// ---- contact visually hidden ----
 .contact__visually-hidden {
   @include sr-only;
 }
@@ -244,6 +269,7 @@
   }
 }
 
+// ---- contact page ----
 .contact__page {
   @include page;
   .contact__container--page {

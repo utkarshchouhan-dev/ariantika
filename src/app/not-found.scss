@@ -1,14 +1,18 @@
 @use "../assets/styles" as *;
 
+// ---- not found ----
 .not-found {
   padding: clamp($space-24, 6vw, $space-48) clamp($space-16, 4vw, $space-24);
 
+  // ---- container ----
   &__container {
+    @include reveal-eager();
     @include flex-center;
     width: 100%;
     min-height: calc(100svh - rem(120));
   }
 
+  // ---- image ----
   &__image {
     width: min(100%, rem(560));
     height: auto;

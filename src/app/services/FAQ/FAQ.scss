@@ -8,6 +8,7 @@
   }
 
   &-list {
+    @include reveal-group($max-children: 8);
     padding-inline: clamp($space-8, 0.5vw, $space-10);
     max-width: 1000px;
     margin-inline: auto;

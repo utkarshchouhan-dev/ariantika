@@ -1,6 +1,7 @@
 @use "../../assets/styles" as *;
 
-.research-card {
+// ---- research card ----
+.research__card {
   position: relative;
   width: clamp(350px, 35vw, 400px);
   max-width: 100%;
@@ -9,7 +10,8 @@
   overflow: hidden;
   background-color: var(--card-accent-soft);
 
-  &__media {
+  // ---- media ----
+  &--media {
     position: absolute;
     inset: 0;
     z-index: $z-base;
@@ -27,14 +29,15 @@
       );
       pointer-events: none;
     }
+
+    &-image {
+      @include cover-image;
+      object-position: left top;
+    }
   }
 
-  &__media-image {
-    @include cover-image;
-    object-position: left top;
-  }
-
-  &__badge {
+  // ---- badge ----
+  &--badge {
     position: absolute;
     z-index: $z-base;
     inset-block-start: clamp($space-16, 2.4vw, $space-20);
@@ -50,7 +53,8 @@
     line-height: 1.4;
   }
 
-  &__content {
+  // ---- content ----
+  &--content {
     @include flex-column;
     position: absolute;
     z-index: $z-above;
@@ -59,7 +63,8 @@
     padding: clamp($space-12, 2.4vw, $space-18);
   }
 
-  &__title {
+  // ---- title ----
+  &--title {
     font-size: clamp(rem(23), 2.4vw, rem(26));
     font-weight: $fw-bold;
     letter-spacing: -0.03em;
@@ -74,7 +79,8 @@
     overflow: hidden;
   }
 
-  &__summary {
+  // ---- summary ----
+  &--summary {
     font-size: clamp($font-size-14, 1.2vw, $font-size-16);
     font-weight: $fw-regular;
     line-height: 1.5;
@@ -88,13 +94,15 @@
     text-shadow: 0 0 3px var(--card-accent);
   }
 
-  &__meta-container {
+  // ---- meta container ----
+  &--meta-container {
     @include flex-between;
     gap: $space-12;
     margin-top: clamp($space-8, 1vw, $space-12);
   }
 
-  &__meta {
+  // ---- meta ----
+  &--meta {
     @include flex-center;
     gap: $space-8;
     min-width: 0;
@@ -103,27 +111,32 @@
     text-shadow: 0 0 3px var(--card-accent);
   }
 
-  &__meta-year {
+  // ---- meta year ----
+  &--meta-year {
     @include flex-center;
     gap: $space-4;
     min-width: 0;
   }
 
-  &__meta-year-icon {
+  // ---- meta year icon ----
+  &--meta-year-icon {
     flex-shrink: 0;
     font-size: clamp($font-size-16, 1.1vw, $font-size-18);
     stroke-width: clamp(8px, 1vw, 10px);
   }
 
-  &__meta-year-label {
+  // ---- meta year label ----
+  &--meta-year-label {
     font-size: inherit;
   }
 
-  &__meta-sep {
+  // ---- meta sep ----
+  &--meta-sep {
     color: inherit;
   }
 
-  &__meta-journal {
+  // ---- meta journal ----
+  &--meta-journal {
     font-size: inherit;
     text-align: start;
     color: inherit;
@@ -133,7 +146,8 @@
     cursor: default;
   }
 
-  &__action {
+  // ---- action button ----
+  &--action {
     --button-bg: var(--text-inverse);
     --button-border: var(--text-inverse);
     --button-fg: var(--card-accent);

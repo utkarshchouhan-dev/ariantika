@@ -1,14 +1,14 @@
-import * as motion from "motion/react-client";
 import { Button } from "@/components";
 import { socialLinks } from "@/data";
-import { revealSpring, stagger, viewportOnce } from "@/lib";
 
 import "./SocialLinks.scss";
 
+// ---- is external href ----
 function isExternalHref(href) {
   return !href.startsWith("mailto:") && !href.startsWith("tel:");
 }
 
+// ---- social links ----
 export default function SocialLinks({
   direction = "vertical",
   className = "",
@@ -17,23 +17,15 @@ export default function SocialLinks({
   const tooltipPlacement = direction === "vertical" ? "left" : "top";
 
   return (
-    <motion.div
+    <div
       className={`social__links social__links--${direction} ${className}`.trim()}
       aria-label="Social links"
-      variants={stagger}
-      initial="hidden"
-      whileInView="visible"
-      viewport={viewportOnce}
     >
       {socialLinks.map((link) => {
         const external = isExternalHref(link.href);
 
         return (
-          <motion.span
-            key={link.id}
-            className="social__links-item"
-            variants={revealSpring}
-          >
+          <span key={link.id} className="social__links-item">
             <Button
               className="social__links-link"
               style={{ "--color-link": link.color }}
@@ -47,9 +39,9 @@ export default function SocialLinks({
               rel={external ? "noopener noreferrer" : undefined}
               onPress={onItemClick}
             />
-          </motion.span>
+          </span>
         );
       })}
-    </motion.div>
+    </div>
   );
 }

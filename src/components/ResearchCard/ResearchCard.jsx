@@ -1,5 +1,4 @@
 import Image from "next/image";
-import * as motion from "motion/react-client";
 import { Button, TooltipText } from "@/components";
 import {
   getPublicationAccentVars,
@@ -9,13 +8,14 @@ import {
 
 import "./ResearchCard.scss";
 
+// ---- research card ----
 export default function ResearchCard({
   publication: card,
-  index = 0,
   priority = false,
   className = "",
   as: Heading = "h3",
 }) {
+  // ---- data ----
   const {
     cover: { title, summary, image, imageAlt },
     publication: { year, label, tooltip, quartile },
@@ -32,26 +32,15 @@ export default function ResearchCard({
   const accentVars = getPublicationAccentVars(status);
 
   return (
-    <motion.article
-      className={`research-card ${className}`.trim()}
+    <article
+      className={`research__card ${className}`.trim()}
       style={accentVars}
-      initial={{ opacity: 0, y: 70, filter: "blur(20px)" }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
-        transition: {
-          duration: 0.8,
-          ease: [0.16, 1, 0.3, 1],
-          delay: index * 0.2,
-        },
-      }}
-      viewport={{ once: true, amount: 0.2 }}
     >
-      <div className="research-card__media">
+      {/* ---- media ---- */}
+      <div className="research__card--media">
         {image ? (
           <Image
-            className="research-card__media-image"
+            className="research__card--media-image"
             src={image}
             alt={imageAlt ?? ""}
             width={800}
@@ -65,31 +54,33 @@ export default function ResearchCard({
         ) : null}
       </div>
 
-      <span className="research-card__badge">{statusLabel}</span>
+      {/* ---- badge ---- */}
+      <span className="research__card--badge">{statusLabel}</span>
 
-      <div className="research-card__content">
-        <Heading className="research-card__title">{title}</Heading>
-        <p className="research-card__summary">{summary}</p>
+      {/* ---- content ---- */}
+      <div className="research__card--content">
+        <Heading className="research__card--title">{title}</Heading>
+        <p className="research__card--summary">{summary}</p>
 
-        <div className="research-card__meta-container">
-          <div className="research-card__meta">
+        <div className="research__card--meta-container">
+          <div className="research__card--meta">
             {year ? (
               <time
-                className="research-card__meta-year"
+                className="research__card--meta-year"
                 dateTime={String(year)}
               >
                 {YearIcon ? (
                   <YearIcon
-                    className="research-card__meta-year-icon"
+                    className="research__card--meta-year-icon"
                     aria-hidden="true"
                   />
                 ) : null}
-                <span className="research-card__meta-year-label">{year}</span>
+                <span className="research__card--meta-year-label">{year}</span>
               </time>
             ) : null}
 
             {year && labelWithQuartile ? (
-              <span className="research-card__meta-sep" aria-hidden="true">
+              <span className="research__card--meta-sep" aria-hidden="true">
                 |
               </span>
             ) : null}
@@ -97,7 +88,7 @@ export default function ResearchCard({
             {labelWithQuartile ? (
               <TooltipText
                 as="span"
-                className="research-card__meta-journal"
+                className="research__card--meta-journal"
                 content={tooltip}
               >
                 {labelWithQuartile}
@@ -107,7 +98,7 @@ export default function ResearchCard({
 
           {slug ? (
             <Button
-              className="research-card__action"
+              className="research__card--action"
               variant="primary"
               size="large"
               href={`/publications/${slug}`}
@@ -117,6 +108,6 @@ export default function ResearchCard({
           ) : null}
         </div>
       </div>
-    </motion.article>
+    </article>
   );
 }

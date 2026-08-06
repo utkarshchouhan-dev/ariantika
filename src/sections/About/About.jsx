@@ -1,7 +1,5 @@
-import * as motion from "motion/react-client";
 import { Button, ImageCarousel, SectionHeader } from "@/components";
 import { aboutHeader, aboutSection, aboutSource } from "@/data";
-import { viewportOnce } from "@/lib";
 
 import "./About.scss";
 
@@ -31,22 +29,11 @@ export default function About() {
       {/* ---- container ---- */}
       <div className="about__container">
         {/* ---- media ---- */}
-        <motion.div
-          initial={{ opacity: 0, y: 100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={viewportOnce}
-        >
+        <div className="about__media">
           <ImageCarousel images={aboutSource.carousel} ariaLabel={ariaLabel} />
-        </motion.div>
+        </div>
         {/* ---- content ---- */}
-        <motion.div
-          className="about__paragraphs"
-          initial={{ opacity: 0, y: 100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={viewportOnce}
-        >
+        <div className="about__paragraphs">
           {paragraphs.map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
           ))}
@@ -61,7 +48,7 @@ export default function About() {
           >
             {label}
           </Button>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

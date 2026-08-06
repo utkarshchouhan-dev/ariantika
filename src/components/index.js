@@ -18,5 +18,6 @@ export { default as BackToTop } from "./BackToTop/BackToTop";
 export { default as ContactCta } from "./ContactCta/ContactCta";
 export { default as Contact } from "./Contact/Contact";
 export { default as TransitionOverlay } from "./TransitionOverlay/TransitionOverlay";
+export { default as RevealObserver } from "./RevealObserver/RevealObserver";
 export { default as SocialLinks } from "./SocialLinks/SocialLinks";
 export { validateContactForm } from "./Contact/contact.validation";

@@ -2,8 +2,6 @@
 
 import { Button } from "@/components";
 import { contactForm } from "@/data";
-import { reveal, viewportOnce } from "@/lib";
-import { motion } from "motion/react";
 import {
   Button as AriaButton,
   FieldError,
@@ -22,9 +20,7 @@ import { formatErrorMessage } from "./contact.helpers";
 import { MESSAGE_MAX_LENGTH, MESSAGE_MIN_LENGTH } from "./contact.validation";
 import { useContactForm } from "./useContactForm";
 
-const MotionForm = motion.create(Form);
-
-// ==== Field component ====
+// ---- contact field ----
 function ContactField({ name, state, children, trailing, multiline = false }) {
   return (
     <div
@@ -37,16 +33,16 @@ function ContactField({ name, state, children, trailing, multiline = false }) {
   );
 }
 
-// ==== Form component ====
-export default function ContactForm({ priority = false }) {
-  // --- Icons ---
+// ---- contact form ----
+export default function ContactForm() {
+  // ---- icons ----
   const {
     checkIcon: CheckIcon,
     selectCaretIcon: SelectCaretIcon,
     submitIcon: SubmitIcon,
   } = contactForm;
 
-  // --- Form state ---
+  // ---- form state ----
   const {
     formRef,
     isSending,
@@ -64,17 +60,13 @@ export default function ContactForm({ priority = false }) {
   } = useContactForm();
 
   return (
-    <MotionForm
+    <Form
       ref={formRef}
       className="contact__form"
       onSubmit={handleSubmit}
       validationBehavior="aria"
-      variants={reveal}
-      initial="hidden"
-      whileInView="visible"
-      viewport={viewportOnce}
     >
-      {/* ++++ Honeypot field ++++ */}
+      {/* ---- honeypot field ---- */}
       <p className="contact__honeypot" aria-hidden="true">
         <label>
           Do not fill this out
@@ -82,7 +74,7 @@ export default function ContactForm({ priority = false }) {
         </label>
       </p>
 
-      {/* ++++ Full name field ++++ */}
+      {/* ---- full name field ---- */}
       <ContactField
         name="fullName"
         state={fullNameState}
@@ -116,7 +108,7 @@ export default function ContactForm({ priority = false }) {
         </TextField>
       </ContactField>
 
-      {/* ++++ Email field ++++ */}
+      {/* ---- email field ---- */}
       <ContactField
         name="email"
         state={emailState}
@@ -151,7 +143,7 @@ export default function ContactForm({ priority = false }) {
         </TextField>
       </ContactField>
 
-      {/* ++++ Service field ++++ */}
+      {/* ---- service field ---- */}
       <ContactField name="service" state="idle">
         <Select
           className="contact__select"
@@ -189,7 +181,7 @@ export default function ContactForm({ priority = false }) {
         </Select>
       </ContactField>
 
-      {/* ++++ Message field ++++ */}
+      {/* ---- message field ---- */}
       <ContactField
         name="message"
         multiline
@@ -231,7 +223,7 @@ export default function ContactForm({ priority = false }) {
         </TextField>
       </ContactField>
 
-      {/* ++++ Submit button ++++ */}
+      {/* ---- submit button ---- */}
       <Button
         type="submit"
         variant="primary"
@@ -244,6 +236,6 @@ export default function ContactForm({ priority = false }) {
       >
         {isSending ? contactForm.sendingLabel : contactForm.submitLabel}
       </Button>
-    </MotionForm>
+    </Form>
   );
 }

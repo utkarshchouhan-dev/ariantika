@@ -5,6 +5,7 @@
   position: fixed;
   z-index: $z-header;
   overflow: hidden;
+  @include reveal-from-top;
 
   &__container {
     @include container;

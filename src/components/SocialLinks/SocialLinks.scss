@@ -1,25 +1,33 @@
 @use "../../assets/styles" as *;
 
+// ---- social links ----
 .social__links {
+  @include reveal-group($max-children: 2);
+
+  // ---- vertical ----
   &--vertical {
     @include flex-column;
     gap: clamp(rem(2), 2vw, $space-8);
   }
 
+  // ---- horizontal ----
   &--horizontal {
     @include flex-center;
     gap: clamp($space-4, 2vw, $space-12);
   }
 
+  // ---- link ----
   &-link {
     font-size: $font-size-24 !important;
     padding: rem(6);
 
+    // ---- hover ----
     @include button-hover {
       background-color: var(--color-link);
       border-color: var(--color-link);
     }
 
+    // ---- pressed ----
     &[data-pressed] {
       background-color: var(--color-link);
       border-color: var(--color-link);

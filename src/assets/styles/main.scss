@@ -1,1 +1,11 @@
-@use "base";
+@use "base/reset";
+@use "base/document";
+@use "base/accessibility";
+@use "mixins/motion" as motion;
+@use "tokens/bundle" as *;
+
+@include motion.view-scroll-keyframes;
+
+html:not([data-page-transition="done"]) body > header.header {
+  transform: translateY($motion-bar-offset);
+}

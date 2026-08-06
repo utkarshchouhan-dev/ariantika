@@ -1,6 +1,3 @@
-import * as motion from "motion/react-client";
-import { reveal, stagger, viewportOnce } from "@/lib";
-
 import "./SectionHeader.scss";
 
 // ---- section header component ----
@@ -19,18 +16,11 @@ export default function SectionHeader({
 
   return (
     // ---- section header ----
-    <motion.header
-      className={`section__header ${className}`.trim()}
-      variants={stagger}
-      initial="hidden"
-      whileInView="visible"
-      viewport={viewportOnce}
-    >
+    <header className={`section__header ${className}`.trim()}>
       {/* ---- title ---- */}
-      <motion.h2
+      <h2
         className="section__header-title"
         id={headingId}
-        variants={reveal}
         aria-label={ariaLabel}
       >
         {prefix}
@@ -39,14 +29,12 @@ export default function SectionHeader({
         ) : null}
         {suffix ? ` ${suffix}` : null}
         <span className="sr-only">.</span>
-      </motion.h2>
+      </h2>
 
       {/* ---- subtitle ---- */}
       {subtitle ? (
-        <motion.p className="section__header-subtitle" variants={reveal}>
-          {subtitle}
-        </motion.p>
+        <p className="section__header-subtitle">{subtitle}</p>
       ) : null}
-    </motion.header>
+    </header>
   );
 }

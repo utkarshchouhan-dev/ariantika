@@ -7,15 +7,10 @@ import {
   DisclosurePanel,
   Heading,
 } from "react-aria-components";
-import { motion } from "motion/react";
-import { reveal, stagger, viewportOnce } from "@/lib";
 import { SectionHeader } from "@/components";
 import { servicesFaq } from "@/data";
 
 import "./FAQ.scss";
-
-const MotionDisclosureGroup = motion.create(DisclosureGroup);
-const MotionDisclosure = motion.create(Disclosure);
 
 export default function FAQ() {
   const {
@@ -29,6 +24,7 @@ export default function FAQ() {
 
   return (
     <section className="services__faq" aria-labelledby={headingId}>
+      {/* ---- section header ---- */}
       <SectionHeader
         headingId={headingId}
         prefix={prefix}
@@ -36,22 +32,18 @@ export default function FAQ() {
         subtitle={subtitle}
       />
 
-      <MotionDisclosureGroup
+      {/* ---- FAQ list ---- */}
+      <DisclosureGroup
         className="services__faq-list"
-        variants={stagger}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportOnce}
         defaultExpandedKeys={
           defaultExpandedKey ? [defaultExpandedKey] : undefined
         }
       >
         {items.map(({ question, answer }) => (
-          <MotionDisclosure
+          <Disclosure
             key={question}
             id={question}
             className="services__faq-item"
-            variants={reveal}
           >
             <Heading className="services__faq-heading">
               <Button slot="trigger" className="services__faq-trigger">
@@ -65,9 +57,9 @@ export default function FAQ() {
             <DisclosurePanel className="services__faq-panel">
               <p>{answer}</p>
             </DisclosurePanel>
-          </MotionDisclosure>
+          </Disclosure>
         ))}
-      </MotionDisclosureGroup>
+      </DisclosureGroup>
     </section>
   );
 }

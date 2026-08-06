@@ -1,5 +1,5 @@
-@use "../tokens" as *;
-@use "../mixins" as *;
+@use "../tokens/bundle" as *;
+@use "../utilities" as *;
 
 button:focus-visible,
 input:focus-visible,

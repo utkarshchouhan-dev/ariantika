@@ -1,11 +1,13 @@
 @use "../../assets/styles" as *;
 
+// ---- section header ----
 .section__header {
   @include flex-column;
   align-items: center;
   gap: $space-8;
   padding-block: clamp($space-48, 6vw, $space-64);
   width: 100%;
+  @include reveal-group($max-children: 2);
 
   // ---- title ----
   &-title {

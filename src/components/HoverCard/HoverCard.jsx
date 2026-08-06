@@ -4,16 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring } from "motion/react";
 import { useMediaQuery } from "@/hooks";
 import { mediaQueries } from "@/utils";
-import {
-  hoverCursor,
-  revealDeck,
-  viewportOnce,
-} from "@/lib";
+import { hoverCursor, revealDeck, viewportOnce } from "@/lib";
 
 import "./HoverCard.scss";
 
+// ---- spring configuration ----
 const SPRING = { stiffness: 300, damping: 30, mass: 0.7 };
 
+// ---- hover card ----
 export default function HoverCard({
   children,
   index = 0,
@@ -21,12 +19,14 @@ export default function HoverCard({
   className = "",
   as = "li",
 }) {
+  // ---- card reference ----
   const cardRef = useRef(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const springX = useSpring(x, SPRING);
   const springY = useSpring(y, SPRING);
 
+  // ---- set cursor position ----
   const setCursorPosition = (event, immediate = false) => {
     const rect = cardRef.current?.getBoundingClientRect();
     if (!rect) return;
@@ -46,14 +46,17 @@ export default function HoverCard({
     y.set(py);
   };
 
+  // ---- matches desktop ----
   const matchesDesktop = useMediaQuery(mediaQueries.deckDesktop);
   const [mounted, setMounted] = useState(false);
 
+  // ---- mounted ----
   useEffect(() => {
     const timer = setTimeout(() => setMounted(true), 0);
     return () => clearTimeout(timer);
   }, []);
 
+  // ---- is desktop ----
   const isDesktop = mounted && matchesDesktop;
   const MotionTag = motion[as] ?? motion.li;
 

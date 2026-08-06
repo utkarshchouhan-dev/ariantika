@@ -1,3 +1,5 @@
+import { CgSpinner } from "react-icons/cg";
+
 export default function ButtonContent({
   icon,
   iconPosition = "left",
@@ -20,7 +22,7 @@ export default function ButtonContent({
     <>
       {loading ? (
         <span className="button__loading" aria-hidden="true">
-          <span className="button__spinner" />
+          <CgSpinner className="button__spinner" />
         </span>
       ) : null}
 

@@ -36,6 +36,7 @@
   }
 
   &__card {
+    @include reveal();
     align-content: center;
     position: relative;
     margin-inline: auto;
@@ -65,6 +66,7 @@
     width: fit-content;
     padding-block: clamp($space-20, 2vw, $space-32);
     margin-inline: auto;
+    @include reveal-group($max-children: 5);
   }
 
   &__arabic {

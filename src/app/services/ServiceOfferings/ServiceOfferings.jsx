@@ -1,42 +1,28 @@
-"use client";
-
 import Image from "next/image";
-import * as motion from "motion/react-client";
 import { servicesSource } from "@/data";
-import {
-  reveal,
-  revealEager,
-  revealInView,
-  revealSlideLeft,
-  revealSlideRight,
-  stagger,
-} from "@/lib";
 
 import "./ServiceOfferings.scss";
 
 export default function ServiceOfferings() {
+  // ---- data ----
   const { servicesPage, checkIcon: CheckIcon } = servicesSource;
 
   return servicesPage.map((service, i) => {
     const isReversed = i % 2 === 0;
     const isAboveFold = i === 0;
-    const sectionMotion = isAboveFold ? revealEager : revealInView;
-    const imageVariant = isReversed ? revealSlideLeft : revealSlideRight;
-    const contentVariant = isReversed ? revealSlideRight : revealSlideLeft;
     const { id, title, description, bullets, theme, image, imageAlt } = service;
 
     return (
-      <motion.section
+      <section
         key={id}
         id={id}
-        className={`service__offerings service__offerings--${theme}`}
+        className={`service__offerings service__offerings--${theme}${
+          isReversed ? " service__offerings--reversed" : ""
+        }`}
         aria-labelledby={`${id}-title`}
-        variants={stagger}
       >
-        <motion.div
-          className="service__offerings-image"
-          variants={imageVariant}
-        >
+        {/* ---- image ---- */}
+        <div className="service__offerings-image">
           <Image
             className="service__offerings-image--img"
             src={image}
@@ -49,37 +35,18 @@ export default function ServiceOfferings() {
             loading={isAboveFold ? "eager" : "lazy"}
             fetchPriority={isAboveFold ? "high" : undefined}
           />
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="service__offerings-content"
-          variants={contentVariant}
-          {...sectionMotion}
-        >
-          <motion.h2
-            className="service__offerings-title"
-            id={`${id}-title`}
-            variants={reveal}
-            {...sectionMotion}
-          >
+        {/* ---- content ---- */}
+        <div className="service__offerings-content">
+          <h2 className="service__offerings-title" id={`${id}-title`}>
             {title}:
-          </motion.h2>
-          <motion.p
-            className="service__offerings-description"
-            variants={reveal}
-            {...sectionMotion}
-          >
-            {description}
-          </motion.p>
+          </h2>
+          <p className="service__offerings-description">{description}</p>
 
-          <motion.ul className="service__offerings-list" variants={stagger}>
+          <ul className="service__offerings-list">
             {bullets.map((item) => (
-              <motion.li
-                key={item}
-                className="service__offerings-item"
-                variants={reveal}
-                {...(isAboveFold ? revealEager : revealInView)}
-              >
+              <li key={item} className="service__offerings-item">
                 <span
                   className="service__offerings-item-icon"
                   aria-hidden="true"
@@ -87,11 +54,11 @@ export default function ServiceOfferings() {
                   <CheckIcon />
                 </span>
                 {item}
-              </motion.li>
+              </li>
             ))}
-          </motion.ul>
-        </motion.div>
-      </motion.section>
+          </ul>
+        </div>
+      </section>
     );
   });
 }

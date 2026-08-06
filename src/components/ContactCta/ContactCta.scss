@@ -1,14 +1,18 @@
 @use "../../assets/styles" as *;
 
+// ---- contact cta ----
 .contact__cta {
+  // ---- contact cta card ----
   &-card {
     @include flex-column;
     align-items: center;
     text-align: center;
     gap: clamp($space-12, 2vw, $space-16);
     padding: clamp($space-24, 4vw, $space-40);
+    @include reveal-group($max-children: 4);
   }
 
+  // ---- contact cta avatar ----
   &-avatar {
     background-color: var(--image-bg);
     width: clamp(65px, 8vw, 80px);
@@ -22,6 +26,7 @@
     }
   }
 
+  // ---- contact cta title ----
   &-title {
     font-family: $font-display;
     font-size: clamp($font-size-18, 2.5vw, $font-size-24);
@@ -29,6 +34,7 @@
     color: var(--text);
   }
 
+  // ---- contact cta subtitle ----
   &-subtitle {
     max-width: 60ch;
     font-size: clamp($font-size-12, 1vw, $font-size-16);
@@ -36,6 +42,7 @@
     line-height: 1.6;
   }
 
+  // ---- contact cta button ----
   &-button {
     margin-top: clamp($space-8, 1vw, $space-16);
   }

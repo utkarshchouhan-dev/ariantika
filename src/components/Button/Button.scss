@@ -237,9 +237,7 @@
   &__spinner {
     width: var(--button-icon-size);
     aspect-ratio: 1;
-    border: 2px solid currentColor;
-    border-bottom-color: transparent;
-    border-radius: 50%;
+    color: var(--text-reverse);
     animation: button-spin 0.7s linear infinite;
   }
 }

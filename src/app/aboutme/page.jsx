@@ -1,5 +1,4 @@
 import Image from "next/image";
-import * as motion from "motion/react-client";
 import {
   aboutMetadata,
   aboutHeader,
@@ -7,7 +6,6 @@ import {
   quranKnowledgeVerse,
 } from "@/data";
 import { PageHeader, QuranVerse } from "@/components";
-import { reveal } from "@/lib";
 
 import "./page.scss";
 
@@ -33,14 +31,8 @@ export default function AboutMe() {
               const { id, title, image, alt, icon: Icon, text } = step;
 
               return (
-                <motion.section key={id} className="about__me--step">
-                  <motion.div
-                    className={`about__me--photo about__me--photo-${isOdd}`}
-                    variants={reveal}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.4 }}
-                  >
+                <section key={id} className="about__me--step">
+                  <div className={`about__me--photo about__me--photo-${isOdd}`}>
                     <Image
                       src={image}
                       className="about__me--photo-img"
@@ -50,16 +42,10 @@ export default function AboutMe() {
                       loading={i === 0 ? "eager" : "lazy"}
                       alt={alt}
                     />
-                  </motion.div>
+                  </div>
 
                   {/* ---- content ---- */}
-                  <motion.div
-                    className="about__me--content"
-                    variants={reveal}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.4 }}
-                  >
+                  <div className="about__me--content">
                     <h2
                       className={`about__me--content-title about__me--content-title-${isOdd}`}
                     >
@@ -74,8 +60,8 @@ export default function AboutMe() {
                     </h2>
 
                     <p className="about__me--content-text">{text}</p>
-                  </motion.div>
-                </motion.section>
+                  </div>
+                </section>
               );
             })}
           </div>

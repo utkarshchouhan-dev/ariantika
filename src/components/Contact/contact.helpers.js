@@ -1,4 +1,4 @@
-// ==== function for getting the field state ====
+// ---- function for getting the field state ----
 export function getFieldState({ error, isValid, blurred, value }) {
   if (error && blurred) return "invalid";
   if (isValid && blurred) return "valid-blurred";
@@ -6,10 +6,10 @@ export function getFieldState({ error, isValid, blurred, value }) {
   return "idle";
 }
 
-// ==== function for formatting the error message ====
+// ---- function for formatting the error message ----
 const STRONG_TAG_PATTERN = /(<strong>.*?<\/strong>)/;
 
-// ==== function for formatting the error message ====
+// ---- function for formatting the error message ----
 export function formatErrorMessage(message) {
   if (!message || !STRONG_TAG_PATTERN.test(message)) {
     return message;

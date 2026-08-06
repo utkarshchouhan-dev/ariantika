@@ -15,7 +15,6 @@ export const banner = {
 
   marquee: {
     repeatCount: 2,
-    scrollSpeed: 80,
   },
 
   separator: {
