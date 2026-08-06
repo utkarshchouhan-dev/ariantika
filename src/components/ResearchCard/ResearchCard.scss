@@ -148,12 +148,12 @@
 
   // ---- action button ----
   &--action {
-    --button-bg: var(--text-inverse);
-    --button-border: var(--text-inverse);
-    --button-fg: var(--card-accent);
-    --button-on: var(--card-accent);
-    --button-hover: var(--surface-muted);
-    --button-active: var(--surface-muted);
-    box-shadow: 0 0 3px 0 alpha(var(--card-accent), 20);
+    --button-bg: var(--text-inverse) !important;
+    --button-border: var(--text-inverse) !important;
+    --button-fg: var(--card-accent) !important;
+    --button-on: var(--card-accent) !important;
+    --button-hover: var(--surface-muted) !important;
+    --button-active: var(--surface-muted) !important;
+    box-shadow: 0 0 3px 0 alpha(var(--card-accent), 20) !important;
   }
 }

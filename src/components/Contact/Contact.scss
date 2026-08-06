@@ -249,7 +249,7 @@
 
 // ---- contact submit ----
 .contact__submit {
-  width: calc(100% - clamp($space-12, 2vw, $space-16) * 2 - 2px);
+  min-width: calc(100% - clamp($space-12, 2vw, $space-16) * 2 - 4px) !important;
   margin-top: $space-8;
 }
 
