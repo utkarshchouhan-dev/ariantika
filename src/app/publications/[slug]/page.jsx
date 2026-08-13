@@ -1,6 +1,9 @@
 import { notFound } from "next/navigation";
 import { getPublicationBySlug, researchSource } from "@/data";
 import { createPageMetadata } from "@/lib";
+import Image from "next/image";
+
+import Imagesoon from "../../../assets/images/research/coming-soon.svg";
 
 import "./page.scss";
 
@@ -45,7 +48,10 @@ export default async function ResearchPublicationPage({ params }) {
   return (
     <main id="main" tabIndex={-1} className="research-publication">
       <div className="research-publication__container">
-        <p className="research-publication__status">Coming soon</p>
+        <div className="research-publication__image">
+          <Image src={Imagesoon} alt="" width={500} height={500} />
+        </div>
+        <p className="research-publication__status">Coming soon...</p>
       </div>
     </main>
   );

@@ -2,7 +2,7 @@
 
 // ---- social links ----
 .social__links {
-  @include reveal-group($max-children: 2, $delay: 0.8s);
+  @include reveal-group($max-children: 2, $delay: 0.2s);
 
   // ---- vertical ----
   &--vertical {
