@@ -145,6 +145,7 @@
 @mixin reveal-group(
   $step: $motion-stagger-step,
   $delay-children: $motion-stagger-delay-children,
+  $delay: 0s,
   $trigger: view,
   $duration: $motion-duration,
   $ease: $ease-out-expo,
@@ -162,7 +163,7 @@
         $duration: $duration,
         $ease: $ease
       );
-      --reveal-delay: calc(#{$delay-children} + #{$i} * #{$step});
+      --reveal-delay: calc(#{$delay} + #{$delay-children} + #{$i} * #{$step});
     }
   }
 }

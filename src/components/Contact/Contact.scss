@@ -10,7 +10,7 @@
 
 // ---- contact form ----
 .contact__form {
-  @include reveal-group($max-children: 7, $variant: spring);
+  @include reveal-group($max-children: 12, $variant: up-medium);
   @include flex-column;
   gap: clamp($space-16, 2.5vw, $space-20);
   width: min(100%, 500px);

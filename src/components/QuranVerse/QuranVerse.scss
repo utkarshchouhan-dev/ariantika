@@ -3,6 +3,7 @@
 .quote-verse {
   @include section;
   position: relative;
+  @include reveal();
 
   &--primary {
     --quote-verse-color: var(--primary);
@@ -36,7 +37,6 @@
   }
 
   &__card {
-    @include reveal();
     align-content: center;
     position: relative;
     margin-inline: auto;
@@ -66,7 +66,6 @@
     width: fit-content;
     padding-block: clamp($space-20, 2vw, $space-32);
     margin-inline: auto;
-    @include reveal-group($max-children: 5);
   }
 
   &__arabic {
@@ -79,9 +78,10 @@
   &__translation {
     font-size: clamp($font-size-14, 2vw, $font-size-20);
     line-height: 1.7;
-    color: var(--text-muted);
-    font-style: $font-display;
+    color: alpha(var(--text-muted), 95);
+    font-style: $font-brush;
     max-width: 55ch;
+    font-style: italic;
   }
 
   &__source {

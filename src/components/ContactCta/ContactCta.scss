@@ -9,7 +9,7 @@
     text-align: center;
     gap: clamp($space-12, 2vw, $space-16);
     padding: clamp($space-24, 4vw, $space-40);
-    @include reveal-group($max-children: 4);
+    @include reveal-group($max-children: 4, $delay: 0.5s);
   }
 
   // ---- contact cta avatar ----
