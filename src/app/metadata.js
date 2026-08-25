@@ -53,5 +53,16 @@ const metadata = {
 };
 
 export async function generateMetadata() {
-  return metadata;
+  const google = process.env.GOOGLE_SITE_VERIFICATION?.trim();
+
+  if (!google) {
+    return metadata;
+  }
+
+  return {
+    ...metadata,
+    verification: {
+      google,
+    },
+  };
 }
