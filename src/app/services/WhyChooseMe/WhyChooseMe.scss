@@ -25,17 +25,21 @@
   &__item {
     flex: 1;
     height: 200px;
-    background-color: var(--primary-softer);
+    background-color: var(--surface);
     border-radius: clamp($radius-md, 2vw, $radius-lg);
     @include flex-center;
     flex-direction: column;
     gap: clamp($space-10, 2vw, $space-16);
-    box-shadow: 0 0 2px var(--primary-soft);
-    transition: background-color $duration-base $ease-default;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 12px var(--shadow);
+    transition:
+      background-color $duration-base $ease-default,
+      border-color $duration-base $ease-default;
 
     @media (hover: hover) {
       &:hover {
-        background-color: alpha(var(--primary-soft), 60);
+        background-color: var(--primary-softer);
+        border-color: var(--secondary);
 
         .why-choose-me__icon {
           transform: scale(1.2) rotate(-5deg);
@@ -47,15 +51,15 @@
   // ---- icon ----
   &__icon {
     @include flex-center;
-    background-color: alpha(var(--accent), 80);
+    background-color: var(--primary);
     border-radius: 50%;
     padding: clamp($space-10, 2vw, $space-16);
     transition: transform $duration-base $ease-default;
 
     svg {
-      color: var(--text-inverse);
+      color: var(--primary-on);
       font-size: clamp($font-size-20, 8vw, $font-size-32);
-      filter: drop-shadow(0 0 1px var(--text-inverse));
+      filter: drop-shadow(0 0 1px var(--primary-on));
     }
   }
 

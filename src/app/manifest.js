@@ -14,8 +14,8 @@ export default function manifest() {
     scope: "/",
     display: "standalone",
     orientation: "portrait",
-    background_color: "#97C7F2",
-    theme_color: "#BFDDF7",
+    background_color: "#F7F3E9",
+    theme_color: "#2B1B17",
     prefer_related_applications: false,
     categories: ["health", "medical", "education", "science", "research"],
     icons: [

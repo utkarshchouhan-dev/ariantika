@@ -78,7 +78,7 @@
       font-family: $font-display;
       font-size: clamp($font-size-32, 4vw, rem(45));
       font-weight: $fw-bold;
-      color: var(--accent);
+      color: var(--accent-text);
       text-wrap: nowrap;
 
       &-odd {
@@ -93,7 +93,7 @@
       margin-right: $space-4;
 
       &-odd {
-        color: alpha(var(--accent), 50);
+        color: alpha(var(--secondary), 50);
       }
     }
 

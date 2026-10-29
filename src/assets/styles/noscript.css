@@ -100,7 +100,7 @@ body .noscript-nav__list {
 body .noscript-nav a {
   font-size: 0.9375rem;
   font-weight: 600;
-  color: #1a1a1a;
+  color: #2b1b17;
   text-decoration: none;
 }
 
@@ -113,9 +113,9 @@ body .noscript-nav a:hover {
     top: 5rem;
     margin: 0 2rem;
     padding: 0.75rem 1rem;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 253, 208, 0.95);
     border-radius: 0.5rem;
-    border: 1px solid #bfdcf7;
+    border: 1px solid #ebddcb;
   }
 
   body .noscript-nav__list {

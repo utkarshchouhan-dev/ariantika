@@ -150,10 +150,10 @@
   &--action {
     --button-bg: var(--text-inverse) !important;
     --button-border: var(--text-inverse) !important;
-    --button-fg: var(--card-accent) !important;
-    --button-on: var(--card-accent) !important;
+    --button-fg: var(--text) !important;
+    --button-on: var(--text) !important;
     --button-hover: var(--surface-muted) !important;
     --button-active: var(--surface-muted) !important;
-    box-shadow: 0 0 3px 0 alpha(var(--card-accent), 20) !important;
+    box-shadow: 0 0 3px 0 var(--shadow) !important;
   }
 }

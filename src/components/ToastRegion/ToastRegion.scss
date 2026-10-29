@@ -21,7 +21,7 @@
   font-weight: $fw-medium;
   line-height: 1.4;
   border-radius: $radius-lg;
-  box-shadow: 0 0 rem(4) alpha(var(--text), 10);
+  box-shadow: 0 0 rem(4) var(--shadow);
 
   &--success {
     color: var(--text-inverse);

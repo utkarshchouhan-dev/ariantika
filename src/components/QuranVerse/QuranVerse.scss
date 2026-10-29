@@ -14,7 +14,7 @@
   }
 
   &--accent {
-    --quote-verse-color: var(--accent);
+    --quote-verse-color: var(--accent-text);
   }
 
   &__icon {
@@ -55,6 +55,8 @@
     background-size: 150% 150%;
     animation: quote-verse-gradient 9s $ease-default infinite;
     border-radius: clamp($radius-lg, 5vw, $radius-xl);
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 20px var(--shadow);
 
     @media (prefers-reduced-motion: reduce) {
       animation: none;

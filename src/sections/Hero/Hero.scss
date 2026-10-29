@@ -38,7 +38,7 @@
     font-family: $font-display;
     font-size: clamp($font-size-18, 2vw, $font-size-20);
     font-weight: $fw-medium;
-    color: var(--accent);
+    color: var(--accent-text);
     text-transform: capitalize;
 
     &-icon {
@@ -84,7 +84,8 @@
       font-size: clamp($font-size-28, 4.5vw, rem(55));
       color: var(--primary-on);
       font-weight: $fw-medium;
-      background-image: linear-gradient(to right, var(--info) 100%);
+      background-color: var(--primary);
+      background-image: linear-gradient(to right, var(--primary) 100%);
       padding: $space-4 $space-8;
       letter-spacing: -1.1px;
       -webkit-box-decoration-break: clone;
@@ -205,7 +206,7 @@
     translate: 5% -5%;
     z-index: $z-above;
     pointer-events: none;
-    background-color: var(--accent);
+    background-color: var(--secondary);
     border-radius: 50%;
     overflow: hidden;
 

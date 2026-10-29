@@ -4,6 +4,9 @@
   @include section;
   margin-top: auto;
   padding: 0;
+  background-color: var(--primary);
+  border-top: 1px solid alpha(var(--primary-border), 30);
+  color: var(--text-inverse);
   @include reveal();
 
   &__container {
@@ -21,7 +24,7 @@
   &__role {
     font-size: clamp($font-size-12, 1.5vw, $font-size-16);
     font-weight: $fw-regular;
-    color: var(--text-muted);
+    color: alpha(var(--text-inverse), 85);
     line-height: 1.4;
   }
 }

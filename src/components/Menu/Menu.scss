@@ -16,6 +16,8 @@
   right: $space-12;
   z-index: $z-menu;
   background-color: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 32px var(--shadow);
   width: calc(clamp(250px, 100%, 450px) - $space-12 * 2);
   border-radius: $radius-xl;
   padding: $space-24;

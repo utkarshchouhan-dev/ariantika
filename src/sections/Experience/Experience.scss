@@ -8,6 +8,7 @@
   &__wrapper {
     --experience-width: #{$motion-view-width-to};
     background-color: var(--primary-softer);
+    border: 1px solid var(--border);
     margin-inline: auto;
     border-radius: clamp($radius-lg, 3vw, $radius-2xl);
 
@@ -49,19 +50,24 @@
   &__item {
     width: 100%;
     border-radius: $radius-lg;
-    background-color: var(--primary-soft);
-    box-shadow: 0 0 0 1px var(--primary-on);
-    transition: background-color $duration-base $ease-default;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px var(--shadow);
+    transition:
+      background-color $duration-base $ease-default,
+      border-color $duration-base $ease-default;
 
     // ---- item -> open ----
     &--open {
-      background-color: var(--primary-on);
+      background-color: var(--surface);
+      border-color: var(--secondary);
     }
 
     // ---- item -> hover ----
     @media (hover: hover) {
       &:not(.experience__item--open):hover {
-        background-color: alpha(var(--surface), 50);
+        background-color: var(--primary-softer);
+        border-color: var(--secondary);
       }
     }
   }

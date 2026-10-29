@@ -1,56 +1,115 @@
-$src-primary: #1563a7; // navy
-$src-secondary: #1ba79b; // teal
-$src-accent: #f59e0b; // amber
-$src-tertiary: #a5f9b3; // lime
-$src-tertiary-light: #e7fbce; // lime-light
-$src-quaternary: #66deef; // sky
+// ---- Color Palette Specification ----
+// Primary Dark Background / Dark Elements: #2B1B17 (Rich Dark Chocolate)
+// Secondary Dark / Containers / Card Highlights: #5C3A21 (Warm Chocolate) / #3D2B1F (Cacao)
+// Light Background / Main Canvas: #F7F3E9 (Creamy Buttercream)
+// Surface / Card Base: #FFFDD0 (Buttercream)
+// Text Colors:
+//   - Dark text on Light backgrounds: #2B1B17
+//   - Light text on Dark backgrounds: #FFFDD0 / #FFFFFF
+// Interactive / Accents / Call to Actions (CTA): #C5A880 (Warm Golden Accent) / #D4AF37 (Bright Gold)
+// Soft Brown Borders: #EBDDCB
+
+$src-primary: #2b1b17; // rich dark chocolate
+$src-secondary: #5c3a21; // warm chocolate
+$src-cacao: #3d2b1f; // cacao
+$src-accent: #c5a880; // warm golden accent
+$src-tertiary: #d4af37; // bright gold
+$src-tertiary-light: #fffdd0; // buttercream
+$src-quaternary: #3d2b1f; // cacao
 $src-info: #0284c7; // cyan-blue
 $src-success: #16a34a; // emerald
 $src-warning: #d97706; // burnt amber
 $src-danger: #dc2626; // red
-$src-neutral: #334155; // slate
+$src-neutral: #3d2b1f; // cacao
+$src-canvas: #f7f3e9; // creamy buttercream canvas
+$src-cream: #fffdd0; // buttercream
+$src-border: #ebddcb; // soft brown border
+$src-on-dark: #fffdd0; // buttercream text on dark
+$src-on-light: #2b1b17; // dark chocolate text on light
 
-@mixin color-scale($name, $source, $on: #ffffff) {
+@mixin color-scale($name, $source, $on: #ffffff, $hover: null, $active: null) {
+  $resolved-hover: if($hover, $hover, color-mix(in oklab, #{$source} 90%, black));
+  $resolved-active: if($active, $active, color-mix(in oklab, #{$source} 82%, black));
+
   --#{$name}: #{$source};
-  --#{$name}-hover: color-mix(in oklab, #{$source} 92%, black);
-  --#{$name}-active: color-mix(in oklab, #{$source} 86%, black);
-  --#{$name}-pressed: color-mix(in oklab, #{$source} 82%, black);
-  --#{$name}-disabled: color-mix(in oklab, #{$source} 35%, white);
-  --#{$name}-border: color-mix(in oklab, #{$source} 55%, white);
-  --#{$name}-border-strong: color-mix(in oklab, #{$source} 75%, white);
-  --#{$name}-soft: color-mix(in oklab, #{$source} 10%, white);
-  --#{$name}-softer: color-mix(in oklab, #{$source} 8%, white);
+  --#{$name}-hover: #{$resolved-hover};
+  --#{$name}-active: #{$resolved-active};
+  --#{$name}-pressed: color-mix(in oklab, #{$source} 78%, black);
+  --#{$name}-disabled: color-mix(in oklab, #{$source} 30%, #{$src-cream});
+  --#{$name}-border: color-mix(in oklab, #{$source} 45%, #{$src-cream});
+  --#{$name}-border-strong: color-mix(in oklab, #{$source} 65%, #{$src-cream});
+  --#{$name}-soft: color-mix(in oklab, #{$source} 12%, #{$src-cream});
+  --#{$name}-softer: color-mix(in oklab, #{$source} 6%, #{$src-cream});
   --#{$name}-focus-ring: color-mix(in srgb, #{$source} 45%, transparent);
   --#{$name}-on: #{$on};
 }
 
 @mixin root-color-tokens {
-  @include color-scale("primary", $src-primary);
-  @include color-scale("secondary", $src-secondary);
-  @include color-scale("tertiary", $src-tertiary);
-  @include color-scale("tertiary-light", $src-tertiary-light);
-  @include color-scale("quaternary", $src-quaternary);
-  @include color-scale("accent", $src-accent);
+  @include color-scale(
+    "primary",
+    $src-primary,
+    $src-on-dark,
+    $src-cacao,
+    $src-secondary
+  );
+  @include color-scale(
+    "secondary",
+    $src-secondary,
+    $src-on-dark,
+    $src-cacao,
+    $src-primary
+  );
+  @include color-scale(
+    "tertiary",
+    $src-tertiary,
+    $src-on-light,
+    color-mix(in oklab, $src-tertiary 90%, $src-primary),
+    color-mix(in oklab, $src-tertiary 80%, $src-primary)
+  );
+  @include color-scale("tertiary-light", $src-tertiary-light, $src-on-light);
+  @include color-scale(
+    "quaternary",
+    $src-quaternary,
+    $src-on-dark,
+    $src-secondary,
+    $src-primary
+  );
+  @include color-scale(
+    "accent",
+    $src-accent,
+    $src-on-light,
+    color-mix(in oklab, $src-accent 90%, $src-primary),
+    color-mix(in oklab, $src-accent 80%, $src-primary)
+  );
   @include color-scale("info", $src-info);
   @include color-scale("success", $src-success);
   @include color-scale("warning", $src-warning);
   @include color-scale("danger", $src-danger);
-  @include color-scale("neutral", $src-neutral);
+  @include color-scale(
+    "neutral",
+    $src-neutral,
+    $src-on-dark,
+    $src-secondary,
+    $src-primary
+  );
 
   // Surfaces
-  --background: #f8fafc;
-  --surface: #fff;
-  --surface-muted: #f1f5f9;
-  --surface-dark: #1e293b;
-  --surface-dark-muted: #334155;
-  --surface-dark-softer: #475569;
+  --background: #{$src-canvas};
+  --surface: #{$src-cream};
+  --surface-muted: #{$src-border};
+  --surface-dark: #{$src-primary};
+  --surface-dark-muted: #{$src-cacao};
+  --surface-dark-softer: #{$src-secondary};
   --image-bg: var(--primary-softer);
 
   // Text
-  --text: #0f172a;
-  --text-light: #334155;
-  --text-muted: #64748b;
-  --text-inverse: #ffffff;
-  --border: #e2e8f0;
-  --ring: var(--primary-focus-ring);
+  --text: #{$src-on-light};
+  --text-light: #{$src-cacao};
+  --text-muted: #{$src-secondary};
+  --text-inverse: #{$src-on-dark};
+  --text-reverse: var(--text-inverse);
+  --accent-text: #{$src-secondary};
+  --border: #{$src-border};
+  --ring: var(--secondary-focus-ring);
+  --shadow: color-mix(in srgb, #{$src-secondary} 16%, transparent);
 }

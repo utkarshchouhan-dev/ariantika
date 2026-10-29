@@ -4,7 +4,7 @@
 
 // ---- accessibility ----
 @mixin focus-ring {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--secondary);
   outline-offset: 4px;
   border-radius: $radius-xl;
 }

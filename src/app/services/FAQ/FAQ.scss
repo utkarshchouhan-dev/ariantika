@@ -51,7 +51,7 @@
     line-height: 1.5;
 
     .services__faq-item[data-expanded] & {
-      color: var(--accent);
+      color: var(--accent-text);
     }
   }
 
@@ -67,7 +67,7 @@
   }
 
   &-item[data-expanded] &-icon {
-    color: var(--accent);
+    color: var(--accent-text);
 
     .services__faq-icon-plus {
       display: none;

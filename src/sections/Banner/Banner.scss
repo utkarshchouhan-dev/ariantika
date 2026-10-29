@@ -54,7 +54,7 @@
   &__separator {
     @include flex-center;
     font-size: clamp($font-size-16, 2vw, $font-size-18);
-    color: var(--accent);
+    color: var(--accent-text);
   }
 }
 

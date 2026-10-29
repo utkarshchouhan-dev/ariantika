@@ -84,7 +84,8 @@
     height: 100%;
     padding: clamp($space-12, 1vw, $space-14);
     background-color: var(--surface);
-    border: 1px solid alpha(var(--primary), 20);
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 16px var(--shadow);
     border-radius: inherit;
   }
 

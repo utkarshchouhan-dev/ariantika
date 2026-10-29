@@ -18,7 +18,7 @@
     width: clamp(65px, 8vw, 80px);
     @include square;
     border-radius: 50%;
-    border: 2px solid var(--surface);
+    border: 2px solid var(--border);
     overflow: hidden;
 
     &--img {
@@ -31,7 +31,7 @@
     font-family: $font-display;
     font-size: clamp($font-size-18, 2.5vw, $font-size-24);
     font-weight: $fw-bold;
-    color: var(--text);
+    color: var(--primary);
   }
 
   // ---- contact cta subtitle ----

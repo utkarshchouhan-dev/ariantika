@@ -34,7 +34,7 @@ const metadata = {
   },
   manifest: "/manifest.webmanifest",
   other: {
-    "theme-color": "#BFDDF7",
+    "theme-color": "#2B1B17",
   },
   openGraph: {
     type: "website",

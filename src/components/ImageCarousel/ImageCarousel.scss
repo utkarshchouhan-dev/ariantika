@@ -112,13 +112,14 @@
     height: clamp($space-4, 1.6vw, $space-8);
     border: none;
     border-radius: $radius-2xl;
-    background-color: var(--primary-soft);
+    background-color: var(--border);
     cursor: pointer;
-    transition: width $duration-base linear;
+    transition: width $duration-base linear, background-color $duration-fast ease;
     overflow: clip;
 
     &--active {
       width: clamp(25px, 2.4vw, 30px);
+      background-color: var(--primary);
     }
   }
 }
