@@ -183,8 +183,7 @@
   transform: translateY($offset);
   transition: transform $duration $ease;
 
-  // Stay off-screen until the page transition overlay finishes
-  html[data-page-transition="done"] &:not(&#{$hidden-class}) {
+  &:not(&#{$hidden-class}) {
     transform: translateY(0);
   }
 
@@ -201,12 +200,8 @@
   $ease: $ease-out-expo
 ) {
   &::before {
-    transform: translateY(-100%);
+    transform: translateY(0);
     transition: transform $duration $ease;
-
-    html[data-page-transition="done"] & {
-      transform: translateY(0);
-    }
 
     @media (prefers-reduced-motion: reduce) {
       transform: none;

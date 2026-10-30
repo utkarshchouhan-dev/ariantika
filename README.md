@@ -162,7 +162,7 @@ public/                →  PDFs, favicons, llms.txt
 **Page lifecycle**
 
 1. Root `layout.js` wraps every page with fonts, header, footer, skip link, back-to-top, toasts, and Person JSON-LD.
-2. Root `template.jsx` mounts `TransitionOverlay` (route enter animation) and `RevealObserver` (scroll-triggered reveals after transition completes).
+2. Root `template.jsx` mounts `RevealObserver` for scroll-triggered reveals.
 3. Each route exports metadata from its data file via `createPageMetadata()`.
 
 ---
@@ -237,12 +237,11 @@ ariantika/
 - React Aria Components for tooltips, form fields, and toasts
 - Noscript fallback navigation (`src/assets/styles/noscript.css`)
 - Semantic landmarks and ARIA labels
-- `prefers-reduced-motion` respected in page transitions and Motion animations
+- `prefers-reduced-motion` respected in Motion animations
 
 ### Motion & transitions
 
-- **Page transitions:** layered sheet overlay on route change (`TransitionOverlay` + `src/lib/motion/page-transition.js`)
-- **Scroll reveals:** `RevealObserver` toggles `data-in-view` on elements after the transition finishes
+- **Scroll reveals:** `RevealObserver` toggles `data-in-view` on elements as they enter the viewport
 - **Motion presets:** blur/lift reveals and deck animations in `src/lib/motion/motion.js`
 
 ### Contact form

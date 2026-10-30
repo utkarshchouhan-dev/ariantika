@@ -5,7 +5,3 @@
 @use "tokens/bundle" as *;
 
 @include motion.view-scroll-keyframes;
-
-html:not([data-page-transition="done"]) body > header.header {
-  transform: translateY($motion-bar-offset);
-}

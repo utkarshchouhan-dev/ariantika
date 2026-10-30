@@ -6,19 +6,6 @@ export {
   viewportOnce,
 } from "./motion/motion";
 
-// Page Transition
-export {
-  PAGE_TRANSITION_ENTER_DURATION,
-  PAGE_TRANSITION_ENTER_STAGGER,
-  PAGE_TRANSITION_EXIT_DURATION,
-  PAGE_TRANSITION_EXIT_STAGGER,
-  PAGE_TRANSITION_HOLD,
-  PAGE_TRANSITION_SHEET_COUNT,
-  PAGE_TRANSITION_TOTAL_MS,
-  markPageTransitionDone,
-  PAGE_TRANSITION_DONE_EVENT,
-} from "./motion/page-transition";
-
 // Site
 export { getSiteUrl, SITE_URL } from "./site";
 
