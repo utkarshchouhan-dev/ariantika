@@ -21,6 +21,7 @@ export default function ResearchCard({
     publication: { year, label, tooltip, quartile },
     status,
     slug,
+    doi,
   } = card;
 
   const {
@@ -96,12 +97,13 @@ export default function ResearchCard({
             ) : null}
           </div>
 
-          {slug ? (
+          {slug || doi ? (
             <Button
               className="research__card--action"
               variant="primary"
               size="large"
-              href={`/publications/${slug}`}
+              href={doi || `/publications/${slug}`}
+              {...(doi ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               icon={<DetailsIcon />}
               aria-label={detailsAriaLabel}
             />

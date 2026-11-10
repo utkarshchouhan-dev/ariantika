@@ -11,11 +11,6 @@ export const PUBLICATION_STATUS = {
     label: "Published",
     accent: "primary",
   },
-  accepted: {
-    id: "accepted",
-    label: "Accepted",
-    accent: "accent",
-  },
   "under-review": {
     id: "under-review",
     label: "Under Review",
@@ -33,11 +28,12 @@ const publications = [
     id: "qol-advanced-lung-cancer",
     slug: "quality-of-life-in-advanced-stage-lung-cancer",
     status: PUBLICATION_STATUS.published.id,
+    doi: "https://doi.org/10.20473/jr.v10-I.3.2024.228-235",
     cover: {
       title:
         "Assessment of Quality of Life in Advanced-Stage Lung Cancer Patients Using EORTC QLQ-C30 Questionnaire",
       summary:
-        "Cross-sectional study assessing quality of life in patients with advanced-stage lung cancer using the EORTC QLQ-C30 questionnaire.",
+        "Cross-sectional study assessing patient quality of life using the EORTC QLQ-C30 questionnaire.",
       image: lungCancerImage,
       imageAlt: "Medical illustration representing advanced-stage lung cancer.",
     },
@@ -45,19 +41,18 @@ const publications = [
       year: 2024,
       type: "Journal Article",
       quartile: null,
-      label: "Journal Respirologi Indonesia",
+      label: "J. Respirologi Indonesia",
       tooltip: "Journal Respirologi Indonesia (National Accredited)",
     },
   },
   {
-    id: "factors-qol-advanced-lung-cancer",
-    slug: "clinical-sociodemographic-psychosocial-factors-quality-of-life-advanced-lung-cancer",
-    status: PUBLICATION_STATUS.accepted.id,
+    id: "dyspnea-family-support-qol",
+    slug: "dyspnea-family-support-quality-of-life-advanced-lung-cancer",
+    status: PUBLICATION_STATUS["under-review"].id,
     cover: {
-      title:
-        "Clinical, Sociodemographic, and Psychosocial Factors Associated with Quality of Life in Advanced Lung Cancer: Implications for Respiratory Therapy Practice",
+      title: "Dyspnea and Family Support in Advanced Lung Cancer",
       summary:
-        "Examines clinical, sociodemographic, and psychosocial factors associated with quality of life in advanced lung cancer, with implications for respiratory therapy practice.",
+        "Investigates how dyspnea and family support influence quality of life in advanced lung cancer.",
       image: dyspneaImage,
       imageAlt:
         "Medical illustration representing respiratory therapy research.",
@@ -72,13 +67,13 @@ const publications = [
   },
   {
     id: "hai-indonesian-teaching-hospital",
-    slug: "longitudinal-trends-healthcare-associated-infections-indonesian-university-teaching-hospital",
+    slug: "healthcare-associated-infections-indonesian-teaching-hospital",
     status: PUBLICATION_STATUS["under-review"].id,
     cover: {
       title:
-        "Longitudinal Trends in Healthcare-Associated Infections at an Indonesian University Teaching Hospital: An Active Surveillance Study, 2022-2025",
+        "Healthcare-Associated Infections in an Indonesian Teaching Hospital",
       summary:
-        "Active surveillance study examining longitudinal trends in healthcare-associated infections at an Indonesian university teaching hospital from 2022 to 2025.",
+        "Five-year surveillance study examining trends and incidence of healthcare-associated infections.",
       image: hospitalInfectionImage,
       imageAlt:
         "Medical illustration representing healthcare-associated infection surveillance.",
@@ -87,19 +82,18 @@ const publications = [
       year: 2026,
       type: "Journal Article",
       quartile: "Q2",
-      label: "Infection Prevention in Practice",
-      tooltip: "Infection Prevention in Practice",
+      label: "Epidemiologia",
+      tooltip: "Epidemiologia",
     },
   },
   {
-    id: "supportive-tb-isolation-room",
-    slug: "designing-supportive-tuberculosis-isolation-room-patient-experience-infection-control",
-    status: PUBLICATION_STATUS["under-review"].id,
+    id: "biophilic-tb-isolation",
+    slug: "biophilic-elements-pulmonary-tuberculosis-isolation-rooms",
+    status: PUBLICATION_STATUS.submitted.id,
     cover: {
-      title:
-        "Designing a More Supportive Tuberculosis Isolation Room: Patient Experience and Infection Control Considerations",
+      title: "Biophilic Design for Tuberculosis Isolation Rooms",
       summary:
-        "Examines patient experience and infection control considerations in designing a more supportive tuberculosis isolation room.",
+        "Explores biophilic design strategies to reduce transmission risk and improve patient well-being.",
       image: tuberculosisLungsImage,
       imageAlt:
         "Medical illustration representing pulmonary tuberculosis research.",
@@ -107,19 +101,14 @@ const publications = [
     publication: {
       year: 2026,
       type: "Journal Article",
-      quartile: "Q2",
-      label: "Journal of Patient Experience",
-      tooltip: "Journal of Patient Experience",
+      quartile: "Q1",
+      label: "Health & Place",
+      tooltip: "Health & Place",
     },
   },
 ];
 
-const publicationStatusPriority = [
-  "published",
-  "accepted",
-  "under-review",
-  "submitted",
-];
+const publicationStatusPriority = ["published", "under-review", "submitted"];
 
 export const researchSource = {
   researchHeadingId: "research-heading",
